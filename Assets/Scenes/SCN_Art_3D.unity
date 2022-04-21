@@ -807,9 +807,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 157962608}
-  - component: {fileID: 157962607}
   - component: {fileID: 157962606}
   - component: {fileID: 157962605}
+  - component: {fileID: 157962607}
+  - component: {fileID: 157962609}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -887,6 +888,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &157962609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157962604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2ad4ec69b34a574f8e35d0e81c3332c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunBase: {fileID: 986368890}
 --- !u!1 &160361696
 GameObject:
   m_ObjectHideFlags: 0
@@ -5057,7 +5071,6 @@ MonoBehaviour:
   prefabProjectile: {fileID: 8787971964000899984, guid: fdeef5d2df6f85149813f80fdee93758, type: 3}
   positionToShoot: {fileID: 1485465780}
   timeBetweenShoot: 0.3
-  keyCode: 122
 --- !u!23 &986368891
 MeshRenderer:
   m_ObjectHideFlags: 0

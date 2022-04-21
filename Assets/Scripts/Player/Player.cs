@@ -28,7 +28,14 @@ public class Player : MonoBehaviour
         if (characterController.isGrounded)
         {
             vSpeed = 0;
-            if (Input.GetKeyDown(KeyCode.Space)) vSpeed = jumpSpeed;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                vSpeed = jumpSpeed;
+                animator.SetBool("Jump", true);
+            }
+
+            Invoke("EndJumpAnimation", .1f); 
+
         }
 
         var isWalking = inputAxisVertical != 0;
@@ -53,5 +60,11 @@ public class Player : MonoBehaviour
 
         animator.SetBool("Run", isWalking);
 
+    }
+
+    public void EndJumpAnimation()
+    {
+        if (characterController.isGrounded)
+            animator.SetBool("Jump", false);
     }
 }

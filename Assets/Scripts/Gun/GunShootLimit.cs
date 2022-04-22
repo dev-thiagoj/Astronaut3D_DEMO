@@ -28,7 +28,7 @@ public class GunShootLimit : GunBase
             }
 
             //qdo caisse aqui, entraria em loop infinito e quebraria a Unity
-
+            CheckRecharge();
         }
     }
 

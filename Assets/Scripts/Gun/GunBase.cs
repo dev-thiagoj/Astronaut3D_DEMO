@@ -5,17 +5,16 @@ using UnityEngine;
 public class GunBase : MonoBehaviour
 {
     public ProjectileBase prefabProjectile;
-
-    public Vector3 position;
     
     public Transform positionToShoot;
+    public Vector3 pos;
     public float timeBetweenShoot = .3f;
 
     private Coroutine _currentCoroutine;
 
     private void Update()
     {
-        position = positionToShoot.transform.position;
+        pos = positionToShoot.transform.position;
     }
 
     protected virtual IEnumerator ShootCoroutine()
@@ -30,7 +29,7 @@ public class GunBase : MonoBehaviour
     public void Shoot()
     {   
         var projectile = Instantiate(prefabProjectile);
-        projectile.transform.SetPositionAndRotation(position, positionToShoot.rotation);
+        projectile.transform.SetPositionAndRotation(pos, positionToShoot.transform.rotation);
         
     }
 

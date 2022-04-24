@@ -1,14 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GunShootLimit : GunBase
 {
+    public List<UIGunUpdater> uIGunUpdaters;
+
     public float maxShoot = 5f;
     public float timeToRecharge = 1f;
 
     private float _currentShoots;
     private bool _recharging = false;
+
+    private void Awake()
+    {
+        GetAllUIs();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R)) StartRecharge();
+        
+    }
 
     protected override IEnumerator ShootCoroutine()
     {
@@ -23,6 +37,7 @@ public class GunShootLimit : GunBase
                 _currentShoots++;
 
                 CheckRecharge();
+                UpdateUI();
 
                 yield return new WaitForSeconds(timeToRecharge);
             }
@@ -55,10 +70,23 @@ public class GunShootLimit : GunBase
         while (time < timeToRecharge)
         {
             time += Time.deltaTime;
+
+            uIGunUpdaters.ForEach(i => i.UpdateValue(time/timeToRecharge));
+
             yield return new WaitForEndOfFrame();
         }
 
         _currentShoots = 0;
         _recharging = false;
+    }
+
+    private void UpdateUI()
+    {
+        uIGunUpdaters.ForEach(i => i.UpdateValue(maxShoot, _currentShoots));
+    }
+
+    private void GetAllUIs()
+    {
+        uIGunUpdaters = GameObject.FindObjectsOfType<UIGunUpdater>().ToList();
     }
 }

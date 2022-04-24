@@ -4,15 +4,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerAbillityShoot : PlayerAbillityBase
-{
-    public GunBase gunBase;
+{   
+    public List<GunBase> gunBases;
     public Transform gunPosition;
 
+    private GunBase _gunBaseIndex;
     private GunBase _currentGun;
 
     protected override void Init()
     {
         base.Init();
+
+        _gunBaseIndex = gunBases[0];
 
         CreateGun();
 
@@ -20,9 +23,14 @@ public class PlayerAbillityShoot : PlayerAbillityBase
         inputs.Gameplay.Shoot.canceled += ctx => CancelShoot();
     }
 
+    private void Update()
+    {
+        ChooseBetweensGuns();
+    }
+
     private void CreateGun()
     {
-        _currentGun = Instantiate(gunBase, gunPosition);
+        _currentGun = Instantiate(_gunBaseIndex, gunPosition);
 
         _currentGun.transform.localPosition = _currentGun.transform.localEulerAngles = Vector3.zero;
     }
@@ -37,5 +45,22 @@ public class PlayerAbillityShoot : PlayerAbillityBase
     {
         _currentGun.StopShoot();
         Debug.Log("Cancel Shoot");
+    }
+
+    private void ChooseBetweensGuns()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Destroy(_currentGun.gameObject);
+            _gunBaseIndex = gunBases[0];
+            CreateGun();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {   
+            Destroy(_currentGun.gameObject);
+            _gunBaseIndex = gunBases[1];
+            CreateGun();
+        }
     }
 }

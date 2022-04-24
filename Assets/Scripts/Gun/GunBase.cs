@@ -8,15 +8,10 @@ public class GunBase : MonoBehaviour
     
     public Transform positionToShoot;
     public Vector3 pos;
-    public float timeBetweenShoot = .3f;
+    public float timeBetweenShoot = .2f;
     public float speed = 50f;
 
     private Coroutine _currentCoroutine;
-
-    private void Update()
-    {
-        pos = positionToShoot.position;
-    }
 
     protected virtual IEnumerator ShootCoroutine()
     {
@@ -30,7 +25,7 @@ public class GunBase : MonoBehaviour
     protected virtual void Shoot()
     {   
         var projectile = Instantiate(prefabProjectile);
-        projectile.transform.SetPositionAndRotation(pos, positionToShoot.rotation);
+        projectile.transform.SetPositionAndRotation(positionToShoot.position, positionToShoot.rotation);
         projectile.speed = speed;
     }
 

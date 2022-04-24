@@ -193,9 +193,10 @@ MonoBehaviour:
   prefabProjectile: {fileID: 8787971964000899984, guid: fdeef5d2df6f85149813f80fdee93758, type: 3}
   positionToShoot: {fileID: 6581171846868249269}
   pos: {x: 0, y: 0, z: 0}
-  timeBetweenShoot: 0.3
+  timeBetweenShoot: 0.5
   speed: 50
-  maxShoot: 10
-  timeToRecharge: 1
+  uIGunUpdaters: []
+  maxShoot: 3
+  timeToRecharge: 5
   amountPerShootWithAngles: 4
   angle: 5

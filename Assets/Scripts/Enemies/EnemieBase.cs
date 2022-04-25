@@ -2,15 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Animation;
 
 
 namespace Enemy
 {
     public class EnemieBase : MonoBehaviour
     {
+        
         public float startLife = 10f;
 
         [SerializeField] private float _currentLife;
+        
+        [Header("Animation")]
+        [SerializeField] private AnimationBase _animationBase;
 
         [Header("Start Animation")]
         public float startDuration = .2f;
@@ -40,7 +45,8 @@ namespace Enemy
 
         protected virtual void OnKill()
         {
-            Destroy(gameObject);
+            Destroy(gameObject, 10f);
+            PlayAnimationByTrigger(AnimationType.DEATH);
         }
 
         public void OnDamage(float f)
@@ -59,6 +65,11 @@ namespace Enemy
         {
             if (startWithBornAnimation)
                 transform.DOScale(0, startDuration).SetEase(ease).From();
+        }
+
+        public void PlayAnimationByTrigger(AnimationType animationType)
+        {
+            _animationBase.PlayAnimationByTrigger(animationType);
         }
 
         #endregion

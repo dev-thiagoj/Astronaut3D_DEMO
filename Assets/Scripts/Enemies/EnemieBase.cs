@@ -10,6 +10,8 @@ namespace Enemy
     public class EnemieBase : MonoBehaviour, IDamageable
     {
         public Collider collider;
+        public FlashColor flashColor;
+        public ParticleSystem particleSystem;
 
         public float startLife = 10f;
 
@@ -23,9 +25,14 @@ namespace Enemy
         public Ease ease = Ease.OutBack;
         public bool startWithBornAnimation = true;
 
+        [Header("Particles")]
+        public int intParticles = 15;
+
         private void OnValidate()
         {
             collider = GetComponentInChildren<Collider>();
+            flashColor = GetComponentInChildren<FlashColor>();
+            particleSystem = GetComponentInChildren<ParticleSystem>();
         }
 
         private void Awake()
@@ -58,6 +65,8 @@ namespace Enemy
 
         public void OnDamage(float f)
         {
+            if (flashColor != null) flashColor.Flash();
+            if (particleSystem != null) particleSystem.Emit(intParticles);
             _currentLife -= f;
 
             if (_currentLife <= 0)

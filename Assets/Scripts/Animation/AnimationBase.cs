@@ -19,6 +19,11 @@ namespace Animation
         public Animator animator;
         public List<AnimationSetup> animationSetups;
 
+        private void OnValidate()
+        {
+            animator = GetComponentInChildren<Animator>();
+        }
+
         public void PlayAnimationByTrigger(AnimationType animationType)
         {
             var setup = animationSetups.Find(i => i.animationType == animationType);

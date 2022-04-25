@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Animation;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class Player : MonoBehaviour
     public float turnSpeed = 1f;
     public float gravity = 9.8f;
     public float jumpSpeed = 15f;
+
+    //[Header("Animation")]
+    //[SerializeField] private AnimationBase _animationBase;
 
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
@@ -31,7 +35,8 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 vSpeed = jumpSpeed;
-                animator.SetBool("Jump", true);
+                //animator.SetBool("Jump", true);
+                animator.SetTrigger("Jump0");
             }
 
             Invoke("EndJumpAnimation", .1f); 
@@ -64,7 +69,21 @@ public class Player : MonoBehaviour
 
     public void EndJumpAnimation()
     {
-        if (characterController.isGrounded)
-            animator.SetBool("Jump", false);
+        //if (characterController.isGrounded)
+            //animator.SetBool("Jump", false);
+            
+    }
+
+    /*public void PlayAnimationByTrigger(AnimationType animationType)
+    {
+        _animationBase.PlayAnimationByTrigger(animationType);
+    }*/
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            animator.SetBool("Death", true);
+        }
     }
 }

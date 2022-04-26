@@ -13,9 +13,10 @@ namespace Enemy
         public Collider collider;
         public FlashColor flashColor;
         public ParticleSystem particleSystem;
-        public Player player;
+        private Player _player;
 
         public float startLife = 10f;
+        public bool lookAtPlayer = false;
 
         [SerializeField] private float _currentLife;
 
@@ -34,7 +35,7 @@ namespace Enemy
         public bool canPursuit = false;
         public float speedOfPursuit = 5f;
         private bool _startPursuit = false;
-        
+
 
         private void OnValidate()
         {
@@ -42,11 +43,33 @@ namespace Enemy
             collider = GetComponentInChildren<Collider>();
             flashColor = GetComponentInChildren<FlashColor>();
             particleSystem = GetComponentInChildren<ParticleSystem>();
+            _animationBase = GetComponentInChildren<AnimationBase>();
         }
 
         private void Awake()
         {
             Init();
+        }
+
+        private void Start()
+        {
+            _player = GameObject.FindObjectOfType<Player>();
+        }
+
+        public virtual void Update()
+        {
+            if (lookAtPlayer)
+            {
+                transform.LookAt(_player.transform.position);
+            }
+            
+            Pursuit();
+
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                OnDamage(5);
+            }
+
         }
 
         protected void ResetLife()
@@ -67,7 +90,9 @@ namespace Enemy
 
         protected virtual void OnKill()
         {
-            if (collider != null) collider.enabled = false;
+            //if (collider != null) collider.enabled = false;
+            //thisRB.useGravity = false;
+
             Destroy(gameObject, 10f);
             PlayAnimationByTrigger(AnimationType.DEATH);
         }
@@ -76,6 +101,9 @@ namespace Enemy
         {
             if (flashColor != null) flashColor.Flash();
             if (particleSystem != null) particleSystem.Emit(intParticles);
+
+            transform.position -= transform.forward; //serve para dar um "tranco" no inimigo qdo ele leva o tiro
+
             _currentLife -= f;
             _startPursuit = true;
 
@@ -100,31 +128,33 @@ namespace Enemy
 
         #endregion
 
-        private void Update()
-        {
-            Pursuit();
-
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                OnDamage(5);
-            }
-
-        }
 
         public void Damage(float damage)
-        {   
+        {
             OnDamage(damage);
+        }
+
+        public void Damage(float damage, Vector3 dir)
+        {
+            OnDamage(damage);
+            transform.DOMove(transform.position - dir, .1f);
         }
 
         public void Pursuit()
         {
-            Vector3 lookDirection = (player.transform.position - thisRB.transform.position).normalized;
+            Vector3 lookDirection = (_player.transform.position - thisRB.transform.position).normalized;
 
             if (canPursuit && _startPursuit)
             {
                 thisRB.AddForce(lookDirection * speedOfPursuit, ForceMode.Force);
                 PlayAnimationByTrigger(AnimationType.RUN);
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            if (collision.gameObject.CompareTag("Player"))
+                _player.Damage(1);
         }
     }
 

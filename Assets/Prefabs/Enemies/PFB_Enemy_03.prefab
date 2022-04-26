@@ -4885,14 +4885,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6641739725639387602}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 8933049623298825530}
   m_Father: {fileID: 6641739726379615050}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &6641739726379615029
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,11 +4904,12 @@ GameObject:
   - component: {fileID: 6641739726379615050}
   - component: {fileID: 6641739726379615028}
   - component: {fileID: 6591584795972683722}
-  - component: {fileID: 6641739726379615051}
+  - component: {fileID: 264144773986781966}
   - component: {fileID: 6641739726379615049}
+  - component: {fileID: 2142928733}
   m_Layer: 0
   m_Name: PFB_Enemy_03
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4940,8 +4941,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.2792053, y: 4.115434, z: 3.792076}
-  m_Center: {x: 0.21626282, y: 1.8628376, z: 0.27134323}
+  m_Size: {x: 2.8163147, y: 3.9183583, z: 2.6760864}
+  m_Center: {x: -0.015182495, y: 1.9613755, z: -0.0066452026}
 --- !u!54 &6591584795972683722
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4958,7 +4959,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6641739726379615051
+--- !u!114 &264144773986781966
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4967,19 +4968,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 6641739726379615029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af6385bd5a53b24449bb1e2b0b3da37f, type: 3}
+  m_Script: {fileID: 11500000, guid: 3af20abb4514c4b4188f2f39df1f3c15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisRB: {fileID: 6591584795972683722}
   collider: {fileID: 6641739726379615028}
   flashColor: {fileID: 6641739725466040158}
   particleSystem: {fileID: 6641739724569702886}
   startLife: 10
+  lookAtPlayer: 0
   _currentLife: 0
-  _animationBase: {fileID: 6641739726379615049}
+  _animationBase: {fileID: 0}
   startDuration: 0.2
-  ease: 1
+  ease: 27
   startWithBornAnimation: 1
   intParticles: 15
+  canPursuit: 0
+  speedOfPursuit: 5
+  waypoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  minDistance: 1
+  speed: 5
 --- !u!114 &6641739726379615049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5002,6 +5013,33 @@ MonoBehaviour:
     trigger: Attack
   - animationType: 4
     trigger: Death
+--- !u!114 &2142928733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6641739726379615029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9eff2659494f7f94b9777b419fa02c33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisRB: {fileID: 6591584795972683722}
+  collider: {fileID: 6641739726379615028}
+  flashColor: {fileID: 6641739725466040158}
+  particleSystem: {fileID: 6641739724569702886}
+  startLife: 10
+  lookAtPlayer: 0
+  _currentLife: 0
+  _animationBase: {fileID: 6641739726379615049}
+  startDuration: 0.2
+  ease: 27
+  startWithBornAnimation: 1
+  intParticles: 15
+  canPursuit: 0
+  speedOfPursuit: 5
+  gunBase: {fileID: 0}
 --- !u!1001 &6641739726212721986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5108,5 +5146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshRenderer: {fileID: 7760755014325642837}
+  skinnedMeshRenderer: {fileID: 0}
   color: {r: 1, g: 0, b: 0, a: 1}
   duration: 0.1

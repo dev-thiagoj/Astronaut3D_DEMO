@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Animation;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IDamageable
 {
     public Animator animator;
 
@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
 
     private float vSpeed = 0f;
 
+    [Header("Flash")]
+    public List<FlashColor> flashColors;
+
     private void Update()
     {
         transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
@@ -35,8 +38,7 @@ public class Player : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 vSpeed = jumpSpeed;
-                //animator.SetBool("Jump", true);
-                animator.SetTrigger("Jump0");
+                animator.SetBool("Jump", true);
             }
 
             Invoke("EndJumpAnimation", .1f); 
@@ -69,9 +71,14 @@ public class Player : MonoBehaviour
 
     public void EndJumpAnimation()
     {
-        //if (characterController.isGrounded)
-            //animator.SetBool("Jump", false);
+        if (characterController.isGrounded)
+            animator.SetBool("Jump", false);
             
+    }
+
+    private void Death()
+    {
+        animator.SetBool("Death", true);
     }
 
     /*public void PlayAnimationByTrigger(AnimationType animationType)
@@ -83,7 +90,19 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            animator.SetBool("Death", true);
+            Death();
         }
     }
+
+    #region LIFE
+    public void Damage(float damage)
+    {
+        flashColors.ForEach(i => i.Flash());
+    }
+
+    public void Damage(float damage, Vector3 dir)
+    {
+        Damage(damage);
+    }
+    #endregion
 }

@@ -10,7 +10,7 @@ public class HealthBase : MonoBehaviour
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
 
-    [SerializeField] private float _currLife;
+    public float _currLife;
 
     private void Awake()
     {
@@ -35,18 +35,10 @@ public class HealthBase : MonoBehaviour
         OnKill?.Invoke(this);
     }
 
-    [NaughtyAttributes.Button]
-    public void Damage()
-    {
-        Damage(5);
-    }
-
     public void Damage(float f)
     {
         //if (flashColor != null) flashColor.Flash();
         //if (particleSystem != null) particleSystem.Emit(intParticles);
-
-        //transform.position -= transform.forward; //serve para dar um "tranco" no inimigo qdo ele leva o tiro
 
         _currLife -= f;
 

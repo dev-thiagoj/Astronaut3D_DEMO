@@ -33,8 +33,8 @@ namespace Enemy
 
         [Header("Pursuit")]
         public bool canPursuit = false;
-        public float speedOfPursuit = 5f;
-        private bool _startPursuit = false;
+        public float speedOfPursuit = 25f;
+        public bool _startPursuit = false;
 
 
         private void OnValidate()
@@ -62,14 +62,17 @@ namespace Enemy
             {
                 transform.LookAt(_player.transform.position);
             }
-            
+
+            PlayerKilled();
             Pursuit();
+        }
 
-            if (Input.GetKeyDown(KeyCode.T))
+        public void PlayerKilled()
+        {
+            if (_player.healthBase._currLife <= 0)
             {
-                OnDamage(5);
+                _startPursuit = false;
             }
-
         }
 
         protected void ResetLife()
@@ -85,16 +88,17 @@ namespace Enemy
 
         protected virtual void Kill()
         {
+            canPursuit = false;
+
+            lookAtPlayer = false;
+
             OnKill();
         }
 
         protected virtual void OnKill()
         {
-            //if (collider != null) collider.enabled = false;
-            //thisRB.useGravity = false;
-
-            Destroy(gameObject, 10f);
             PlayAnimationByTrigger(AnimationType.DEATH);
+            Destroy(gameObject, 10f);
         }
 
         public void OnDamage(float f)
@@ -143,6 +147,7 @@ namespace Enemy
         public void Pursuit()
         {
             Vector3 lookDirection = (_player.transform.position - thisRB.transform.position).normalized;
+            lookAtPlayer = true;
 
             if (canPursuit && _startPursuit)
             {

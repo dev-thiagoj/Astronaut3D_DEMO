@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2920102134895724324}
   - component: {fileID: 2920102134895724346}
   - component: {fileID: 157962605}
-  - component: {fileID: 407404290030038468}
+  - component: {fileID: 2136216548588668664}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -81,12 +81,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d83dddd81292747a2a82c7be84df89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animationBase: {fileID: 157962605}
   animator: {fileID: 5427894521993494977}
+  healthBase: {fileID: 2136216548588668664}
   characterController: {fileID: 2920102134895724325}
   speed: 20
   turnSpeed: 150
   gravity: 14.7
   jumpSpeed: 15
+  startLife: 10
   keyRun: 304
   speedRun: 1.5
   flashColors:
@@ -124,19 +127,21 @@ MonoBehaviour:
   animationSetups:
   - animationType: 4
     trigger: Death
---- !u!65 &407404290030038468
-BoxCollider:
+--- !u!114 &2136216548588668664
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2920102134895724327}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac317f8d8db71164e93788860f61c18f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startLife: 25
+  destroyOnKill: 0
+  _currLife: 0
 --- !u!1 &2920102134898942071
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,6 +569,10 @@ PrefabInstance:
     - target: {fileID: 3699323227768216330, guid: 89e20167823a30d459856414377997d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 7.6289496
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716322469661451159, guid: 89e20167823a30d459856414377997d1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4085931268875238376, guid: 89e20167823a30d459856414377997d1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -23,6 +23,8 @@ namespace Boss
         {
             base.OnStateEnter(objs);
             boss.StartInitAnimation();
+            Debug.Log("State Init Enter");
+
         }
     }
 
@@ -30,6 +32,7 @@ namespace Boss
     {
         public override void OnStateEnter(params object[] objs)
         {
+            Debug.Log("State Walk Enter");
             base.OnStateEnter(objs);
             boss.GoToRandomPoint(OnArrive);
         }

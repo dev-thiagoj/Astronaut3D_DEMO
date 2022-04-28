@@ -18,7 +18,7 @@ public class GunBase : MonoBehaviour
         while (true)
         {
             Shoot();
-            yield return new WaitForSeconds(timeBetweenShoot);
+            yield return new WaitForSeconds(Random.Range(2, 10));
         }
     }
 

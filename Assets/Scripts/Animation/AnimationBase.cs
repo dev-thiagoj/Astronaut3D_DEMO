@@ -11,7 +11,8 @@ namespace Animation
         IDLE,
         RUN,
         ATTACK,
-        DEATH
+        DEATH,
+        JUMP
     }
     
     public class AnimationBase : MonoBehaviour

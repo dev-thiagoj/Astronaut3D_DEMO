@@ -6,6 +6,7 @@ using DG.Tweening;
 
 //COISAS PARA FAZER:
 
+//usar o _alive como check ao inves do healthbase._currlife para definir qdo os inimigos atiram/perseguem 
 //fazer animação do cannon a cada disparo
 //arrumar UI para que a de health não atualize com os tiros
 //arrumar animação de pulo e sua física
@@ -31,7 +32,7 @@ public class Player : MonoBehaviour//, IDamageable
 
     [Header("Life")]
     public HealthBase healthBase;
-    public List<Collider> colliders;
+    public List<Collider> colliders; //character controller tb é interpretado como um collider
     private bool _alive = true;
 
     private Animator _animator;
@@ -125,6 +126,8 @@ public class Player : MonoBehaviour//, IDamageable
             _alive = false;
             _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
+
+            Invoke(nameof(Revive), 5f);
         }
     }
 
@@ -133,6 +136,35 @@ public class Player : MonoBehaviour//, IDamageable
         if (collision.gameObject.CompareTag("Enemy"))
         {
             healthBase._currLife = 0;
+        }
+    }
+
+    private void Revive()
+    {
+        _alive = true;
+        healthBase.ResetLife();
+        _animator.SetTrigger("Revive");
+        Respawn();
+        Invoke(nameof(TurnOnColliders), .1f); //ATENÇÃO: IMPORTANTE:
+                                              //precisa invocar para dar tempo de primeiro respawnar e depois ligar os colliders pois se o charactercontroller ficar ativo
+                                              //no mesmo frame do respawn, ele pega a posição da morte como referência ainda e não a do checkpoint.  
+    }
+
+    private void TurnOnColliders()
+    {
+        colliders.ForEach(i => i.enabled = true);
+    }
+
+    #endregion
+
+    #region RESPAWN
+
+    [NaughtyAttributes.Button]
+    public void Respawn()
+    {
+        if (CheckpointManager.Instance.HasCheckpoint())
+        {
+            transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
         }
     }
 

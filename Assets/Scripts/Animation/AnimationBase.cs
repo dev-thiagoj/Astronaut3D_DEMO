@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//COISAS PARA FAZER:
+// - testar play animation by bool no player
+
 
 namespace Animation
 {
@@ -33,6 +36,15 @@ namespace Animation
                 animator.SetTrigger(setup.trigger);
             }
         }
+        
+        public void PlayAnimationByBool(AnimationType animationType, bool value)
+        {
+            var setup = animationSetups.Find(i => i.animationType == animationType);
+            if(setup != null)
+            {
+                animator.SetBool(setup._bool, value);
+            }
+        }
     }
 
     [System.Serializable]
@@ -40,6 +52,7 @@ namespace Animation
     {
         public AnimationType animationType;
         public string trigger;
+        public string _bool;
     }
 
 }

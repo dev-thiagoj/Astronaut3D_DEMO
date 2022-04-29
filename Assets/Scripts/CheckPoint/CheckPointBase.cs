@@ -44,8 +44,10 @@ public class CheckPointBase : MonoBehaviour
 
     private void SaveCheckpoint()
     {
-        if (PlayerPrefs.GetInt(checkPointKey, 0) > key) //checagem para garantir que um save menor não sobrescreva um maior, para sempre ter o maior salvo (o mais "distante")
-            PlayerPrefs.SetInt(checkPointKey, key);
+        /*if (PlayerPrefs.GetInt(checkPointKey, 0) > key) //checagem para garantir que um save menor não sobrescreva um maior, para sempre ter o maior salvo (o mais "distante")
+            PlayerPrefs.SetInt(checkPointKey, key);*/
+
+        CheckpointManager.Instance.SaveCheckpoint(key);
 
         checkpointActived = true;
     }

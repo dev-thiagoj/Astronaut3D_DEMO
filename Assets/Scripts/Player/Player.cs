@@ -4,13 +4,16 @@ using UnityEngine;
 using Animation;
 using DG.Tweening;
 
+//COISAS PARA FAZER:
+
+//fazer animação do cannon a cada disparo
+//arrumar UI para que a de health não atualize com os tiros
+//arrumar animação de pulo e sua física
+//implementar VFX e SFX
+//melhorar UI design
+
 public class Player : MonoBehaviour//, IDamageable
 {
-    //[SerializeField] private AnimationBase _animationBase;
-    private Animator animator;
-    public HealthBase healthBase;
-    public List<Collider> colliders;
-
     public CharacterController characterController;
     public float speed = 1f;
     public float turnSpeed = 1f;
@@ -21,17 +24,23 @@ public class Player : MonoBehaviour//, IDamageable
     public KeyCode keyRun = KeyCode.LeftShift;
     public float speedRun = 1.5f;
 
-    private float vSpeed = 0f;
+    private float _vSpeed = 0f;
 
     [Header("Flash")]
     public List<FlashColor> flashColors;
 
+    [Header("Life")]
+    public HealthBase healthBase;
+    public List<Collider> colliders;
     private bool _alive = true;
+
+    private Animator _animator;
+
 
     private void OnValidate()
     {
         //if (_animationBase == null) _animationBase = GetComponent<AnimationBase>();
-        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (_animator == null) _animator = GetComponentInChildren<Animator>();
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
     }
 
@@ -40,7 +49,7 @@ public class Player : MonoBehaviour//, IDamageable
         OnValidate(); //sempre chamar no awake para garantir que está sendo validado
 
         healthBase.OnDamage += Damage;
-        healthBase.OnDamage += OnKill;
+        healthBase.OnKill += Kill;
     }
 
     private void Update()
@@ -65,18 +74,18 @@ public class Player : MonoBehaviour//, IDamageable
             if (Input.GetKey(keyRun))
             {
                 speedVector *= speedRun;
-                animator.speed = speedRun;
+                _animator.speed = speedRun;
             }
 
-            else animator.speed = 1;
+            else _animator.speed = 1;
         }
 
-        vSpeed -= gravity * Time.deltaTime;
-        speedVector.y = vSpeed;
+        _vSpeed -= gravity * Time.deltaTime;
+        speedVector.y = _vSpeed;
 
         characterController.Move(speedVector * Time.deltaTime);
 
-        animator.SetBool("RunBool", isWalking);
+        _animator.SetBool("RunBool", isWalking);
     }
 
     #endregion
@@ -87,11 +96,11 @@ public class Player : MonoBehaviour//, IDamageable
     {
         if (characterController.isGrounded)
         {
-            vSpeed = 0;
+            _vSpeed = 0;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                vSpeed = jumpSpeed;
-                animator.SetBool("JumpBool", !characterController.isGrounded);
+                _vSpeed = jumpSpeed;
+                _animator.SetBool("JumpBool", !characterController.isGrounded);
             }
         }
     }
@@ -109,12 +118,12 @@ public class Player : MonoBehaviour//, IDamageable
         //OnDamage(damage);
         //transform.DOMove(transform.position - dir, .1f);
     }
-    private void OnKill(HealthBase h)
+    private void Kill(HealthBase h)
     {
         if (_alive) //serve para animação tocar apenas uma vez
         {
             _alive = false;
-            animator.SetTrigger("Death");
+            _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
         }
     }

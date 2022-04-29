@@ -6,6 +6,14 @@ using Ebac.StateMachine;
 using DG.Tweening;
 using Animation;
 
+//COISAS PARA FAZER:
+
+//arrumar o healthbase do bossbase
+//implementar particle system do boss
+//implementar SFX do boss
+//arrumar posiçao da gun para nao ser afetada pela animaçao de attack
+//add callback para sincronizar animaçao de attack com o tiro
+
 
 namespace Boss
 {
@@ -55,7 +63,8 @@ namespace Boss
         {
             Init();
             OnValidate();
-            //healthBase.OnKill += OnBossKill;
+            
+            if(healthBase != null) healthBase.OnKill += OnBossKill;
         }
 
         private void Init()

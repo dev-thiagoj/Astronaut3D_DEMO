@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//COISAS PARA FAZER:
+
+//implementar para que comece a atirar somente qdo o player chegar a certa distância dele (trigger? raycast? outro?)
 
 namespace Enemy
 {

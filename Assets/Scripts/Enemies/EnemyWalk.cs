@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//COISAS PARA FAZER:
+
+//arrumar para que qdo o inimigo estiver morto não matar o player com colisão ainda
+//arrumar para qdo for morto, congelar a posição
+//arrumar congelamento de eixos na perseguição
 
 namespace Enemy
 {

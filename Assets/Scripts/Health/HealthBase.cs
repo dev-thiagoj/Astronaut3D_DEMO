@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthBase : MonoBehaviour
+public class HealthBase : MonoBehaviour, IDamageable
 {
     public float startLife = 10f;
     public bool destroyOnKill = false;
@@ -37,9 +37,6 @@ public class HealthBase : MonoBehaviour
 
     public void Damage(float f)
     {
-        //if (flashColor != null) flashColor.Flash();
-        //if (particleSystem != null) particleSystem.Emit(intParticles);
-
         _currLife -= f;
 
         if (_currLife <= 0)
@@ -48,6 +45,10 @@ public class HealthBase : MonoBehaviour
         }
 
         OnDamage?.Invoke(this);
+    }
 
+    public void Damage(float damage, Vector3 dir)
+    {
+        Damage(damage);
     }
 }

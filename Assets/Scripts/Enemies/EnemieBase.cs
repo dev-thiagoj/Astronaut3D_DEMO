@@ -39,11 +39,11 @@ namespace Enemy
 
         private void OnValidate()
         {
-            thisRB = GetComponent<Rigidbody>();
-            collider = GetComponentInChildren<Collider>();
-            flashColor = GetComponentInChildren<FlashColor>();
-            particleSystem = GetComponentInChildren<ParticleSystem>();
-            _animationBase = GetComponentInChildren<AnimationBase>();
+            if (thisRB == null) thisRB = GetComponent<Rigidbody>();
+            if (collider == null) collider = GetComponentInChildren<Collider>();
+            if (flashColor == null) flashColor = GetComponentInChildren<FlashColor>();
+            if (particleSystem == null) particleSystem = GetComponentInChildren<ParticleSystem>();
+            if (_animationBase == null) _animationBase = GetComponentInChildren<AnimationBase>();
         }
 
         private void Awake()
@@ -159,7 +159,7 @@ namespace Enemy
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
-                _player.Damage(1);
+                _player.healthBase.Damage(1);
         }
     }
 

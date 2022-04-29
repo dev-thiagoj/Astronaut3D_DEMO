@@ -42,16 +42,19 @@ namespace Boss
         [SerializeField] private FlashColor flashColor;
         //private Vector3 _currScale = Vector3.one; //
 
+        private void OnValidate()
+        {
+            if (healthBase == null) healthBase = GetComponent<HealthBase>();
+            if (_animationBase == null) _animationBase = GetComponentInChildren<AnimationBase>();
+            if (_player == null) _player = GameObject.FindObjectOfType<Player>();
+            if (flashColor == null) flashColor = GetComponentInChildren<FlashColor>();
+            
+        }
+
         private void Awake()
         {
-            healthBase = GetComponent<HealthBase>();
-            _animationBase = GetComponentInChildren<AnimationBase>();
-            _player = GameObject.FindObjectOfType<Player>();
-            flashColor = GetComponentInChildren<FlashColor>();
-
-
             Init();
-
+            OnValidate();
             //healthBase.OnKill += OnBossKill;
         }
 
@@ -79,9 +82,10 @@ namespace Boss
                 transform.LookAt(_player.transform.position);
             }
 
-            if(_player.healthBase._currLife <= 0)
+            if (_player.healthBase._currLife <= 0)
             {
                 gunBase.StopShoot();
+                StopAllCoroutines();
             }
         }
 
@@ -130,6 +134,11 @@ namespace Boss
             Destroy(gameObject, 10f);
         }
 
+        public void OnBossKill(HealthBase h)
+        {
+
+        }
+
         #endregion
 
         #region WALK
@@ -142,7 +151,7 @@ namespace Boss
 
         IEnumerator GoToPointCoroutine(Transform t, Action onArrive = null)
         {
-            while(Vector3.Distance(transform.position, t.position) > 1)
+            while (Vector3.Distance(transform.position, t.position) > 1)
             {
                 transform.position = Vector3.MoveTowards(transform.position, t.position, Time.deltaTime * speed);
                 _animationBase.PlayAnimationByTrigger(AnimationType.RUN);
@@ -166,7 +175,7 @@ namespace Boss
         {
             int attacks = 0;
 
-            while(attacks < attackAmount)
+            while (attacks < attackAmount)
             {
                 attacks++;
                 _animationBase.PlayAnimationByTrigger(AnimationType.ATTACK);

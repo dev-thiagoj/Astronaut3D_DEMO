@@ -4,11 +4,12 @@ using UnityEngine;
 using Animation;
 using DG.Tweening;
 
-public class Player : MonoBehaviour, IDamageable
+public class Player : MonoBehaviour//, IDamageable
 {
-    [SerializeField] private AnimationBase _animationBase;
-    public Animator animator;
+    //[SerializeField] private AnimationBase _animationBase;
+    private Animator animator;
     public HealthBase healthBase;
+    public List<Collider> colliders;
 
     public CharacterController characterController;
     public float speed = 1f;
@@ -25,11 +26,21 @@ public class Player : MonoBehaviour, IDamageable
     [Header("Flash")]
     public List<FlashColor> flashColors;
 
+    private bool _alive = true;
+
     private void OnValidate()
     {
-        _animationBase = GetComponent<AnimationBase>();
-        animator = GetComponentInChildren<Animator>();
-        healthBase = GetComponent<HealthBase>();
+        //if (_animationBase == null) _animationBase = GetComponent<AnimationBase>();
+        if (animator == null) animator = GetComponentInChildren<Animator>();
+        if (healthBase == null) healthBase = GetComponent<HealthBase>();
+    }
+
+    private void Awake()
+    {
+        OnValidate(); //sempre chamar no awake para garantir que está sendo validado
+
+        healthBase.OnDamage += Damage;
+        healthBase.OnDamage += OnKill;
     }
 
     private void Update()
@@ -51,8 +62,6 @@ public class Player : MonoBehaviour, IDamageable
 
         if (isWalking)
         {
-            _animationBase.PlayAnimationByTrigger(AnimationType.RUN);
-
             if (Input.GetKey(keyRun))
             {
                 speedVector *= speedRun;
@@ -61,18 +70,13 @@ public class Player : MonoBehaviour, IDamageable
 
             else animator.speed = 1;
         }
-        else
-            _animationBase.PlayAnimationByTrigger(AnimationType.IDLE);
 
         vSpeed -= gravity * Time.deltaTime;
         speedVector.y = vSpeed;
 
         characterController.Move(speedVector * Time.deltaTime);
 
-        /*if(characterController.isGrounded && !isWalking)
-        {
-            _animationBase.PlayAnimationByTrigger(AnimationType.IDLE);
-        }*/
+        animator.SetBool("RunBool", isWalking);
     }
 
     #endregion
@@ -87,40 +91,32 @@ public class Player : MonoBehaviour, IDamageable
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 vSpeed = jumpSpeed;
-                _animationBase.PlayAnimationByTrigger(AnimationType.JUMP);
+                animator.SetBool("JumpBool", !characterController.isGrounded);
             }
         }
     }
 
     #endregion
 
-    #region DAMAGE
-    public void Damage(float damage)
+    #region LIFE
+    public void Damage(HealthBase h)
     {
-        OnDamage(damage);
+        flashColors.ForEach(i => i.Flash());
     }
 
     public void Damage(float damage, Vector3 dir)
     {
-        OnDamage(damage);
-        flashColors.ForEach(i => i.Flash());
-        transform.DOMove(transform.position - dir, .1f);
+        //OnDamage(damage);
+        //transform.DOMove(transform.position - dir, .1f);
     }
-
-    public void OnDamage(float f)
+    private void OnKill(HealthBase h)
     {
-        //if (particleSystem != null) particleSystem.Emit(intParticles);
-
-        healthBase._currLife -= f;
-
-        if (healthBase._currLife <= 0)
+        if (_alive) //serve para animação tocar apenas uma vez
         {
-            Death();
+            _alive = false;
+            animator.SetTrigger("Death");
+            colliders.ForEach(i => i.enabled = false);
         }
-    }
-    private void Death()
-    {
-        _animationBase.PlayAnimationByTrigger(AnimationType.DEATH);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -128,7 +124,6 @@ public class Player : MonoBehaviour, IDamageable
         if (collision.gameObject.CompareTag("Enemy"))
         {
             healthBase._currLife = 0;
-            Death();
         }
     }
 

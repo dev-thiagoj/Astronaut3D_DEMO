@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Enemy
 {
-    public class EnemyWalk : EnemieBase
+    public class EnemyWalk : EnemyBase
     {
         [Header("Waypoints")]
         public GameObject[] waypoints;

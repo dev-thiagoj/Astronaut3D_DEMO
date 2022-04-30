@@ -7,13 +7,13 @@ using Animation;
 
 namespace Enemy
 {
-    public class EnemieBase : MonoBehaviour, IDamageable
+    public class EnemyBase : MonoBehaviour, IDamageable
     {
         public Rigidbody thisRB;
         public Collider collider;
         public FlashColor flashColor;
         public ParticleSystem particleSystem;
-        private Player _player;
+        public Player player;
 
         public float startLife = 10f;
         public bool lookAtPlayer = false;
@@ -36,7 +36,6 @@ namespace Enemy
         public float speedOfPursuit = 25f;
         public bool _startPursuit = false;
 
-
         private void OnValidate()
         {
             if (thisRB == null) thisRB = GetComponent<Rigidbody>();
@@ -53,23 +52,23 @@ namespace Enemy
 
         private void Start()
         {
-            _player = GameObject.FindObjectOfType<Player>();
+            player = GameObject.FindObjectOfType<Player>();
         }
 
         public virtual void Update()
         {
             if (lookAtPlayer)
             {
-                transform.LookAt(_player.transform.position);
+                transform.LookAt(player.transform.position);
             }
 
             PlayerKilled();
             Pursuit();
         }
 
-        public void PlayerKilled()
+        protected virtual void PlayerKilled()
         {
-            if (_player.healthBase._currLife <= 0)
+            if (!player.isAlive)
             {
                 _startPursuit = false;
             }
@@ -105,8 +104,6 @@ namespace Enemy
         {
             if (flashColor != null) flashColor.Flash();
             if (particleSystem != null) particleSystem.Emit(intParticles);
-
-            transform.position -= transform.forward; //serve para dar um "tranco" no inimigo qdo ele leva o tiro
 
             _currentLife -= f;
             _startPursuit = true;
@@ -146,8 +143,8 @@ namespace Enemy
 
         public void Pursuit()
         {
-            Vector3 lookDirection = (_player.transform.position - thisRB.transform.position).normalized;
             lookAtPlayer = true;
+            Vector3 lookDirection = (player.transform.position - thisRB.transform.position).normalized;
 
             if (canPursuit && _startPursuit)
             {
@@ -159,7 +156,7 @@ namespace Enemy
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
-                _player.healthBase.Damage(1);
+                player.healthBase.Damage(1);
         }
     }
 

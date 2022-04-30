@@ -33,7 +33,7 @@ public class Player : MonoBehaviour//, IDamageable
     [Header("Life")]
     public HealthBase healthBase;
     public List<Collider> colliders; //character controller tb é interpretado como um collider
-    private bool _alive = true;
+    public bool isAlive = true;
 
     private Animator _animator;
 
@@ -63,30 +63,34 @@ public class Player : MonoBehaviour//, IDamageable
 
     public void Movements()
     {
-        transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
-
-        var inputAxisVertical = Input.GetAxis("Vertical");
-        var speedVector = inputAxisVertical * speed * transform.forward;
-
-        var isWalking = inputAxisVertical != 0;
-
-        if (isWalking)
+        if (isAlive)
         {
-            if (Input.GetKey(keyRun))
+            transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
+
+            var inputAxisVertical = Input.GetAxis("Vertical");
+            var speedVector = inputAxisVertical * speed * transform.forward;
+
+            var isWalking = inputAxisVertical != 0;
+
+            if (isWalking)
             {
-                speedVector *= speedRun;
-                _animator.speed = speedRun;
+                if (Input.GetKey(keyRun))
+                {
+                    speedVector *= speedRun;
+                    _animator.speed = speedRun;
+                }
+
+                else _animator.speed = 1;
             }
 
-            else _animator.speed = 1;
+            _vSpeed -= gravity * Time.deltaTime;
+            speedVector.y = _vSpeed;
+
+            characterController.Move(speedVector * Time.deltaTime);
+
+            _animator.SetBool("RunBool", isWalking);
+
         }
-
-        _vSpeed -= gravity * Time.deltaTime;
-        speedVector.y = _vSpeed;
-
-        characterController.Move(speedVector * Time.deltaTime);
-
-        _animator.SetBool("RunBool", isWalking);
     }
 
     #endregion
@@ -95,7 +99,7 @@ public class Player : MonoBehaviour//, IDamageable
 
     public void Jump()
     {
-        if (characterController.isGrounded)
+        if (characterController.isGrounded && isAlive)
         {
             _vSpeed = 0;
             if (Input.GetKeyDown(KeyCode.Space))
@@ -121,9 +125,9 @@ public class Player : MonoBehaviour//, IDamageable
     }
     private void Kill(HealthBase h)
     {
-        if (_alive) //serve para animação tocar apenas uma vez
+        if (isAlive) //serve para animação tocar apenas uma vez
         {
-            _alive = false;
+            isAlive = false;
             _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
 
@@ -134,14 +138,14 @@ public class Player : MonoBehaviour//, IDamageable
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
-        {
-            healthBase._currLife = 0;
+        {   
+            Kill(healthBase);
         }
     }
 
     private void Revive()
     {
-        _alive = true;
+        isAlive = true;
         healthBase.ResetLife();
         _animator.SetTrigger("Revive");
         Respawn();

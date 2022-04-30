@@ -4,18 +4,20 @@ using UnityEngine;
 
 //COISAS PARA FAZER:
 
-//implementar para que comece a atirar somente qdo o player chegar a certa distância dele (trigger? raycast? outro?)
+//corrigir erro qdo o player morre dentro do trigger "EnemyTrigger linha 68"
 
 namespace Enemy
 {
-    public class EnemyShoot : EnemieBase
+    public class EnemyShoot : EnemyBase
     {
         public GunBase gunBase;
-        [SerializeField] private Player player;
+
+        //public GameObject trigger;
+        //[SerializeField] private Player player;
 
         private void OnValidate()
         {
-            player = GameObject.FindObjectOfType<Player>();
+            player = FindObjectOfType<Player>();
         }
 
         public override void Update()
@@ -30,23 +32,42 @@ namespace Enemy
 
             gunBase = GetComponentInChildren<GunBase>();
 
-            gunBase.StartShoot();
+            //gunBase.StartShoot();
         }
 
         protected override void Kill()
         {
             base.Kill();
-
             
             gunBase.StopShoot();
         }
 
-        public void PlayerKilled()
+        public void StartShooting()
         {
-            if(player.healthBase._currLife <= 0)
+            gunBase.StartShoot();
+        }
+
+        public void StopShooting()
+        {
+            gunBase.StopShoot();
+        }
+
+        /*private void OnTriggerStay(Collider other)
+        {
+            if (other.transform.CompareTag("Player"))
+            {
+                while (player.isAlive) gunBase.StartShoot();
+            }
+            else gunBase.StopShoot();
+        }*/
+
+        protected override void PlayerKilled()
+        {
+            if (!player.isAlive)
             {
                 gunBase.StopShoot();
             }
+            else return;
         }
     }
 

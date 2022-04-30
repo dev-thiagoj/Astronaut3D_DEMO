@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+//COISAS PARA FAZER:
+
+// - ajustar para pegar somente os Ui de ammo e deixar de fora os de health
+
 public class GunShootLimit : GunBase
 {
-    public List<UIFillUpdater> uIGunUpdaters;
+    public List<UIFillUpdater> uiFillUpdaters;
 
     public float maxShoot = 5f;
     public float timeToRecharge = 1f;
@@ -21,17 +25,17 @@ public class GunShootLimit : GunBase
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)) StartRecharge();
-        
+
     }
 
     protected override IEnumerator ShootCoroutine()
     {
         if (_recharging) yield break; //esse check serve para se estiver recarregando, quebra a coroutine, evitando que passe e entre em loop infinito
                                       //no while (true)  
-        
+
         while (true)
         {
-            if(_currentShoots < maxShoot)
+            if (_currentShoots < maxShoot)
             {
                 Shoot();
                 _currentShoots++;
@@ -71,7 +75,7 @@ public class GunShootLimit : GunBase
         {
             time += Time.deltaTime;
 
-            uIGunUpdaters.ForEach(i => i.UpdateValue(time/timeToRecharge));
+            uiFillUpdaters.ForEach(i => i.UpdateValue(time / timeToRecharge));
 
             yield return new WaitForEndOfFrame();
         }
@@ -82,11 +86,11 @@ public class GunShootLimit : GunBase
 
     private void UpdateUI()
     {
-        uIGunUpdaters.ForEach(i => i.UpdateValue(maxShoot, _currentShoots));
+        uiFillUpdaters.ForEach(i => i.UpdateValue(maxShoot, _currentShoots));
     }
 
     private void GetAllUIs()
     {
-        uIGunUpdaters = GameObject.FindObjectsOfType<UIFillUpdater>().ToList();
+        uiFillUpdaters = FindObjectsOfType<UIFillUpdater>().ToList();
     }
 }

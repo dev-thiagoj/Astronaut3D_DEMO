@@ -16,8 +16,6 @@ public class BossTrigger : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Trigger Enter");
-            //bossBase.SwitchWalk(); //walk
             bossBase.lookAtPlayer = true;
             bossBase.SwitchState(BossAction.WALK);
             gameObject.SetActive(false);

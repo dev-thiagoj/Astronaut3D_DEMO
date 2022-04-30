@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class HealthBase : MonoBehaviour, IDamageable
 {
-    public float startLife = 10f;
     public bool destroyOnKill = false;
+    public float startLife = 10f;
+    public float _currLife;
 
     public List<UIFillUpdater> uiFillUpdater;
 
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
 
-    public float _currLife;
 
     private void Awake()
     {

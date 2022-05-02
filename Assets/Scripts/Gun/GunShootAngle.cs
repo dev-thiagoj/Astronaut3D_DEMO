@@ -9,7 +9,7 @@ public class GunShootAngle : GunShootLimit
 
     protected override void Shoot()
     {
-        base.Shoot();
+        //base.Shoot();
         
         int mult = 0;
 
@@ -18,8 +18,9 @@ public class GunShootAngle : GunShootLimit
             if (i % 2 == 0) mult++;
             
             var projectile = Instantiate(prefabProjectile, positionToShoot);
-            
+
             projectile.transform.localPosition = Vector3.zero;
+            //projectile.transform.localPosition = positionToShoot.transform.position;
             projectile.transform.localEulerAngles = Vector3.zero + (Vector3.up * (i % 2 == 0 ? angle : -angle)) * mult;
             
             projectile.speed = speed;

@@ -6,14 +6,13 @@ using DG.Tweening;
 
 //COISAS PARA FAZER:
 
-//usar o _alive como check ao inves do healthbase._currlife para definir qdo os inimigos atiram/perseguem 
 //fazer animação do cannon a cada disparo
 //arrumar UI para que a de health não atualize com os tiros
 //arrumar animação de pulo e sua física
 //implementar VFX e SFX
 //melhorar UI design
 
-public class Player : MonoBehaviour//, IDamageable
+public class Player : MonoBehaviour
 {
     public CharacterController characterController;
     public float speed = 1f;
@@ -26,6 +25,9 @@ public class Player : MonoBehaviour//, IDamageable
     public float speedRun = 1.5f;
 
     private float _vSpeed = 0f;
+
+    [Header("Shoot Animation")]
+    public BounceHelper bounceHelper;
 
     [Header("Flash")]
     public List<FlashColor> flashColors;
@@ -43,6 +45,7 @@ public class Player : MonoBehaviour//, IDamageable
         //if (_animationBase == null) _animationBase = GetComponent<AnimationBase>();
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
+        if (bounceHelper == null) bounceHelper = GetComponentInChildren<BounceHelper>();
     }
 
     private void Awake()
@@ -57,6 +60,12 @@ public class Player : MonoBehaviour//, IDamageable
     {
         Movements();
         Jump();
+    }
+
+    [NaughtyAttributes.Button]
+    public void ShootAnimation()
+    {
+        bounceHelper.TransformBounceWithYoyo();
     }
 
     #region RUN
@@ -105,10 +114,15 @@ public class Player : MonoBehaviour//, IDamageable
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _vSpeed = jumpSpeed;
-                _animator.SetBool("JumpBool", !characterController.isGrounded);
+                _animator.SetTrigger("Jump");
+                transform.DOScaleX(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+                transform.DOScaleZ(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+                transform.DOScaleY(1.2f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
             }
         }
     }
+
+
 
     #endregion
 
@@ -116,6 +130,7 @@ public class Player : MonoBehaviour//, IDamageable
     public void Damage(HealthBase h)
     {
         flashColors.ForEach(i => i.Flash());
+        EffectsManager.Instance.ChangeVignette();
     }
 
     public void Damage(float damage, Vector3 dir)
@@ -138,8 +153,15 @@ public class Player : MonoBehaviour//, IDamageable
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
-        {   
+        {
             Kill(healthBase);
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            transform.DOScaleX(1.1f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+            transform.DOScaleZ(1.1f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+            transform.DOScaleY(0.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
         }
     }
 

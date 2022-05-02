@@ -8,7 +8,7 @@ public class CheckPointBase : MonoBehaviour
     public int key = 01;
 
     private bool checkpointActived = false;
-    private string checkPointKey = "CheckpointKey";
+    //private string checkPointKey = "CheckpointKey";
 
     private void Awake()
     {

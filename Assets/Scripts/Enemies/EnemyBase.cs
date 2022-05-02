@@ -4,6 +4,9 @@ using UnityEngine;
 using DG.Tweening;
 using Animation;
 
+//COISAS PARA FAZER:
+
+// - implementar o pursuit no EnemyWalk ao invés daqui
 
 namespace Enemy
 {
@@ -66,6 +69,12 @@ namespace Enemy
             Pursuit();
         }
 
+        protected virtual void Init()
+        {
+            ResetLife();
+            BornAnimation();
+        }
+
         protected virtual void PlayerKilled()
         {
             if (!player.isAlive)
@@ -79,25 +88,16 @@ namespace Enemy
             _currentLife = startLife;
         }
 
-        protected virtual void Init()
+        #region LIFE
+        public void Damage(float damage)
         {
-            ResetLife();
-            BornAnimation();
+            OnDamage(damage);
         }
 
-        protected virtual void Kill()
+        public void Damage(float damage, Vector3 dir)
         {
-            canPursuit = false;
-
-            lookAtPlayer = false;
-
-            OnKill();
-        }
-
-        protected virtual void OnKill()
-        {
-            PlayAnimationByTrigger(AnimationType.DEATH);
-            Destroy(gameObject, 10f);
+            OnDamage(damage);
+            transform.DOMove(transform.position - dir, .1f);
         }
 
         public void OnDamage(float f)
@@ -114,7 +114,23 @@ namespace Enemy
             }
         }
 
-        #region Animation
+        protected virtual void Kill()
+        {
+            canPursuit = false;
+
+            lookAtPlayer = false;
+
+            OnKill();
+        }
+
+        protected virtual void OnKill()
+        {
+            PlayAnimationByTrigger(AnimationType.DEATH);
+            Destroy(gameObject, 10f);
+        }
+        #endregion
+
+        #region ANIMATION
 
         private void BornAnimation()
         {
@@ -129,17 +145,7 @@ namespace Enemy
 
         #endregion
 
-
-        public void Damage(float damage)
-        {
-            OnDamage(damage);
-        }
-
-        public void Damage(float damage, Vector3 dir)
-        {
-            OnDamage(damage);
-            transform.DOMove(transform.position - dir, .1f);
-        }
+        #region PURSUIT ATTACK
 
         public void Pursuit()
         {
@@ -158,6 +164,7 @@ namespace Enemy
             if (collision.gameObject.CompareTag("Player"))
                 player.healthBase.Damage(1);
         }
+        #endregion
     }
 
 }

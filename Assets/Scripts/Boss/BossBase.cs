@@ -48,13 +48,18 @@ namespace Boss
 
         [SerializeField] private HealthBase healthBase;
         [SerializeField] private FlashColor flashColor;
-        //private Vector3 _currScale = Vector3.one; //
+        //private Vector3 _currScale = Vector3.one;
+
+        //COISAS PARA FAZER:
+
+        // - Boss voltar ao ponto inicial qdo o player morrer
+        
 
         private void OnValidate()
         {
             if (healthBase == null) healthBase = GetComponent<HealthBase>();
             if (_animationBase == null) _animationBase = GetComponentInChildren<AnimationBase>();
-            if (_player == null) _player = GameObject.FindObjectOfType<Player>();
+            if (_player == null) _player = FindObjectOfType<Player>();
             if (flashColor == null) flashColor = GetComponentInChildren<FlashColor>();
             
         }
@@ -91,10 +96,11 @@ namespace Boss
                 transform.LookAt(_player.transform.position);
             }
 
-            if (_player.healthBase._currLife <= 0)
+            if (!_player.isAlive)
             {
                 gunBase.StopShoot();
                 StopAllCoroutines();
+                bossTrigger.SetActive(true);
             }
         }
 

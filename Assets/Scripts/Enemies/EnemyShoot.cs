@@ -12,9 +12,6 @@ namespace Enemy
     {
         public GunBase gunBase;
 
-        //public GameObject trigger;
-        //[SerializeField] private Player player;
-
         private void OnValidate()
         {
             player = FindObjectOfType<Player>();
@@ -31,8 +28,6 @@ namespace Enemy
             base.Init();
 
             gunBase = GetComponentInChildren<GunBase>();
-
-            //gunBase.StartShoot();
         }
 
         protected override void Kill()
@@ -51,15 +46,6 @@ namespace Enemy
         {
             gunBase.StopShoot();
         }
-
-        /*private void OnTriggerStay(Collider other)
-        {
-            if (other.transform.CompareTag("Player"))
-            {
-                while (player.isAlive) gunBase.StartShoot();
-            }
-            else gunBase.StopShoot();
-        }*/
 
         protected override void PlayerKilled()
         {

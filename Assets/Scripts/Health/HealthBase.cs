@@ -13,7 +13,6 @@ public class HealthBase : MonoBehaviour, IDamageable
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
 
-
     private void Awake()
     {
         Init();

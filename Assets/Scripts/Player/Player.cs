@@ -8,7 +8,7 @@ using DG.Tweening;
 
 //fazer animação do cannon a cada disparo
 //arrumar UI para que a de health não atualize com os tiros
-//arrumar animação de pulo e sua física
+//arrumar animação de aterrisagem
 //implementar VFX e SFX
 //melhorar UI design
 

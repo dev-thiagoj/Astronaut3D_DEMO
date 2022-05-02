@@ -4,50 +4,66 @@ using UnityEngine;
 using Ebac.Core.Singleton;
 using TMPro;
 
-public class ItemManager : /*Singleton<ItemManager>*/ MonoBehaviour
+
+namespace Itens
 {
-    //tentei fazer usando o singleton mas não funcionou, qdo coleto as moedas no jogo me aparece um erro de instancia
-
-    public static ItemManager Instance;
-
-    public TextMeshProUGUI uiTextCoins;
-    public TextMeshProUGUI uiTextLife;
-
-    public SO_int coins;
-    public SO_int life;
-
-    private void Awake()
+    public enum ItemType
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        COIN,
+        LIFE_PACK
     }
 
-    private void Start()
+    public class ItemManager : Singleton<ItemManager>
     {
-        coins.value = 0;
-        life.value = 0;
+        public List<ItemSetup> itemSetups;
+
+        private void Start()
+        {
+            Reset();
+        }
+
+        private void Reset()
+        {
+            foreach(var i in itemSetups)
+            {
+                i.so_Int.value = 0;
+            }
+        }
+
+        public void AddByType(ItemType itemType, int amount = 1)
+        {
+            if (amount < 0) return;
+            var item = itemSetups.Find(i => i.itemType == itemType);
+            item.so_Int.value += amount;
+        }
+
+        public void RemoveByType(ItemType itemType, int amount = 1)
+        {
+            if (amount > 0) return;
+            var item = itemSetups.Find(i => i.itemType == itemType);
+            item.so_Int.value -= amount;
+
+            if (item.so_Int.value < 0) item.so_Int.value = 0;
+        }
+
+        [NaughtyAttributes.Button]
+        private void AddCoin()
+        {
+            AddByType(ItemType.COIN);
+        }
+        
+        [NaughtyAttributes.Button]
+        private void AddLifePack()
+        {
+            AddByType(ItemType.LIFE_PACK);
+        }
     }
 
-    private void Update()
+    [System.Serializable]
+    public class ItemSetup
     {
-        UpdateUI();
+        public ItemType itemType;
+        public SO_int so_Int;
     }
 
-    public void AddCoins(int amount = 1)
-    {
-        coins.value += amount;        
-    }
-
-    public void AddLife(int amount = 1)
-    {
-        life.value += amount;
-    }
-
-    public void UpdateUI()
-    {
-        uiTextCoins.text = "x " + coins.value;
-        uiTextLife.text = "x " + life.value;
-    }
 }

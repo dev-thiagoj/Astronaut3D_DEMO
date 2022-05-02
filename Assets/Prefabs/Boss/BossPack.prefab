@@ -879,6 +879,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossBase: {fileID: 0}
+  bossCamera: {fileID: 0}
+  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
 --- !u!1 &5767931021326726937
 GameObject:
   m_ObjectHideFlags: 0

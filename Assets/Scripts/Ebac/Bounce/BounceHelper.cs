@@ -11,12 +11,12 @@ public class BounceHelper : MonoBehaviour
 
     private void Update()
     {
-        KeepScale();
+        //KeepScale();
     }
 
     public void KeepScale()
     {
-        transform.localScale = Vector3.one;
+        //transform.localScale = Vector3.one;
     }
     
     [NaughtyAttributes.Button]

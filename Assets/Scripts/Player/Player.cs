@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Animation;
 using DG.Tweening;
+using Ebac.Core.Singleton;
 
 //COISAS PARA FAZER:
 
@@ -12,7 +13,7 @@ using DG.Tweening;
 //implementar VFX e SFX
 //melhorar UI design
 
-public class Player : MonoBehaviour
+public class Player : Singleton<Player>
 {
     public CharacterController characterController;
     public float speed = 1f;
@@ -48,8 +49,10 @@ public class Player : MonoBehaviour
         if (bounceHelper == null) bounceHelper = GetComponentInChildren<BounceHelper>();
     }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         OnValidate(); //sempre chamar no awake para garantir que está sendo validado
 
         healthBase.OnDamage += Damage;

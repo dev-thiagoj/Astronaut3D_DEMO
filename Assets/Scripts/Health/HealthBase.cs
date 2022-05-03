@@ -7,6 +7,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     public bool destroyOnKill = false;
     public float startLife = 10f;
     public float _currLife;
+    public float timeToDestroy = 10;
 
     public List<UIFillUpdater> uiFillUpdater;
 
@@ -32,7 +33,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     protected virtual void Kill()
     {
         if (destroyOnKill)
-            Destroy(gameObject, 10f);
+            Destroy(gameObject, timeToDestroy);
 
         OnKill?.Invoke(this);
     }

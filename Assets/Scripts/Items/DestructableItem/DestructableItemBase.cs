@@ -29,7 +29,7 @@ public class DestructableItemBase : MonoBehaviour
     private void OnDamage(HealthBase h)
     {
         transform.DOShakeScale(shakeDuration, Vector3.up/5, shakeForce);
-        DropCoins();
+        DropGroupOfCoins();
     }
 
     [NaughtyAttributes.Button]
@@ -37,6 +37,26 @@ public class DestructableItemBase : MonoBehaviour
     {
         var i = Instantiate(prefabCoin);
         i.transform.position = dropPosition.position;
-        
+        i.transform.DOScale(0, .5f).SetEase(Ease.OutBack).From();
+    }
+
+    private void DropGroupOfCoins()
+    {
+        /*for(int i = 0; i < amountCoins; i++)
+        {
+            DropCoins();
+        }*/
+
+        StartCoroutine(DropGroupOfCoinsCoroutine());
+
+    }
+
+    IEnumerator DropGroupOfCoinsCoroutine()
+    {
+        for (int i = 0; i < amountCoins; i++)
+        {
+            DropCoins();
+            yield return new WaitForSeconds(.3f);
+        }
     }
 }

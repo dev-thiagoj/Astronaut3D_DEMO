@@ -4,6 +4,7 @@ using UnityEngine;
 using Animation;
 using DG.Tweening;
 using Ebac.Core.Singleton;
+using Cloth;
 
 //COISAS PARA FAZER:
 
@@ -37,6 +38,9 @@ public class Player : Singleton<Player>
     public HealthBase healthBase;
     public List<Collider> colliders; //character controller tb é interpretado como um collider
     public bool isAlive = true;
+
+    [Space]
+    [SerializeField] private ClothChange clothChange;
 
     private Animator _animator;
 
@@ -196,6 +200,36 @@ public class Player : Singleton<Player>
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
         }
+    }
+
+    #endregion
+
+    #region POWERUPS
+
+    public void ChangeSpeed(float speed, float duration)
+    {
+        StartCoroutine(ChangeSpeedCoroutine(speed, duration));
+    }
+
+    IEnumerator ChangeSpeedCoroutine(float localSpeed, float duration)
+    {
+        var defaultSpeed = speed;
+        speed = localSpeed;
+        yield return new WaitForSeconds(duration);
+        speed = defaultSpeed;
+    }
+
+    public void ChangeTexture(ClothSetup setup, float duration)
+    {
+        StartCoroutine(ChangeTextureCoroutine(setup, duration));
+    }
+
+    IEnumerator ChangeTextureCoroutine(ClothSetup setup, float duration)
+    {
+        clothChange.ChangeTexture(setup);
+        yield return new WaitForSeconds(duration);
+
+        clothChange.ResetTexture();
     }
 
     #endregion

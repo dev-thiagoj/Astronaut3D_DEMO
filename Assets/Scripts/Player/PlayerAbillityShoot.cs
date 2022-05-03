@@ -38,13 +38,11 @@ public class PlayerAbillityShoot : PlayerAbillityBase
     private void StartShoot()
     {
         _currentGun.StartShoot();
-        Debug.Log("Start Shoot");
     }
     
     private void CancelShoot()
     {
         _currentGun.StopShoot();
-        Debug.Log("Cancel Shoot");
     }
 
     private void ChooseBetweensGuns()

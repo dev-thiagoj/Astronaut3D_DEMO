@@ -160,7 +160,6 @@ namespace Boss
 
         public void GoToRandomPoint(Action onArrive = null) //Action onArrive = Callback para informar qdo chegou no waypoint para poder começar a atacar, coloco como nulo para não ser um parametro obrigatorio, mas se tiver será usado
         {
-            Debug.Log("Enter Walk Random Point");
             StartCoroutine(GoToPointCoroutine(waypoints[UnityEngine.Random.Range(0, waypoints.Count)], onArrive)); //coloquei UnityEngine.Random pois o Random é usado tanto pelo using system, qto pelo using UnityEngine então eu escolho de qual será usado
         }
 

@@ -37,6 +37,12 @@ public class HealthBase : MonoBehaviour, IDamageable
         OnKill?.Invoke(this);
     }
 
+    [NaughtyAttributes.Button]
+    public void Damage()
+    {
+        Damage(5);
+    }
+
     public void Damage(float f)
     {
         _currLife -= f;

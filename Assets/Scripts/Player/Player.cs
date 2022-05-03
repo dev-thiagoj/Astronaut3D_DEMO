@@ -68,7 +68,7 @@ public class Player : Singleton<Player>
     [NaughtyAttributes.Button]
     public void ShootAnimation()
     {
-        bounceHelper.TransformBounceWithYoyo();
+        //bounceHelper.TransformBounceWithYoyo();
     }
 
     #region RUN

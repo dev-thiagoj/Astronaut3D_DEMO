@@ -40,7 +40,7 @@ public class ChestItemCoin : ChestItemBase
         base.Collect();
         foreach(var i in _itens)
         {
-            i.transform.DOMoveY(2f, tweenEndTime).SetRelative(); //SetRelative diz que ele é relativo a posição atual dos itens (vai mover +2 em y em relaçao a posição atual)
+            i.transform.DOMoveY(4f, tweenEndTime).SetRelative(); //SetRelative diz que ele é relativo a posição atual dos itens (vai mover +2 em y em relaçao a posição atual)
             i.transform.DOScale(0, tweenEndTime / 2).SetDelay(tweenEndTime / 2); //demora metade do tempo pra começar porém metade do tempo pra executar
             ItemManager.Instance.AddByType(ItemType.COIN);
         }

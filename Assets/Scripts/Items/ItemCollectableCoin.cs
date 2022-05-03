@@ -16,6 +16,6 @@ public class ItemCollectableCoin : ItemCollectableBase
         }
         
         base.OnCollect();
-        ItemManager.Instance.AddByType(ItemType.COIN);
+        //ItemManager.Instance.AddByType(ItemType.COIN);
     }
 }

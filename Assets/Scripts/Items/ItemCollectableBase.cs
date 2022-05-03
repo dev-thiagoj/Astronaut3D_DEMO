@@ -21,7 +21,7 @@ namespace Itens
 
         private void OnValidate()
         {
-            collider = GetComponent<Collider>();
+            //collider = GetComponent<Collider>();
         }
 
         private void Awake()

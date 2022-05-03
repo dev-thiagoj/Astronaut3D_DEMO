@@ -14,6 +14,8 @@ public class HealthBase : MonoBehaviour, IDamageable
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
 
+    //public DestructableItemBase destructableItemBase;
+
     private void Awake()
     {
         Init();
@@ -33,7 +35,9 @@ public class HealthBase : MonoBehaviour, IDamageable
     protected virtual void Kill()
     {
         if (destroyOnKill)
+        {   
             Destroy(gameObject, timeToDestroy);
+        }
 
         OnKill?.Invoke(this);
     }

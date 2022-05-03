@@ -1,18 +1,26 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
+using Cloth;
 
 public class HealthBase : MonoBehaviour, IDamageable
 {
     public bool destroyOnKill = false;
     public float startLife = 10f;
-    public float _currLife;
+    public float _currLife; //não pode ser privado pois o boss base acessa ele
     public float timeToDestroy = 10;
 
     public List<UIFillUpdater> uiFillUpdater;
 
+    public float damageMultiply = 1;
+
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
+
+    //[Space]
+    //[SerializeField] private ClothChange clothChange;
+
 
     //public DestructableItemBase destructableItemBase;
 
@@ -43,14 +51,14 @@ public class HealthBase : MonoBehaviour, IDamageable
     }
 
     [NaughtyAttributes.Button]
-    public void Damage()
+    /*public void Damage()
     {
         Damage(5);
-    }
+    }*/
 
     public void Damage(float f)
     {
-        _currLife -= f;
+        _currLife -= f * damageMultiply;
 
         if (_currLife <= 0)
         {
@@ -71,4 +79,30 @@ public class HealthBase : MonoBehaviour, IDamageable
     {
         if (uiFillUpdater != null) uiFillUpdater.ForEach(i => i.UpdateValue((float)_currLife / startLife));
     }
+
+    public void ChangeDamageMultiply(float damage, float duration)
+    {
+        StartCoroutine(ChangeDamageMultiplyCoroutine(damageMultiply, duration));
+    }
+
+    IEnumerator ChangeDamageMultiplyCoroutine(float damageMultiply, float duration)
+    {
+        this.damageMultiply = damageMultiply;
+        yield return new WaitForSeconds(duration);
+
+        this.damageMultiply = 1;
+    }
+
+    /*public void ChangeTexture(ClothSetup setup, float duration)
+    {
+        StartCoroutine(ChangeTextureCoroutine(setup, duration));
+    }
+
+    IEnumerator ChangeTextureCoroutine(ClothSetup setup, float duration)
+    {
+        clothChange.ChangeTexture(setup);
+        yield return new WaitForSeconds(duration);
+
+        clothChange.ResetTexture();
+    }*/
 }

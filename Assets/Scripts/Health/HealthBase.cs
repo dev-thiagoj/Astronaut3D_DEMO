@@ -51,10 +51,10 @@ public class HealthBase : MonoBehaviour, IDamageable
     }
 
     [NaughtyAttributes.Button]
-    /*public void Damage()
+    public void Damage()
     {
         Damage(5);
-    }*/
+    }
 
     public void Damage(float f)
     {

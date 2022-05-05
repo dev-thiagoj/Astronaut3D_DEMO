@@ -5,6 +5,7 @@ using UnityEngine;
 //COISAS PARA FAZER:
 
 //corrigir erro qdo o player morre dentro do trigger "EnemyTrigger linha 68"
+// corrigir erro enemy continua atirando depois de morto
 
 namespace Enemy
 {

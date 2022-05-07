@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using DG.Tweening;
 using Animation;
 
@@ -38,6 +39,9 @@ namespace Enemy
         public bool canPursuit = false;
         public float speedOfPursuit = 25f;
         public bool _startPursuit = false;
+
+        [Header("Events")]
+        public UnityEvent OnKillEvent;
 
         private void OnValidate()
         {
@@ -125,8 +129,10 @@ namespace Enemy
 
         protected virtual void OnKill()
         {
-            PlayAnimationByTrigger(AnimationType.DEATH);
+            //if (collider != null) collider.enabled = false;
             Destroy(gameObject, 10f);
+            PlayAnimationByTrigger(AnimationType.DEATH);
+            OnKillEvent?.Invoke();
         }
         #endregion
 

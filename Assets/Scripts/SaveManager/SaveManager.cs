@@ -11,6 +11,7 @@ public class SaveManager : Singleton<SaveManager>
     protected override void Awake()
     {
         base.Awake();
+        DontDestroyOnLoad(gameObject); //não sera destruido qdo carregar outra cena, mantendo sempre o mesmo desde que começa o jogo
         _saveSetup = new SaveSetup();
         _saveSetup.lastLevel = 2;
         _saveSetup.playerName = "Thiago";

@@ -43,6 +43,7 @@ public class Player : Singleton<Player>
     [SerializeField] private ClothChange clothChange;
 
     private Animator _animator;
+    private bool _jumping = false;
 
 
     private void OnValidate()
@@ -104,7 +105,7 @@ public class Player : Singleton<Player>
 
             characterController.Move(speedVector * Time.deltaTime);
 
-            _animator.SetBool("RunBool", isWalking);
+            _animator.SetBool("Run", isWalking);
 
         }
     }
@@ -115,16 +116,28 @@ public class Player : Singleton<Player>
 
     public void Jump()
     {
+        if (_jumping)
+        {
+            _jumping = false;
+            _animator.SetTrigger("Land");
+        }
+        
         if (characterController.isGrounded && isAlive)
         {
             _vSpeed = 0;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 _vSpeed = jumpSpeed;
-                _animator.SetTrigger("Jump");
-                transform.DOScaleX(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
-                transform.DOScaleZ(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
-                transform.DOScaleY(1.2f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+
+                if (!_jumping)
+                {
+                    _jumping = true;
+                    _animator.SetTrigger("Jump");
+                    transform.DOScaleX(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+                    transform.DOScaleZ(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+                    transform.DOScaleY(1.2f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+                }
+
             }
         }
     }

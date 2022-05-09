@@ -2,19 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using System;
 using Ebac.Core.Singleton;
 
 public class SaveManager : Singleton<SaveManager>
 {
-    private SaveSetup _saveSetup;
+    [SerializeField] private SaveSetup _saveSetup;
+    private string _path = Application.streamingAssetsPath + "/save.txt"; // - salva em uma pasta dentro do inspector, necessario criar a pasta StreamingAssets primeiro (fica mais localizado)
+    //string path = Application.dataPath + "/save.txt"; - salva o json na pasta do jogo
+    //string path = Application.persistentDataPath + "/save.txt"; - salva o json no usuario do computador, fora do jogo
+
+    public int lastlevel;
+
+    public Action<SaveSetup> FileLoaded;
+
+    public SaveSetup Setup
+    {
+        get { return _saveSetup; }
+    }
+
 
     protected override void Awake()
     {
         base.Awake();
         DontDestroyOnLoad(gameObject); //não sera destruido qdo carregar outra cena, mantendo sempre o mesmo desde que começa o jogo
+    }
+
+    private void CreateNewSave()
+    {
         _saveSetup = new SaveSetup();
-        _saveSetup.lastLevel = 2;
+        _saveSetup.lastLevel = 0;
         _saveSetup.playerName = "Thiago";
+    }
+
+    private void Start()
+    {
+        Invoke(nameof(LoadFile), 0.1f);
     }
 
     #region Save
@@ -51,17 +74,31 @@ public class SaveManager : Singleton<SaveManager>
 
     private void SaveFile(string json)
     {
-        //string path = Application.dataPath + "/save.txt"; - salva o json na pasta do jogo
-        //string path = Application.persistentDataPath + "/save.txt"; - salva o json no usuario do computador, fora do jogo
-        string path = Application.streamingAssetsPath + "/save.txt"; // - salva em uma pasta dentro do inspector, necessario criar a pasta StreamingAssets primeiro (fica mais localizado)
-        
+        Debug.Log(_path);
+        File.WriteAllText(_path, json);
+    }
 
-        //string fileLoaded = "";
+    [NaughtyAttributes.Button]
 
-        //if (File.Exists(path)) fileLoaded = File.ReadAllText(path);
+    private void LoadFile()
+    {
+        string fileLoaded = "";
 
-        Debug.Log(path);
-        File.WriteAllText(path, json);
+        if (File.Exists(_path))
+        {
+            fileLoaded = File.ReadAllText(_path);
+            _saveSetup = JsonUtility.FromJson<SaveSetup>(fileLoaded);
+
+            lastlevel = _saveSetup.lastLevel;
+        }
+        else
+        {
+            CreateNewSave();
+            Save();
+        } 
+
+
+        FileLoaded.Invoke(_saveSetup);
     }
 
     #region DEBUG
@@ -71,7 +108,7 @@ public class SaveManager : Singleton<SaveManager>
     {
         SaveLastLevel(1);
     }
-    
+
     [NaughtyAttributes.Button]
     private void SaveLevelFive()
     {

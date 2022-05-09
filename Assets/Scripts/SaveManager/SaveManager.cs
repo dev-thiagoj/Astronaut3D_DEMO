@@ -30,12 +30,20 @@ public class SaveManager : Singleton<SaveManager>
     public void SaveLastLevel(int level)
     {
         _saveSetup.lastLevel = level;
+        SaveItens();
         Save();
     }
 
     public void SaveName(string text)
     {
         _saveSetup.playerName = text;
+        Save();
+    }
+
+    public void SaveItens()
+    {
+        _saveSetup.coins = Itens.ItemManager.Instance.GetItemByType(Itens.ItemType.COIN).so_Int.value;
+        _saveSetup.lifePack = Itens.ItemManager.Instance.GetItemByType(Itens.ItemType.LIFE_PACK).so_Int.value;
         Save();
     }
 
@@ -78,5 +86,7 @@ public class SaveManager : Singleton<SaveManager>
 public class SaveSetup
 {
     public int lastLevel;
+    public int coins;
+    public int lifePack;
     public string playerName;
 }

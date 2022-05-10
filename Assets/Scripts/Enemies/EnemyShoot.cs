@@ -55,6 +55,7 @@ namespace Enemy
             if (!player.isAlive)
             {
                 StopShooting();
+                //return;
             }
         }
     }

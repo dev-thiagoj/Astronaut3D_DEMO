@@ -159,6 +159,7 @@ public class Player : Singleton<Player>
         flashColors.ForEach(i => i.Flash());
         EffectsManager.Instance.ChangeVignette();
         ShakeCamera.Instance.Shake();
+        
     }
 
     public void Damage(float damage, Vector3 dir)
@@ -216,7 +217,11 @@ public class Player : Singleton<Player>
 
     public void Spawn()
     {
-        if (CheckpointManager.Instance.lastCheckpointKey > 0) transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
+        if (CheckpointManager.Instance.lastCheckpointKey > 0)
+        {
+            transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
+            healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
+        }
     }
 
     [NaughtyAttributes.Button]

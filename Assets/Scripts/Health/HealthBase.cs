@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
 using Cloth;
+using Ebac.Core.Singleton;
 
-public class HealthBase : MonoBehaviour, IDamageable
+public class HealthBase : Singleton<HealthBase>, IDamageable
 {
     public bool destroyOnKill = false;
     public float startLife = 10f;
@@ -24,8 +25,10 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     //public DestructableItemBase destructableItemBase;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         Init();
     }
 

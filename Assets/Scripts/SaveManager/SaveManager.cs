@@ -57,7 +57,7 @@ public class SaveManager : Singleton<SaveManager>
         SaveCheckpoints();
         SaveItens();
         //SaveCurrCloth();
-        //SaveLifeStatus();
+        SaveLifeStatus();
         Save();
     }
 
@@ -103,7 +103,8 @@ public class SaveManager : Singleton<SaveManager>
 
     public void SaveLifeStatus()
     {
-
+        _saveSetup.lifeStatus = Player.Instance.healthBase._currLife;
+        //Save();
     }
 
     #endregion
@@ -146,8 +147,8 @@ public class SaveSetup
     public int lastLevel;
     public int coins;
     public int lifePack;
-    public int lastCheckpoint; //
+    public int lastCheckpoint;
     public int currCloth; //
-    public float lifeStatus; //
+    public float lifeStatus; // <----------- atualmente
     public string playerName;
 }

@@ -16,6 +16,8 @@ namespace Cloth
     {
         public List<ClothSetup> clothSetups;
 
+        public Texture2D currCloth;
+
         public ClothSetup GetSetupByType(ClothType clothType)
         {
             return clothSetups.Find(i => i.clothType == clothType);

@@ -66,7 +66,6 @@ public class HealthBase : Singleton<HealthBase>, IDamageable
         if (_currLife <= 0)
         {
             Kill();
-            //SaveManager.Instance.Save();
         }
 
         UpdateUI();
@@ -96,17 +95,4 @@ public class HealthBase : Singleton<HealthBase>, IDamageable
 
         this.damageMultiply = 1;
     }
-
-    /*public void ChangeTexture(ClothSetup setup, float duration)
-    {
-        StartCoroutine(ChangeTextureCoroutine(setup, duration));
-    }
-
-    IEnumerator ChangeTextureCoroutine(ClothSetup setup, float duration)
-    {
-        clothChange.ChangeTexture(setup);
-        yield return new WaitForSeconds(duration);
-
-        clothChange.ResetTexture();
-    }*/
 }

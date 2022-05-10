@@ -11298,6 +11298,7 @@ MonoBehaviour:
     texture: {fileID: 2800000, guid: 25f58431b0e4681449edb6f20e3a8f2c, type: 3}
   - clothType: 1
     texture: {fileID: 2800000, guid: 2556e2cdce119dd4ab916ecf3391952c, type: 3}
+  currCloth: {fileID: 0}
 --- !u!1001 &893014194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15785,7 +15786,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500100153}
-  m_LocalRotation: {x: 0.1645569, y: 0.52590835, z: -0.1045321, w: 0.8278976}
+  m_LocalRotation: {x: 0.1645569, y: 0.52590835, z: -0.104532085, w: 0.8278976}
   m_LocalPosition: {x: 381.7923, y: 11.4, z: 46.46485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -18844,7 +18845,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1889083981}
-  m_LocalRotation: {x: 0.0000000072380058, y: 0.9547373, z: -0.29745036, w: 0.000000023232094}
+  m_LocalRotation: {x: -0.000000007238007, y: 0.9547373, z: -0.29745036, w: -0.000000023232099}
   m_LocalPosition: {x: 0.1282959, y: 12.694994, z: 18.583862}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -19050,7 +19051,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937229366}
-  m_LocalRotation: {x: 0.14951059, y: 0.5277182, z: -0.094974145, w: 0.8307467}
+  m_LocalRotation: {x: 0.14951059, y: 0.5277181, z: -0.09497414, w: 0.8307467}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

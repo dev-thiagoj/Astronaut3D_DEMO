@@ -171,7 +171,7 @@ public class Player : Singleton<Player>
     {
         if (isAlive) //serve para animação tocar apenas uma vez
         {
-            SaveManager.Instance.Save();
+            SaveManager.Instance.SaveDataWhenGetKilled();
             isAlive = false;
             _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);

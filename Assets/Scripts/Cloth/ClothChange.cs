@@ -2,20 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Cloth
 {
-    public class ClothChange : MonoBehaviour
+    public class ClothChange : ClothManager
     {
         public SkinnedMeshRenderer mesh;
 
         public Texture2D texture;
-        public string shaderIDName = "_EmissionMap";
+        //public Texture2D currCloth;
 
+
+        public string shaderIDName = "_EmissionMap";
+        
         private Texture2D _defaultTexture;
 
-        private void Awake()
+        protected override void Awake()
         {
+            base.Awake();
+
             _defaultTexture = (Texture2D) mesh.materials[0].GetTexture(shaderIDName);
+            ClothManager.Instance.currCloth = _defaultTexture;
         }
 
         [NaughtyAttributes.Button]
@@ -27,11 +34,13 @@ namespace Cloth
         public void ChangeTexture(ClothSetup setup)
         {
             mesh.materials[0].SetTexture(shaderIDName, setup.texture);
+            ClothManager.Instance.currCloth = setup.texture;
         }
 
         public void ResetTexture()
         {
             mesh.materials[0].SetTexture(shaderIDName, _defaultTexture);
+            ClothManager.Instance.currCloth = _defaultTexture;
         }
     }
 }

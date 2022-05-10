@@ -56,19 +56,18 @@ public class SaveManager : Singleton<SaveManager>
     {
         SaveCheckpoints();
         SaveItens();
-        //SaveCurrCloth();
+        SaveCurrCloth();
         SaveLifeStatus();
         Save();
     }
 
-    /*public void SaveDataWhenGetKilled()
+    public void SaveDataWhenGetKilled()
     {
         SaveCheckpoints();
         SaveItens();
         SaveCurrCloth();
-        SaveLifeStatus();
         Save();
-    }*/
+    }
 
     public void SaveLastLevel(int level)
     {
@@ -98,7 +97,7 @@ public class SaveManager : Singleton<SaveManager>
 
     public void SaveCurrCloth()
     {
-
+        _saveSetup.currCloth = Cloth.ClothManager.Instance.currCloth;
     }
 
     public void SaveLifeStatus()
@@ -134,9 +133,6 @@ public class SaveManager : Singleton<SaveManager>
             CreateNewSave();
             Save();
         }
-
-
-        //Debug.Log(_saveSetup);
     }
 }
 
@@ -148,7 +144,7 @@ public class SaveSetup
     public int coins;
     public int lifePack;
     public int lastCheckpoint;
-    public int currCloth; //
-    public float lifeStatus; // <----------- atualmente
+    public Texture2D currCloth; // <--------- atualmente
+    public float lifeStatus;
     public string playerName;
 }

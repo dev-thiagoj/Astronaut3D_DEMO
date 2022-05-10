@@ -63,6 +63,7 @@ public class HealthBase : MonoBehaviour, IDamageable
         if (_currLife <= 0)
         {
             Kill();
+            //SaveManager.Instance.Save();
         }
 
         UpdateUI();

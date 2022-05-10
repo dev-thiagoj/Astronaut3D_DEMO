@@ -21,6 +21,7 @@ public class Player : Singleton<Player>
     public float turnSpeed = 1f;
     public float gravity = 9.8f;
     public float jumpSpeed = 15f;
+    public Transform initialPos;
 
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
@@ -62,6 +63,12 @@ public class Player : Singleton<Player>
 
         healthBase.OnDamage += Damage;
         healthBase.OnKill += Kill;
+    }
+
+    private void Start()
+    {
+        Spawn();
+        //Invoke(nameof(Spawn), 0.5f);
     }
 
     private void Update()
@@ -163,11 +170,12 @@ public class Player : Singleton<Player>
     {
         if (isAlive) //serve para animação tocar apenas uma vez
         {
+            SaveManager.Instance.Save();
             isAlive = false;
             _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
 
-            Invoke(nameof(Revive), 5f);
+            //Invoke(nameof(Revive), 5f);
         }
     }
 
@@ -204,7 +212,12 @@ public class Player : Singleton<Player>
 
     #endregion
 
-    #region RESPAWN
+    #region SPAWN / RESPAWN
+
+    public void Spawn()
+    {
+        if (CheckpointManager.Instance.lastCheckpointKey > 0) transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
+    }
 
     [NaughtyAttributes.Button]
     public void Respawn()
@@ -213,6 +226,7 @@ public class Player : Singleton<Player>
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
         }
+        //else transform.position = initialPos.transform.position;
     }
 
     #endregion

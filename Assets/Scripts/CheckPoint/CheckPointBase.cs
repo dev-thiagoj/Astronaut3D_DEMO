@@ -34,6 +34,7 @@ public class CheckPointBase : MonoBehaviour
     private void TurnItOn()
     {
         meshRenderer.material.SetColor("_EmissionColor", Color.white);
+
     }
 
     [NaughtyAttributes.Button]
@@ -48,6 +49,7 @@ public class CheckPointBase : MonoBehaviour
             PlayerPrefs.SetInt(checkPointKey, key);*/
 
         CheckpointManager.Instance.SaveCheckpoint(key);
+        SaveManager.Instance.SaveDataInCheckpoints();
 
         checkpointActived = true;
     }

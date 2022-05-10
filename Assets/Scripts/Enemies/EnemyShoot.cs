@@ -50,11 +50,12 @@ namespace Enemy
 
         protected override void PlayerKilled()
         {
+            base.PlayerKilled();
+            
             if (!player.isAlive)
             {
-                gunBase.StopShoot();
+                StopShooting();
             }
-            else return;
         }
     }
 

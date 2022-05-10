@@ -57,6 +57,7 @@ namespace Itens
             if (item.so_Int.value < 0) item.so_Int.value = 0;
         }
 
+        #region DEBUG
         [NaughtyAttributes.Button]
         private void AddCoin()
         {
@@ -68,6 +69,7 @@ namespace Itens
         {
             AddByType(ItemType.LIFE_PACK);
         }
+        #endregion
     }
 
     [System.Serializable]

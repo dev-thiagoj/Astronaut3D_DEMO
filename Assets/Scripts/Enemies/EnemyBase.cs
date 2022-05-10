@@ -69,7 +69,7 @@ namespace Enemy
                 transform.LookAt(player.transform.position);
             }
 
-            PlayerKilled();
+            //PlayerKilled();
             Pursuit();
         }
 
@@ -83,7 +83,7 @@ namespace Enemy
         {
             if (!player.isAlive)
             {
-                _startPursuit = false;
+                canPursuit = false;
             }
         }
 
@@ -121,7 +121,7 @@ namespace Enemy
         protected virtual void Kill()
         {
             canPursuit = false;
-
+            
             lookAtPlayer = false;
 
             OnKill();

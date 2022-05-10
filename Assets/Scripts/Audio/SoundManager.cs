@@ -31,6 +31,7 @@ public class SoundManager : Singleton<SoundManager>
 
 public enum MusicType
 {
+    NONE,
     TYPE_01,
     TYPE_02,
     TYPE_03,
@@ -45,6 +46,7 @@ public class MusicSetup
 
 public enum SFXType
 {
+    NONE,
     TYPE_01,
     TYPE_02,
     TYPE_03,

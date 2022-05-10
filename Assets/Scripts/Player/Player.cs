@@ -8,11 +8,10 @@ using Cloth;
 
 //COISAS PARA FAZER:
 
-//fazer animação do cannon a cada disparo
 //arrumar UI para que a de health não atualize com os tiros
 //arrumar animação de aterrisagem
 //implementar VFX e SFX
-//melhorar UI design
+
 
 public class Player : Singleton<Player>
 {
@@ -57,7 +56,7 @@ public class Player : Singleton<Player>
 
     protected override void Awake()
     {
-        base.Awake();
+        //base.Awake();
 
         OnValidate(); //sempre chamar no awake para garantir que está sendo validado
 
@@ -68,19 +67,12 @@ public class Player : Singleton<Player>
     private void Start()
     {
         Spawn();
-        //Invoke(nameof(Spawn), 0.5f);
     }
 
     private void Update()
     {
         Movements();
         Jump();
-    }
-
-    [NaughtyAttributes.Button]
-    public void ShootAnimation()
-    {
-        //bounceHelper.TransformBounceWithYoyo();
     }
 
     #region RUN
@@ -164,9 +156,9 @@ public class Player : Singleton<Player>
 
     public void Damage(float damage, Vector3 dir)
     {
-        //OnDamage(damage);
-        //transform.DOMove(transform.position - dir, .1f);
+        
     }
+
     private void Kill(HealthBase h)
     {
         if (isAlive) //serve para animação tocar apenas uma vez
@@ -176,7 +168,7 @@ public class Player : Singleton<Player>
             _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
 
-            //Invoke(nameof(Revive), 5f);
+            Invoke(nameof(Revive), 15f);
         }
     }
 

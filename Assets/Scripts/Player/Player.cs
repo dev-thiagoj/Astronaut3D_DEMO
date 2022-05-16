@@ -8,11 +8,10 @@ using Cloth;
 
 //COISAS PARA FAZER:
 
-//fazer animaÁ„o do cannon a cada disparo
-//arrumar UI para que a de health n„o atualize com os tiros
-//arrumar animaÁ„o de aterrisagem
+//arrumar UI para que a de health n√£o atualize com os tiros
+//arrumar anima√ß√£o de aterrisagem
 //implementar VFX e SFX
-//melhorar UI design
+
 
 public class Player : Singleton<Player>
 {
@@ -41,7 +40,7 @@ public class Player : Singleton<Player>
 
     [Header("Life")]
     public HealthBase healthBase;
-    public List<Collider> colliders; //character controller tb È interpretado como um collider
+    public List<Collider> colliders; //character controller tb √© interpretado como um collider
     public bool isAlive = true;
 
     [Space]
@@ -62,9 +61,9 @@ public class Player : Singleton<Player>
 
     protected override void Awake()
     {
-        base.Awake();
+        //base.Awake();
 
-        OnValidate(); //sempre chamar no awake para garantir que est· sendo validado
+        OnValidate(); //sempre chamar no awake para garantir que est√° sendo validado
 
         healthBase.OnDamage += Damage;
         healthBase.OnKill += Kill;
@@ -73,7 +72,6 @@ public class Player : Singleton<Player>
     private void Start()
     {
         Spawn();
-        //Invoke(nameof(Spawn), 0.5f);
     }
 
     private void Update()
@@ -82,10 +80,12 @@ public class Player : Singleton<Player>
         Jump();
     }
 
+
     private void PlaySFX(SFXType sFXType)
     {
         //sfxPlayer.Play();
     }
+
 
     #region RUN
 
@@ -167,19 +167,19 @@ public class Player : Singleton<Player>
 
     public void Damage(float damage, Vector3 dir)
     {
-        //OnDamage(damage);
-        //transform.DOMove(transform.position - dir, .1f);
+        
     }
+
     private void Kill(HealthBase h)
     {
-        if (isAlive) //serve para animaÁ„o tocar apenas uma vez
+        if (isAlive) //serve para anima√ß√£o tocar apenas uma vez
         {
-            SaveManager.Instance.Save();
+            SaveManager.Instance.SaveDataWhenGetKilled();
             isAlive = false;
             _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
 
-            //Invoke(nameof(Revive), 5f);
+            Invoke(nameof(Revive), 15f);
         }
     }
 
@@ -204,9 +204,9 @@ public class Player : Singleton<Player>
         healthBase.ResetLife();
         _animator.SetTrigger("Revive");
         Respawn();
-        Invoke(nameof(TurnOnColliders), .1f); //ATEN«√O: IMPORTANTE:
+        Invoke(nameof(TurnOnColliders), .1f); //ATEN√á√ÉO: IMPORTANTE:
                                               //precisa invocar para dar tempo de primeiro respawnar e depois ligar os colliders pois se o charactercontroller ficar ativo
-                                              //no mesmo frame do respawn, ele pega a posiÁ„o da morte como referÍncia ainda e n„o a do checkpoint.  
+                                              //no mesmo frame do respawn, ele pega a posi√ß√£o da morte como refer√™ncia ainda e n√£o a do checkpoint.  
     }
 
     private void TurnOnColliders()

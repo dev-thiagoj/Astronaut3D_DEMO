@@ -42,7 +42,7 @@ namespace Itens
         protected virtual void Collect()
         {
             PlaySFX();
-            //if (collider != null) collider.enabled = false;
+
             if (graphicItem != null) graphicItem.SetActive(false);
             Invoke(nameof(HideObject), timeToHide);
             OnCollect();

@@ -44,7 +44,7 @@ namespace Boss
 
         public float speed = 5f;
         public List<Transform> waypoints;
-        public GameObject bossTrigger;
+        //public GameObject bossTrigger;
 
         [SerializeField] private HealthBase healthBase;
         [SerializeField] private FlashColor flashColor;
@@ -100,7 +100,7 @@ namespace Boss
             {
                 gunBase.StopShoot();
                 StopAllCoroutines();
-                bossTrigger.SetActive(true);
+                //bossTrigger.SetActive(true);
             }
         }
 

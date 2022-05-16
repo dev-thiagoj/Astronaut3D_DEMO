@@ -8,9 +8,11 @@ public class SoundManager : Singleton<SoundManager>
     public List<MusicSetup> musicSetups;
     public List<SFXSetup> sfxSetups;
 
-    [Header("Sound On/Off")]
-    public GameObject buttonSoundOff;
-    public GameObject buttonSoundOn;
+
+    //[Header("Sound On/Off")]
+    //public GameObject buttonSoundOff;
+    //public GameObject buttonSoundOn;
+
 
     public AudioSource musicSource;
 
@@ -18,8 +20,10 @@ public class SoundManager : Singleton<SoundManager>
     {
         base.Awake();
 
-        buttonSoundOff.SetActive(false);
-        buttonSoundOn.SetActive(true);
+
+        //buttonSoundOff.SetActive(false);
+        //buttonSoundOn.SetActive(true);
+
     }
 
     public void PlayMusicbyType(MusicType musicType)
@@ -45,8 +49,10 @@ public class SoundManager : Singleton<SoundManager>
     {
         //musicSource.enabled = false;
         musicSource.Pause();
-        buttonSoundOn.SetActive(false);
-        buttonSoundOff.SetActive(true);
+
+        //buttonSoundOn.SetActive(false);
+        //buttonSoundOff.SetActive(true);
+
     }
 
     [NaughtyAttributes.Button]
@@ -54,17 +60,18 @@ public class SoundManager : Singleton<SoundManager>
     {
         //musicSource.enabled = true;
         musicSource.Play();
-        buttonSoundOff.SetActive(false);
-        buttonSoundOn.SetActive(true);
+        //buttonSoundOff.SetActive(false);
+        //buttonSoundOn.SetActive(true);
+
     }
 }
 
 public enum MusicType
 {
     NONE,
-    TYPE_01,
-    TYPE_02,
-    TYPE_03,
+    AMBIENCE_MAIN,
+    LEVEL_WIN,
+    LEVEL_LOSE,
 }
 
 [System.Serializable]
@@ -77,9 +84,10 @@ public class MusicSetup
 public enum SFXType
 {
     NONE,
-    TYPE_01,
-    TYPE_02,
-    TYPE_03,
+    COIN_COLLECT,
+    LIFEPACK_COLLECT,
+    FOOTSTEPS,
+    SHOOT
 }
 
 [System.Serializable]

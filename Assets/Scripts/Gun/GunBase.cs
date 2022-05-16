@@ -16,11 +16,19 @@ public class GunBase : MonoBehaviour
     public float speed = 50f;
 
     private Coroutine _currentCoroutine;
-    private Player _player;
+    //private Player _player;
+
+    [Header("SFX")]
+    //public SoundManager soundManager;
+    public SFXType sfxType;
+    public AudioSource audioSource;
+    //private SFXPlayer sfxPlayer;
 
     private void OnValidate()
     {
-        _player = FindObjectOfType<Player>();
+        //_player = FindObjectOfType<Player>();
+        //if (sfxPlayer == null) sfxPlayer = GetComponent<SFXPlayer>();
+
     }
 
     protected virtual IEnumerator ShootCoroutine()
@@ -38,6 +46,12 @@ public class GunBase : MonoBehaviour
         projectile.transform.SetPositionAndRotation(positionToShoot.position, positionToShoot.rotation);
         projectile.speed = speed;
         //_player.ShootAnimation();
+        PlayShootSFX();
+    }
+
+    public void PlayShootSFX()
+    {
+        SFXPool.Instance.Play(sfxType);
     }
 
     public void StartShoot()

@@ -58,11 +58,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ddb03101d695274f897a3a150dcaffe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxType: 1
   itemType: 0
   compareTag: Player
   particleSystem: {fileID: 0}
   graphicItem: {fileID: 4058936519605444473}
   timeToHide: 0.1
+  collider: {fileID: 0}
   audioSource: {fileID: 0}
 --- !u!1001 &3789027654204416552
 PrefabInstance:

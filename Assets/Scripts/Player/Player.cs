@@ -23,6 +23,10 @@ public class Player : Singleton<Player>
     public float jumpSpeed = 15f;
     public Transform initialPos;
 
+    /*[Header("SFX")]
+    public SFXType sfxType;
+    private SFXPlayer sfxPlayer;*/
+
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
     public float speedRun = 1.5f;
@@ -53,6 +57,7 @@ public class Player : Singleton<Player>
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
         if (bounceHelper == null) bounceHelper = GetComponentInChildren<BounceHelper>();
+        //if (sfxPlayer == null) sfxPlayer = GetComponent<SFXPlayer>();
     }
 
     protected override void Awake()
@@ -77,10 +82,9 @@ public class Player : Singleton<Player>
         Jump();
     }
 
-    [NaughtyAttributes.Button]
-    public void ShootAnimation()
+    private void PlaySFX(SFXType sFXType)
     {
-        //bounceHelper.TransformBounceWithYoyo();
+        //sfxPlayer.Play();
     }
 
     #region RUN
@@ -113,7 +117,6 @@ public class Player : Singleton<Player>
             characterController.Move(speedVector * Time.deltaTime);
 
             _animator.SetBool("Run", isWalking);
-
         }
     }
 
@@ -128,7 +131,7 @@ public class Player : Singleton<Player>
             _jumping = false;
             _animator.SetTrigger("Land");
         }
-        
+
         if (characterController.isGrounded && isAlive)
         {
             _vSpeed = 0;
@@ -159,7 +162,7 @@ public class Player : Singleton<Player>
         flashColors.ForEach(i => i.Flash());
         EffectsManager.Instance.ChangeVignette();
         ShakeCamera.Instance.Shake();
-        
+
     }
 
     public void Damage(float damage, Vector3 dir)

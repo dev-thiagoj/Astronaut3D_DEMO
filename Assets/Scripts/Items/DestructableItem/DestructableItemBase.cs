@@ -11,14 +11,15 @@ public class DestructableItemBase : MonoBehaviour
 
     public int shakeForce = 5;
 
-    public int amountCoins = 1;
+    public int amountCoins = 5;
     public GameObject prefabCoin;
-    public Transform dropPosition;
+    public Transform[] dropPositions;
+    private int _index = 0;
 
     private Collider collider;
 
     private void OnValidate()
-    {   
+    {
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
         if (collider == null) collider = GetComponent<Collider>();
     }
@@ -32,7 +33,7 @@ public class DestructableItemBase : MonoBehaviour
 
     private void OnDamage(HealthBase h)
     {
-        transform.DOShakeScale(shakeDuration, Vector3.up/5, shakeForce);
+        transform.DOShakeScale(shakeDuration, Vector3.up / 5, shakeForce);
         //DropGroupOfCoins();
     }
 
@@ -46,8 +47,10 @@ public class DestructableItemBase : MonoBehaviour
     private void DropCoins()
     {
         var i = Instantiate(prefabCoin);
-        i.transform.position = dropPosition.position;
-        i.transform.DOScale(0, .5f).SetEase(Ease.OutBack).From();
+        i.transform.position = dropPositions[_index].transform.position;
+        i.transform.DOScale(0, .1f).SetEase(Ease.OutBack).From();
+
+        _index++;
     }
 
     public void DropGroupOfCoins()
@@ -66,7 +69,7 @@ public class DestructableItemBase : MonoBehaviour
         for (int i = 0; i < amountCoins; i++)
         {
             DropCoins();
-            yield return new WaitForSeconds(.3f);
+            yield return new WaitForSeconds(.1f);
         }
     }
 }

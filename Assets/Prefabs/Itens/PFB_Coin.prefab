@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3789027654130453999}
   - component: {fileID: 8123899699078922956}
   - component: {fileID: 1876367540788411642}
+  - component: {fileID: 724383576613044837}
   m_Layer: 0
   m_Name: PFB_Coin
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 3789027654130453998}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 427.35, y: -5.88, z: 65.35}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children:
   - {fileID: 3683924630734702019}
   m_Father: {fileID: 0}
@@ -61,11 +62,23 @@ MonoBehaviour:
   sfxType: 1
   itemType: 0
   compareTag: Player
-  particleSystem: {fileID: 0}
   graphicItem: {fileID: 4058936519605444473}
+  distToCollect: 0.2
   timeToHide: 0.1
-  collider: {fileID: 0}
-  audioSource: {fileID: 0}
+  timeToDestroy: 0.3
+--- !u!114 &724383576613044837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3789027654130453998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fe12bd50ce04647a78b4d6582bb479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
 --- !u!1001 &3789027654204416552
 PrefabInstance:
   m_ObjectHideFlags: 0

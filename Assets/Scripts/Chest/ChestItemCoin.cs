@@ -6,6 +6,8 @@ using Itens;
 
 public class ChestItemCoin : ChestItemBase
 {
+    public SFXType sfxType;
+
     public int coinAmount;
     public GameObject coinObject;
 
@@ -42,6 +44,7 @@ public class ChestItemCoin : ChestItemBase
         {
             i.transform.DOMoveY(4f, tweenEndTime).SetRelative(); //SetRelative diz que ele é relativo a posição atual dos itens (vai mover +2 em y em relaçao a posição atual)
             i.transform.DOScale(0, tweenEndTime / 2).SetDelay(tweenEndTime / 2); //demora metade do tempo pra começar porém metade do tempo pra executar
+            SFXPool.Instance.Play(sfxType);
             ItemManager.Instance.AddByType(ItemType.COIN);
         }
     }

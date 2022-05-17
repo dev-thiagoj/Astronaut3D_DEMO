@@ -73,18 +73,12 @@ public class Player : Singleton<Player>
     private void Start()
     {
         Spawn();
-        //Invoke(nameof(Spawn), 0.5f);
     }
 
     private void Update()
     {
         Movements();
         Jump();
-    }
-
-    private void PlaySFX(SFXType sFXType)
-    {
-        //sfxPlayer.Play();
     }
 
     #region RUN
@@ -167,8 +161,7 @@ public class Player : Singleton<Player>
 
     public void Damage(float damage, Vector3 dir)
     {
-        //OnDamage(damage);
-        //transform.DOMove(transform.position - dir, .1f);
+        
     }
     private void Kill(HealthBase h)
     {
@@ -179,7 +172,7 @@ public class Player : Singleton<Player>
             _animator.SetTrigger("Death");
             colliders.ForEach(i => i.enabled = false);
 
-            //Invoke(nameof(Revive), 5f);
+            Invoke(nameof(Revive), 5f);
         }
     }
 

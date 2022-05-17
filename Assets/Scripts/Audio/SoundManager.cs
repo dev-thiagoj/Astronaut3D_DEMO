@@ -80,7 +80,9 @@ public enum SFXType
     COIN_COLLECT,
     LIFEPACK_COLLECT,
     FOOTSTEPS,
-    SHOOT
+    SHOOT,
+    BOSS_WAKEUP,
+    BOSS_DEATH
 }
 
 [System.Serializable]

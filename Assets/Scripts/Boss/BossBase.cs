@@ -42,6 +42,10 @@ namespace Boss
         public int attackAmount = 5;
         public float timeBetweenAttacks = 2f;
 
+        [Header("SFX")]
+        public SFXType sfxDeath;
+        public SFXType sfxWakeup;
+
         public float speed = 5f;
         public List<Transform> waypoints;
         //public GameObject bossTrigger;
@@ -86,6 +90,7 @@ namespace Boss
         private void Start()
         {
             gunBase = GetComponentInChildren<GunBase>();
+            PlayWakeupSFX();
             //transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //
         }
 
@@ -132,11 +137,25 @@ namespace Boss
             }
         }
 
+        private void PlayDeathSFX()
+        {
+            SFXPool.Instance.Play(sfxDeath);
+        }
+        
+        private void PlayWakeupSFX()
+        {
+            SFXPool.Instance.Play(sfxWakeup);
+        }
+
         protected virtual void Kill()
         {
             SwitchState(BossAction.DEATH);
 
             lookAtPlayer = false;
+
+            gunBase.StopShoot();
+
+            PlayDeathSFX();
 
             _animationBase.PlayAnimationByTrigger(AnimationType.DEATH);
             transform.localScale = Vector3.one;

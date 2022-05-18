@@ -8,6 +8,8 @@ public class PlayerAbillityShoot : PlayerAbillityBase
     public List<GunBase> gunBases;
     public Transform gunPosition;
 
+    //public GunBase gunBase;
+
     public FlashColor gunFlashColor;
     private GunBase _gunBaseIndex;
     private GunBase _currentGun;
@@ -50,11 +52,15 @@ public class PlayerAbillityShoot : PlayerAbillityBase
     {
         _currentGun.StartShoot();
         gunFlashColor?.Flash(); // esse interrogação é para checar se ele não é nulo. Se for nulo não executa o .Flash()
+
+        //gunBase.StartShoot(); //
     }
     
     private void CancelShoot()
     {
         _currentGun.StopShoot();
+
+        //gunBase.StopShoot();
     }
 
     private void ChooseBetweensGuns()

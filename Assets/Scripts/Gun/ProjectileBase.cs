@@ -13,12 +13,12 @@ public class ProjectileBase : MonoBehaviour
 
     private void Awake()
     {
-        Destroy(gameObject, timeToDestroy);
     }
 
     void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
+        Destroy(gameObject, timeToDestroy);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -43,8 +43,5 @@ public class ProjectileBase : MonoBehaviour
             }
 
         }
-
-
-        Destroy(gameObject);
     }
 }

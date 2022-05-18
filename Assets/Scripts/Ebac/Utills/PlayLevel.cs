@@ -21,6 +21,6 @@ public class PlayLevel : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveManager.Instance.FileLoaded += OnLoad;
+        SaveManager.Instance.FileLoaded -= OnLoad;
     }
 }

@@ -9227,7 +9227,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655235233}
-  m_LocalRotation: {x: 0.29080236, y: -0.3162309, z: 0.10250011, w: 0.89717656}
+  m_LocalRotation: {x: 0.29080236, y: -0.31623086, z: 0.1025001, w: 0.89717656}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14030,12 +14030,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: "1. trigger do fim do level s\xF3 ap\xF3s morte boss.\n2. desabilitar o
     collider qdo inimigo morre, mantendo a posi\xE7\xE3o como usei na moeda fisica.\n3.
-    camera iniciar atr\xE1s do player.\n4. sfx inimigos.\n5. arrumar a gun angle
-    para poder usar no boss tb.\n6. alternar a camera qdo entrar em conflito com
-    o boss.\n7. arte do espa\xE7o (\"redoma\").\n8. tirar os finds player e usar
-    a instance.\n9. limpar c\xF3digos e assets n\xE3o utilizados.\n10. Ajustar tela
-    inicial (menu).\n11. fazer botao pause/menu.\n12. vfx tiros no ch\xE3o/parede.\n13.
-    arrumar erro qdo inimigo mata o player.\n14. add sfx footsteps."
+    camera iniciar atr\xE1s do player.\n4. sfx inimigos.\n6. alternar a camera qdo
+    entrar em conflito com o boss.\n7. arte do espa\xE7o (\"redoma\").\n8. tirar
+    os finds player e usar a instance.\n9. limpar c\xF3digos e assets n\xE3o utilizados.\n10.
+    Ajustar tela inicial (menu).\n11. fazer botao pause/menu.\n12. vfx tiros no ch\xE3o/parede.\n13.
+    arrumar erro qdo inimigo mata o player.\n14. add sfx footsteps.\n15. verificar
+    salvamento do life, se carrega correto. (se n\xE3o, implementar o loadfromfile
+    como no itemmanager)."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14062,7 +14063,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30.15
+  m_fontSize: 24.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -14818,7 +14819,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1304714841}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -14828,7 +14829,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000030518, y: 0.000025511}
   m_SizeDelta: {x: 800, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1304714843

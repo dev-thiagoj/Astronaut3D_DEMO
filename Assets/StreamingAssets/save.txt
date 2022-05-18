@@ -1,9 +1,9 @@
 {
-    "lastLevel": 0,
-    "coins": 0,
-    "lifePack": 0,
+    "lastLevel": 1,
+    "coins": 7,
+    "lifePack": 1,
     "lastCheckpoint": 0,
     "currCloth": 0,
-    "lifeStatus": 0.0,
+    "lifeStatus": 4.0,
     "playerName": "Test"
 }

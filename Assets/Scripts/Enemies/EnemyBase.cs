@@ -69,7 +69,7 @@ namespace Enemy
                 transform.LookAt(player.transform.position);
             }
 
-            //PlayerKilled();
+            PlayerKilled();
             Pursuit();
         }
 
@@ -84,7 +84,9 @@ namespace Enemy
             if (!player.isAlive)
             {
                 canPursuit = false;
+                _startPursuit = false;
             }
+            else return;
         }
 
         protected void ResetLife()
@@ -163,6 +165,7 @@ namespace Enemy
                 thisRB.AddForce(lookDirection * speedOfPursuit, ForceMode.Force);
                 PlayAnimationByTrigger(AnimationType.RUN);
             }
+            else return;
         }
 
         private void OnCollisionEnter(Collision collision)

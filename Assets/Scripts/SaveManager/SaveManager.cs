@@ -126,6 +126,7 @@ public class SaveManager : Singleton<SaveManager>
             _saveSetup = JsonUtility.FromJson<SaveSetup>(fileLoaded);
 
             lastlevel = _saveSetup.lastLevel;
+            FileLoaded.Invoke(_saveSetup);
         }
 
         else
@@ -134,7 +135,6 @@ public class SaveManager : Singleton<SaveManager>
             Save();
         }
 
-        FileLoaded.Invoke(_saveSetup);
     }
 }
 

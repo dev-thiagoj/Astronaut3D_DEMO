@@ -43,5 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5856af515b9b04cb55b167004ee9b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxType: 1
   coinAmount: 5
   coinObject: {fileID: 1789712257421629475, guid: 7eff3660fd981e748947fbdca7577d3f, type: 3}
+  randomRange: {x: -2, y: 2}
+  tweenEndTime: 0.5

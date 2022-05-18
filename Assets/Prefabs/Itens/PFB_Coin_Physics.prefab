@@ -93,7 +93,8 @@ GameObject:
   - component: {fileID: 8881977171136729940}
   - component: {fileID: 1293886317108620642}
   - component: {fileID: 7236589167984474210}
-  - component: {fileID: 4222918817531533938}
+  - component: {fileID: 867674575134473223}
+  - component: {fileID: 5016651275942175880}
   m_Layer: 0
   m_Name: PFB_Coin_Physics
   m_TagString: Untagged
@@ -144,11 +145,10 @@ MonoBehaviour:
   sfxType: 1
   itemType: 0
   compareTag: Player
-  particleSystem: {fileID: 0}
   graphicItem: {fileID: 3723001159037357793}
+  distToCollect: 0.2
   timeToHide: 0.1
-  collider: {fileID: 4222918817531533938}
-  audioSource: {fileID: 0}
+  timeToDestroy: 0.3
 --- !u!54 &7236589167984474210
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -165,16 +165,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &4222918817531533938
-SphereCollider:
+--- !u!114 &867674575134473223
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4569930989792959606}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc2a1bbf6d08518429d316db3621fddc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currPos: {x: 0, y: 0, z: 0}
+  distToGround: 0
+  spaceToGround: 0.1
+  collider: {fileID: 0}
+  myRb: {fileID: 0}
+--- !u!114 &5016651275942175880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4569930989792959606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0fe12bd50ce04647a78b4d6582bb479, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  canRotate: 0

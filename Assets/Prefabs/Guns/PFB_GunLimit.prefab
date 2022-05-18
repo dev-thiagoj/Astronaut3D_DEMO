@@ -198,8 +198,8 @@ MonoBehaviour:
   sfxType: 4
   audioSource: {fileID: 2837809576776834560}
   uiFillUpdaters: []
-  maxShoot: 5
-  timeToRecharge: 3
+  maxShoot: 10
+  timeToRecharge: 1.5
 --- !u!82 &2837809576776834560
 AudioSource:
   m_ObjectHideFlags: 0

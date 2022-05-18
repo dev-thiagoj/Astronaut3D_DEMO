@@ -197,7 +197,8 @@ MonoBehaviour:
   speed: 50
   sfxType: 4
   audioSource: {fileID: 2837809576776834560}
-  uiFillUpdaters: []
+  uiFillUpdaters:
+  - {fileID: 0}
   maxShoot: 10
   timeToRecharge: 1.5
 --- !u!82 &2837809576776834560

@@ -11,10 +11,6 @@ public class ProjectileBase : MonoBehaviour
 
     public List<string> tagsToHit;
 
-    private void Awake()
-    {
-    }
-
     void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
@@ -43,5 +39,7 @@ public class ProjectileBase : MonoBehaviour
             }
 
         }
+
+        Destroy(gameObject);
     }
 }

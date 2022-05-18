@@ -12,7 +12,7 @@ public class HealthBase : MonoBehaviour, IDamageable
     public float _currLife; //não pode ser privado pois o boss base acessa ele
     public float timeToDestroy = 10;
 
-    public List<UIFillUpdater> uiFillUpdater;
+    public List<UILifeUpdater> uiLifeUpdater;
 
     public float damageMultiply = 1;
 
@@ -79,7 +79,7 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     private void UpdateUI()
     {
-        if (uiFillUpdater != null) uiFillUpdater.ForEach(i => i.UpdateValue((float)_currLife / startLife));
+        if (uiLifeUpdater != null) uiLifeUpdater.ForEach(i => i.UpdateValue((float)_currLife / startLife));
     }
 
     public void ChangeDamageMultiply(float damage, float duration)

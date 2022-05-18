@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class GunShootAngle : GunShootLimit
 {
-    public int amountPerShootWithAngles = 5;
+    public int amountPerShoot = 4;
     public float angle = 15f;
 
     protected override void Shoot()
     {
-        //base.Shoot();
+        base.Shoot();
         
         int mult = 0;
 
-        for (int i = 0; i < amountPerShootWithAngles; i++)
+        for (int i = 0; i < amountPerShoot; i++)
         {
             if (i % 2 == 0) mult++;
             

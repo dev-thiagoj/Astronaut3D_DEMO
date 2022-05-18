@@ -7,20 +7,10 @@ public class PlayerAbillityShoot : PlayerAbillityBase
 {   
     public List<GunBase> gunBases;
     public Transform gunPosition;
-
     public FlashColor gunFlashColor;
+
     private GunBase _gunBaseIndex;
     private GunBase _currentGun;
-
-    private void OnValidate()
-    {
-        //_gunFlashColor = GetComponentInChildren<FlashColor>(); não pude fazer assim pois existe outro flash color no player pra qdo sofre dano, teve que ser publico para eu selecionar qual flash manualmente
-    }
-
-    private void Awake()
-    {
-        OnValidate();
-    }
 
     protected override void Init()
     {

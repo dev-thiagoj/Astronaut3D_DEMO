@@ -27,7 +27,6 @@ public class SaveManager : Singleton<SaveManager>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject); //não sera destruido qdo carregar outra cena, mantendo sempre o mesmo desde que começa o jogo
-        LoadFile();
     }
 
     private void CreateNewSave()
@@ -39,7 +38,8 @@ public class SaveManager : Singleton<SaveManager>
 
     private void Start()
     {
-        //Invoke(nameof(LoadFile), 0.1f);
+        //LoadFile();
+        Invoke(nameof(LoadFile), 0.1f);
     }
 
     #region Save
@@ -116,7 +116,6 @@ public class SaveManager : Singleton<SaveManager>
     }
 
     [NaughtyAttributes.Button]
-
     private void LoadFile()
     {
         string fileLoaded = "";
@@ -127,16 +126,15 @@ public class SaveManager : Singleton<SaveManager>
             _saveSetup = JsonUtility.FromJson<SaveSetup>(fileLoaded);
 
             lastlevel = _saveSetup.lastLevel;
-            //FileLoaded.Invoke(_saveSetup); //
         }
+
         else
         {
             CreateNewSave();
             Save();
         }
 
-
-        //Debug.Log(_saveSetup);
+        FileLoaded.Invoke(_saveSetup);
     }
 }
 

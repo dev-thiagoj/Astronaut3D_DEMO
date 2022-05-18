@@ -22,8 +22,15 @@ namespace Boss
         public override void OnStateEnter(params object[] objs)
         {
             base.OnStateEnter(objs);
-            boss.StartInitAnimation();
+        }
+    }
 
+    public class BossStateAnim : BossStateBase
+    {
+        public override void OnStateEnter(params object[] objs)
+        {
+            base.OnStateEnter(objs);
+            boss.StartInitAnimation();
         }
     }
 
@@ -34,6 +41,11 @@ namespace Boss
             base.OnStateEnter(objs);
             boss.GoToRandomPoint(OnArrive);
         }
+
+        /*public void StartAction()
+        {
+            boss.GoToRandomPoint(OnArrive);
+        }*/
 
         private void OnArrive()
         {

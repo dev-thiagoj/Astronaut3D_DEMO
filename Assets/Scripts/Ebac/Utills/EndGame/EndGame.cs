@@ -11,6 +11,8 @@ public class EndGame : MonoBehaviour
 
     public int currentLevel = 1;
 
+    public Boss.BossBase bossBase;
+
     private void Awake()
     {
         endGameObjects.ForEach(i => i.SetActive(false));
@@ -20,15 +22,14 @@ public class EndGame : MonoBehaviour
     {
         Player p = other.transform.GetComponent<Player>();
 
-        if (!_endGame && p != null) ShowEndGame();
+        if (!_endGame && p != null && bossBase._isAlive == false) ShowEndGame();
+        else return;
 
     }
 
     private void ShowEndGame()
     {
         _endGame = true;
-        
-        //endGameObjects.ForEach(i => i.SetActive(true));
 
         foreach(var i in endGameObjects)
         {

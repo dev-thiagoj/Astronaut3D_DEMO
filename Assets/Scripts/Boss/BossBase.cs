@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using Ebac.StateMachine;
 using DG.Tweening;
 using Animation;
@@ -21,6 +22,7 @@ namespace Boss
     {
         INIT,
         IDLE,
+        ANIM,
         WALK,
         ATTACK,
         DEATH
@@ -30,14 +32,17 @@ namespace Boss
     {
         public StateMachine<BossAction> stateMachine;
 
+        public bool _isAlive = true;
+
         [Header("Animation")]
         [SerializeField] private AnimationBase _animationBase;
-        public float startDuration = .5f;
+        public float startDuration = 2f;
         public Ease ease = Ease.OutBack;
+        private Vector3 _normalScale = Vector3.one;
 
         [Header("Attack")]
         public GunBase gunBase;
-        public bool lookAtPlayer = false;
+        public bool lookAtPlayer = true;
         private Player _player;
         public int attackAmount = 5;
         public float timeBetweenAttacks = 2f;
@@ -53,6 +58,9 @@ namespace Boss
         [SerializeField] private HealthBase healthBase;
         [SerializeField] private FlashColor flashColor;
         //private Vector3 _currScale = Vector3.one;
+
+        [Header("Events")]
+        public UnityEvent OnKillEvent;
 
         //COISAS PARA FAZER:
 
@@ -81,7 +89,9 @@ namespace Boss
             stateMachine = new StateMachine<BossAction>();
             stateMachine.Init();
 
+            
             stateMachine.RegisterStates(BossAction.INIT, new BossStateInit());
+            stateMachine.RegisterStates(BossAction.ANIM, new BossStateAnim());
             stateMachine.RegisterStates(BossAction.WALK, new BossStateWalk());
             stateMachine.RegisterStates(BossAction.ATTACK, new BossStateAttack());
             stateMachine.RegisterStates(BossAction.DEATH, new BossStateDeath());
@@ -90,23 +100,28 @@ namespace Boss
         private void Start()
         {
             gunBase = GetComponentInChildren<GunBase>();
-            PlayWakeupSFX();
-            //transform.localScale = new Vector3(0.5f, 0.5f, 0.5f); //
+            transform.localScale = _normalScale / 2;
         }
 
         private void Update()
         {
             if (lookAtPlayer)
             {
-                transform.LookAt(_player.transform.position);
+                //transform.LookAt(_player.transform.position);
+                transform.LookAt(Player.Instance.transform.position);
             }
 
             if (!_player.isAlive)
             {
                 gunBase.StopShoot();
                 StopAllCoroutines();
-                //bossTrigger.SetActive(true);
             }
+        }
+
+        [NaughtyAttributes.Button]
+        public void StartBoss()
+        {
+            SwitchState(BossAction.ANIM);
         }
 
         #region DAMAGE/KILL
@@ -151,6 +166,8 @@ namespace Boss
         {
             SwitchState(BossAction.DEATH);
 
+            _isAlive = false;
+
             lookAtPlayer = false;
 
             gunBase.StopShoot();
@@ -165,6 +182,7 @@ namespace Boss
 
         protected virtual void OnKill()
         {
+            OnKillEvent?.Invoke();
             Destroy(gameObject, 10f);
         }
 
@@ -187,6 +205,8 @@ namespace Boss
             while (Vector3.Distance(transform.position, t.position) > 1)
             {
                 transform.position = Vector3.MoveTowards(transform.position, t.position, Time.deltaTime * speed);
+                //transform.LookAt(_player.transform.position);
+                transform.LookAt(Player.Instance.transform.position);
                 _animationBase.PlayAnimationByTrigger(AnimationType.RUN);
                 yield return new WaitForEndOfFrame();
             }
@@ -226,9 +246,16 @@ namespace Boss
 
         public void StartInitAnimation()
         {
-            Debug.Log("Start Animation Enter");
-            transform.DOScale(0, startDuration).SetEase(ease).From(); //(0, startDuration)
-            //SwitchState(BossAction.WALK);
+            PlayWakeupSFX();
+            transform.DOScale(_normalScale, startDuration).SetEase(ease);
+
+            Invoke(nameof(StartAction), 5);
+        }
+
+        public void StartAction()
+        {
+            SwitchState(BossAction.WALK);
+
         }
 
         #endregion

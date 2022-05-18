@@ -9,7 +9,7 @@ using System.Linq;
 
 public class GunShootLimit : GunBase
 {
-    public List<UIFillUpdater> uiFillUpdaters;
+    public List<UIAmmoUpdater> uiAmmoUpdaters;
 
     public float maxShoot = 5f;
     public float timeToRecharge = 1f;
@@ -18,6 +18,11 @@ public class GunShootLimit : GunBase
     private bool _recharging = false;
 
     private void Awake()
+    {
+        //GetAllUIs();
+    }
+
+    private void Start()
     {
         GetAllUIs();
     }
@@ -75,7 +80,7 @@ public class GunShootLimit : GunBase
         {
             time += Time.deltaTime;
 
-            uiFillUpdaters.ForEach(i => i.UpdateValue(time / timeToRecharge));
+            uiAmmoUpdaters.ForEach(i => i.UpdateValue(time / timeToRecharge));
 
             yield return new WaitForEndOfFrame();
         }
@@ -86,11 +91,11 @@ public class GunShootLimit : GunBase
 
     private void UpdateUI()
     {
-        uiFillUpdaters.ForEach(i => i.UpdateValue(maxShoot, _currentShoots));
+        uiAmmoUpdaters.ForEach(i => i.UpdateValue(maxShoot, _currentShoots));
     }
 
     private void GetAllUIs()
     {
-        uiFillUpdaters = FindObjectsOfType<UIFillUpdater>().ToList();
+        uiAmmoUpdaters = FindObjectsOfType<UIAmmoUpdater>().ToList();
     }
 }

@@ -134,7 +134,7 @@ public class SaveManager : Singleton<SaveManager>
             Save();
         }
 
-        FileLoaded.Invoke(_saveSetup);
+        //FileLoaded.Invoke(_saveSetup);
     }
 }
 

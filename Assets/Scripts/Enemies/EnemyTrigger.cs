@@ -4,7 +4,6 @@ using Enemy;
 public class EnemyTrigger : EnemyShoot
 {
     public EnemyShoot enemyShoot;
-    public EnemyBase enemyBase;
 
     private void OnTriggerEnter(Collider other)
     {

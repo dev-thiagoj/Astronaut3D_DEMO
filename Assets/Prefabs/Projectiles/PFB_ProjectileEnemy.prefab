@@ -143,8 +143,12 @@ MonoBehaviour:
   timeToDestroy: 5
   damageAmount: 1
   speed: 20
+  goProj: {fileID: 3035289962458947443}
   tagsToHit:
   - Player
+  tagsToEnvironment: []
+  particleSystem: {fileID: 0}
+  intParticles: 15
 --- !u!54 &-511926055200307058
 Rigidbody:
   m_ObjectHideFlags: 0

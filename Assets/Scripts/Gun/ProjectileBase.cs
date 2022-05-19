@@ -36,6 +36,7 @@ public class ProjectileBase : MonoBehaviour
                     Vector3 dir = collision.transform.position - transform.position;
                     dir = -dir.normalized;
                     dir.y = 0;
+                    Destroy(gameObject);
 
                     damageable.Damage(damageAmount, dir);
                 }

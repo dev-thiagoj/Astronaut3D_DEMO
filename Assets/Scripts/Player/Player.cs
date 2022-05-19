@@ -33,9 +33,6 @@ public class Player : Singleton<Player>
 
     private float _vSpeed = 0f;
 
-    [Header("Shoot Animation")]
-    public BounceHelper bounceHelper;
-
     [Header("Flash")]
     public List<FlashColor> flashColors;
 
@@ -53,10 +50,8 @@ public class Player : Singleton<Player>
 
     private void OnValidate()
     {
-        //if (_animationBase == null) _animationBase = GetComponent<AnimationBase>();
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
-        if (bounceHelper == null) bounceHelper = GetComponentInChildren<BounceHelper>();
         //if (sfxPlayer == null) sfxPlayer = GetComponent<SFXPlayer>();
     }
 

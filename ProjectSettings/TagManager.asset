@@ -8,6 +8,7 @@ TagManager:
   - Boss
   - Ground
   - Decorations
+  - Projectile
   layers:
   - Default
   - TransparentFX

@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: -511926055200307058}
   m_Layer: 0
   m_Name: PFB_ProjectileEnemy
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,7 @@ MonoBehaviour:
   goProj: {fileID: 3035289962458947443}
   tagsToHit:
   - Player
+  tagToIgnore: Projectile
   tagsToEnvironment: []
   particleSystem: {fileID: 0}
   intParticles: 15

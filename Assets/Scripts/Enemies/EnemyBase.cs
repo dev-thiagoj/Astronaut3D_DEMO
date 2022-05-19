@@ -16,13 +16,13 @@ namespace Enemy
         public Rigidbody thisRB;
         public Collider collider;
         public FlashColor flashColor;
-        public ParticleSystem particleSystem;
-        public Player player;
+        //public Player player;
 
         public float startLife = 10f;
         public bool lookAtPlayer = false;
 
         [SerializeField] private float _currentLife;
+        private Vector3 currPos;
 
         [Header("Animation")]
         [SerializeField] private AnimationBase _animationBase;
@@ -33,6 +33,7 @@ namespace Enemy
         public bool startWithBornAnimation = true;
 
         [Header("Particles")]
+        public ParticleSystem particleSystem;
         public int intParticles = 15;
 
         [Header("Pursuit")]
@@ -57,17 +58,14 @@ namespace Enemy
             Init();
         }
 
-        private void Start()
-        {
-            player = GameObject.FindObjectOfType<Player>();
-        }
-
         public virtual void Update()
         {
             if (lookAtPlayer)
             {
-                transform.LookAt(player.transform.position);
+                transform.LookAt(Player.Instance.transform.position);
             }
+
+            currPos = collider.transform.position;
 
             PlayerKilled();
             Pursuit();
@@ -81,7 +79,7 @@ namespace Enemy
 
         protected virtual void PlayerKilled()
         {
-            if (!player.isAlive)
+            if (!Player.Instance.isAlive)
             {
                 canPursuit = false;
                 _startPursuit = false;
@@ -121,17 +119,19 @@ namespace Enemy
         }
 
         protected virtual void Kill()
-        {
-            canPursuit = false;
-            
+        {   
             lookAtPlayer = false;
+            canPursuit = false;
+
+            if (thisRB != null) thisRB.Sleep();
+            if (collider != null) collider.enabled = false;
+            transform.position = currPos;
 
             OnKill();
         }
 
         protected virtual void OnKill()
         {
-            //if (collider != null) collider.enabled = false;
             Destroy(gameObject, 10f);
             PlayAnimationByTrigger(AnimationType.DEATH);
             OnKillEvent?.Invoke();
@@ -158,7 +158,7 @@ namespace Enemy
         public void Pursuit()
         {
             lookAtPlayer = true;
-            Vector3 lookDirection = (player.transform.position - thisRB.transform.position).normalized;
+            Vector3 lookDirection = (Player.Instance.transform.position - thisRB.transform.position).normalized;
 
             if (canPursuit && _startPursuit)
             {
@@ -171,7 +171,8 @@ namespace Enemy
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
-                player.healthBase.Damage(1);
+                Player.Instance.healthBase.Damage(1);
+                //player.healthBase.Damage(1);
         }
         #endregion
     }

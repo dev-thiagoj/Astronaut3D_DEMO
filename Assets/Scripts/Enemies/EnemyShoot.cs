@@ -13,11 +13,6 @@ namespace Enemy
     {
         public GunBase gunBase;
 
-        private void OnValidate()
-        {
-            player = FindObjectOfType<Player>();
-        }
-
         public override void Update()
         {
             base.Update();
@@ -52,10 +47,9 @@ namespace Enemy
         {
             base.PlayerKilled();
             
-            if (!player.isAlive)
+            if (!Player.Instance.isAlive)
             {
                 StopShooting();
-                //return;
             }
         }
     }

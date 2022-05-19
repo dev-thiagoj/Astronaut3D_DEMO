@@ -8,9 +8,15 @@ public class ProjectileBase : MonoBehaviour
 
     public int damageAmount = 1;
     public float speed = 50;
+    public GameObject goProj;
 
     public List<string> tagsToHit;
 
+    [Header("Particles")]
+    public List<string> tagsToEnvironment;
+    public ParticleSystem particleSystem;
+    public int intParticles = 15;
+    
     void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
@@ -40,6 +46,15 @@ public class ProjectileBase : MonoBehaviour
 
         }
 
-        Destroy(gameObject);
+        foreach(var e in tagsToEnvironment)
+        {
+            if (collision.transform.CompareTag(e))
+            {
+                if (particleSystem != null) particleSystem.Play();
+            }
+        }
+
+        goProj.SetActive(false);
+        Destroy(gameObject, .2f);
     }
 }

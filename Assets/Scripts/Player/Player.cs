@@ -69,7 +69,7 @@ public class Player : Singleton<Player>
     }
 
     private void Start()
-    {
+    {   
         Spawn();
     }
 
@@ -78,6 +78,11 @@ public class Player : Singleton<Player>
         Movements();
         Jump();
         BoundY();
+    }
+
+    private void LoadLifeFromSave()
+    {
+        healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
     }
 
     #region RUN
@@ -213,8 +218,7 @@ public class Player : Singleton<Player>
         {
             Kill(healthBase);
             Debug.Log("Kill");
-        }
-            
+        }   
     }
 
     #endregion
@@ -226,7 +230,7 @@ public class Player : Singleton<Player>
         if (CheckpointManager.Instance.lastCheckpointKey > 0)
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
-            healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
+            //healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
         }
         else transform.position = initialPos.transform.position;
     }
@@ -237,8 +241,13 @@ public class Player : Singleton<Player>
         if (CheckpointManager.Instance.HasCheckpoint())
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
+            LoadLifeFromSave();
         }
-        else transform.position = initialPos.transform.position;
+        else
+        {
+            transform.position = initialPos.transform.position;
+            LoadLifeFromSave();
+        } 
     }
 
     #endregion

@@ -41,6 +41,9 @@ public class Player : Singleton<Player>
     public List<Collider> colliders; //character controller tb é interpretado como um collider
     public bool isAlive = true;
 
+    [Header("Bound")]
+    public int boundY = 25;
+
     [Space]
     [SerializeField] private ClothChange clothChange;
 
@@ -74,6 +77,7 @@ public class Player : Singleton<Player>
     {
         Movements();
         Jump();
+        BoundY();
     }
 
     #region RUN
@@ -158,6 +162,7 @@ public class Player : Singleton<Player>
     {
         
     }
+
     private void Kill(HealthBase h)
     {
         if (isAlive) //serve para animação tocar apenas uma vez
@@ -202,6 +207,16 @@ public class Player : Singleton<Player>
         colliders.ForEach(i => i.enabled = true);
     }
 
+    private void BoundY()
+    {
+        if (transform.position.y < -boundY)
+        {
+            Kill(healthBase);
+            Debug.Log("Kill");
+        }
+            
+    }
+
     #endregion
 
     #region SPAWN / RESPAWN
@@ -213,6 +228,7 @@ public class Player : Singleton<Player>
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
             healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
         }
+        else transform.position = initialPos.transform.position;
     }
 
     [NaughtyAttributes.Button]
@@ -222,7 +238,7 @@ public class Player : Singleton<Player>
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
         }
-        //else transform.position = initialPos.transform.position;
+        else transform.position = initialPos.transform.position;
     }
 
     #endregion

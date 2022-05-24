@@ -6,6 +6,7 @@ using Ebac.Core.Singleton;
 public class PauseGameHelper : Singleton<PauseGameHelper>
 {
     public GameObject pauseScreen;
+    //public GameObject confirmScreen;
 
     private void Update()
     {
@@ -28,4 +29,19 @@ public class PauseGameHelper : Singleton<PauseGameHelper>
         pauseScreen.SetActive(false);
         Time.timeScale = 1;
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    /*public void ConfirmQuit()
+    {
+        confirmScreen.SetActive(true);
+    }
+
+    public void DontQuit()
+    {
+        confirmScreen.SetActive(false);
+    }*/
 }

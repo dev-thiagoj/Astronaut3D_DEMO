@@ -42,11 +42,6 @@ namespace Boss
             boss.GoToRandomPoint(OnArrive);
         }
 
-        /*public void StartAction()
-        {
-            boss.GoToRandomPoint(OnArrive);
-        }*/
-
         private void OnArrive()
         {
             boss.SwitchState(BossAction.ATTACK);
@@ -69,6 +64,7 @@ namespace Boss
 
         private void EndAttacks()
         {
+            boss.StopShoot();
             boss.SwitchState(BossAction.WALK);
         }
 

@@ -30,7 +30,7 @@ public class GunShootLimit : GunBase
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)) StartRecharge();
-
+        if (maxShoot == 0) maxShoot = 1;
     }
 
     protected override IEnumerator ShootCoroutine()

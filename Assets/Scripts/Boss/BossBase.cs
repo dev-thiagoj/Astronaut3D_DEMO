@@ -7,14 +7,6 @@ using Ebac.StateMachine;
 using DG.Tweening;
 using Animation;
 
-//COISAS PARA FAZER:
-
-//arrumar o healthbase do bossbase
-//implementar particle system do boss
-//implementar SFX do boss
-//arrumar posiçao da gun para nao ser afetada pela animaçao de attack
-//add callback para sincronizar animaçao de attack com o tiro
-
 
 namespace Boss
 {
@@ -38,10 +30,14 @@ namespace Boss
         [SerializeField] private AnimationBase _animationBase;
         public float startDuration = 2f;
         public Ease ease = Ease.OutBack;
+        [SerializeField] private HealthBase healthBase;
+        [SerializeField] private FlashColor flashColor;
         private Vector3 _normalScale = Vector3.one;
 
         [Header("Attack")]
-        public GunBase gunBase;
+        //public GunBase gunBase;
+        public EnemyGun enemyGun;
+        public ProjectileBase projectileBase;
         public bool lookAtPlayer = true;
         private Player _player;
         public int attackAmount = 5;
@@ -51,21 +47,12 @@ namespace Boss
         public SFXType sfxDeath;
         public SFXType sfxWakeup;
 
+        [Header("Waypoints")]
         public float speed = 5f;
         public List<Transform> waypoints;
-        //public GameObject bossTrigger;
-
-        [SerializeField] private HealthBase healthBase;
-        [SerializeField] private FlashColor flashColor;
-        //private Vector3 _currScale = Vector3.one;
 
         [Header("Events")]
         public UnityEvent OnKillEvent;
-
-        //COISAS PARA FAZER:
-
-        // - Boss voltar ao ponto inicial qdo o player morrer
-        
 
         private void OnValidate()
         {
@@ -73,7 +60,6 @@ namespace Boss
             if (_animationBase == null) _animationBase = GetComponentInChildren<AnimationBase>();
             if (_player == null) _player = FindObjectOfType<Player>();
             if (flashColor == null) flashColor = GetComponentInChildren<FlashColor>();
-            
         }
 
         private void Awake()
@@ -99,7 +85,7 @@ namespace Boss
 
         private void Start()
         {
-            gunBase = GetComponentInChildren<GunBase>();
+            enemyGun = GetComponentInChildren<EnemyGun>();
             transform.localScale = _normalScale / 2;
         }
 
@@ -113,7 +99,7 @@ namespace Boss
 
             if (!_player.isAlive)
             {
-                gunBase.StopShoot();
+                enemyGun.StopShoot();
                 StopAllCoroutines();
             }
         }
@@ -146,6 +132,18 @@ namespace Boss
 
             healthBase._currLife -= f;
 
+            if (healthBase._currLife <= 20)
+            {
+                enemyGun.amountShoots = 3;
+                enemyGun.angle = 5;
+            }
+
+            if(healthBase._currLife <= 10)
+            {
+                enemyGun.angle = 3;
+                projectileBase.speed = 40;
+            }
+
             if (healthBase._currLife <= 0)
             {
                 Kill();
@@ -170,7 +168,7 @@ namespace Boss
 
             lookAtPlayer = false;
 
-            gunBase.StopShoot();
+            enemyGun.StopShoot();
 
             PlayDeathSFX();
 
@@ -232,12 +230,17 @@ namespace Boss
             {
                 attacks++;
                 _animationBase.PlayAnimationByTrigger(AnimationType.ATTACK);
-                gunBase.StartShoot();
+                enemyGun.StartShoot();
                 yield return new WaitForSeconds(timeBetweenAttacks);
             }
 
             endCallback?.Invoke();
 
+        }
+
+        public void StopShoot()
+        {
+            enemyGun.StopShoot();
         }
 
         #endregion

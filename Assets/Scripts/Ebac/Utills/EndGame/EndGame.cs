@@ -30,6 +30,8 @@ public class EndGame : MonoBehaviour
     {
         _endGame = true;
 
+        MusicPlayer.Instance.PlayWinJingle();
+
         foreach(var i in endGameObjects)
         {
             i.SetActive(true);

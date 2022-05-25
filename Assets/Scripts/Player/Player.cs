@@ -18,6 +18,11 @@ public class Player : Singleton<Player>
     public KeyCode keyRun = KeyCode.LeftShift;
     public float speedRun = 1.5f;
 
+    [Header("SFX Footsteps")]
+    public AudioSource audioSource;
+    public SFXType sfxType;
+    public float stepsTime = .2f;
+
     private float _vSpeed = 0f;
 
     [Header("Flash")]
@@ -99,10 +104,21 @@ public class Player : Singleton<Player>
             speedVector.y = _vSpeed;
 
             characterController.Move(speedVector * Time.deltaTime);
-
+            
             _animator.SetBool("Run", isWalking);
         }
     }
+
+    /*private void FootstepsPlay()
+    {
+        audioSource.Play();
+    }
+
+    private IEnumerator FootstepsCoroutine()
+    {
+        audioSource.Play();
+        yield return new WaitForSeconds(stepsTime);
+    }*/
 
     #endregion
 
@@ -156,6 +172,7 @@ public class Player : Singleton<Player>
             SaveManager.Instance.Save();
             isAlive = false;
             _animator.SetTrigger("Death");
+            MusicPlayer.Instance.PlayLoseJingle();
             colliders.ForEach(i => i.enabled = false);
 
             Invoke(nameof(Revive), 5f);

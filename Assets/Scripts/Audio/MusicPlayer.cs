@@ -1,22 +1,45 @@
 using UnityEngine;
+using Ebac.Core.Singleton;
 
-public class MusicPlayer : MonoBehaviour
+public class MusicPlayer : Singleton<MusicPlayer>
 {
-    public MusicType musicType;
+    public MusicType musicAmbience;
+    public MusicType musicWin;
+    public MusicType musicLose;
     public AudioSource audioSource;
 
     private MusicSetup _currentMusicSetup;
 
     private void Start()
     {
-        Play();
+        PlayAmbience();
     }
 
-    private void Play()
+    private void PlayAmbience()
     {
-        _currentMusicSetup = SoundManager.Instance.GetMusicByType(musicType);
+        _currentMusicSetup = SoundManager.Instance.GetMusicByType(MusicType.AMBIENCE_MAIN);
 
         audioSource.clip = _currentMusicSetup.audioClip;
         audioSource.Play();
+    }
+
+    public void PlayWinJingle()
+    {
+        _currentMusicSetup = SoundManager.Instance.GetMusicByType(MusicType.LEVEL_WIN);
+
+        audioSource.clip = _currentMusicSetup.audioClip;
+        audioSource.Play();
+
+        Invoke(nameof(PlayAmbience), 10);
+    }
+
+    public void PlayLoseJingle()
+    {
+        _currentMusicSetup = SoundManager.Instance.GetMusicByType(MusicType.LEVEL_LOSE);
+
+        audioSource.clip = _currentMusicSetup.audioClip;
+        audioSource.Play();
+
+        Invoke(nameof(PlayAmbience), 6);
     }
 }

@@ -18,8 +18,7 @@ public class GameManagerEditor : Editor
 
         if (fsm.stateMachine == null) return;
 
-        if (fsm.stateMachine.currentState != null)
-            EditorGUILayout.LabelField("Current state: ", fsm.stateMachine.currentState.ToString());
+        if (fsm.stateMachine.currentState != null) EditorGUILayout.LabelField("Current state: ", fsm.stateMachine.currentState.ToString());
 
         showFoldout = EditorGUILayout.Foldout(showFoldout, "Available States");
 
@@ -36,6 +35,5 @@ public class GameManagerEditor : Editor
                 }
             }
         }
-
     }
 }

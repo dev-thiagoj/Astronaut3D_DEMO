@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ebac.Core.Singleton;
@@ -22,7 +21,7 @@ namespace Cloth
         }
     }
 
-    [System.Serializable] //para fazer essa classe aparecer no inspector
+    [System.Serializable]
     public class ClothSetup
     {
         public ClothType clothType;

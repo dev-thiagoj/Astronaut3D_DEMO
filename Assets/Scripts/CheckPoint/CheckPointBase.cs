@@ -7,8 +7,10 @@ public class CheckPointBase : MonoBehaviour
     public MeshRenderer meshRenderer;
     public int key = 01;
 
-    private bool checkpointActived = false;
-    //private string checkPointKey = "CheckpointKey";
+    [Header("SFX")]
+    public SFXType sfxType;
+
+    private bool _checkpointActived = false;
 
     private void Awake()
     {
@@ -17,10 +19,9 @@ public class CheckPointBase : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!checkpointActived && other.transform.CompareTag("Player"))
+        if (!_checkpointActived && other.transform.CompareTag("Player"))
         {
             CheckCheckpoint();
-
         }
     }
 
@@ -30,14 +31,12 @@ public class CheckPointBase : MonoBehaviour
         SaveCheckpoint();
     }
 
-    [NaughtyAttributes.Button]
     private void TurnItOn()
     {
         meshRenderer.material.SetColor("_EmissionColor", Color.white);
-
+        SFXPool.Instance.Play(sfxType);
     }
 
-    [NaughtyAttributes.Button]
     private void TurnItOff()
     {
         meshRenderer.material.SetColor("_EmissionColor", Color.black);
@@ -45,12 +44,9 @@ public class CheckPointBase : MonoBehaviour
 
     private void SaveCheckpoint()
     {
-        /*if (PlayerPrefs.GetInt(checkPointKey, 0) > key) //checagem para garantir que um save menor não sobrescreva um maior, para sempre ter o maior salvo (o mais "distante")
-            PlayerPrefs.SetInt(checkPointKey, key);*/
-
         CheckpointManager.Instance.SaveCheckpoint(key);
         SaveManager.Instance.SaveDataInCheckpoints();
 
-        checkpointActived = true;
+        _checkpointActived = true;
     }
 }

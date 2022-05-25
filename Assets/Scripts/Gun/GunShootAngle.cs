@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunShootAngle : GunShootLimit
@@ -20,13 +18,11 @@ public class GunShootAngle : GunShootLimit
             var projectile = Instantiate(prefabProjectile, positionToShoot);
 
             projectile.transform.localPosition = Vector3.zero;
-            //projectile.transform.localPosition = positionToShoot.transform.position;
             projectile.transform.localEulerAngles = Vector3.zero + (Vector3.up * (i % 2 == 0 ? angle : -angle)) * mult;
             
             projectile.speed = speed;
             
             projectile.transform.parent = null;
         }
-
     }
 }

@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class GunBase : MonoBehaviour
@@ -21,7 +20,7 @@ public class GunBase : MonoBehaviour
         while (true)
         {
             Shoot();
-            yield return new WaitForSeconds(Random.Range(2, 10));
+            yield return new WaitForSeconds(timeBetweenShoot);
         }
     }
 

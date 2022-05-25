@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +7,17 @@ public class ProjectileBase : MonoBehaviour
 
     public int damageAmount = 1;
     public float speed = 50;
+    public GameObject projectile;
 
+    [Header("Tags")]
     public List<string> tagsToHit;
+    public string tagToIgnore;
 
+    [Header("Particles")]
+    public List<string> tagsToEnvironment;
+    public ParticleSystem particleSystem;
+    public int intParticles = 15;
+    
     void Update()
     {
         transform.Translate(speed * Time.deltaTime * Vector3.forward);
@@ -35,11 +42,20 @@ public class ProjectileBase : MonoBehaviour
                 }
 
                 break;
-
             }
-
         }
 
-        Destroy(gameObject);
+        foreach(var e in tagsToEnvironment)
+        {
+            if (collision.transform.CompareTag(e))
+            {
+                if (particleSystem != null) particleSystem.Play();
+            }
+        }
+
+        if (collision.transform.CompareTag(tagToIgnore)) return;
+
+        projectile.SetActive(false);
+        Destroy(gameObject, 1f);
     }
 }

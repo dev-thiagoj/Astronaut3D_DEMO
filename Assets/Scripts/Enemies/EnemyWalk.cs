@@ -1,12 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-//COISAS PARA FAZER:
-
-//arrumar para que qdo o inimigo estiver morto não matar o player com colisão ainda
-//arrumar para qdo for morto, congelar a posição
-//arrumar congelamento de eixos na perseguição
 
 namespace Enemy
 {
@@ -22,9 +15,7 @@ namespace Enemy
         public override void Update()
         {
             base.Update();
-
             EnemyMove();
-
         }
 
         public void EnemyMove()
@@ -35,16 +26,12 @@ namespace Enemy
                 {
                     _index++;
 
-                    if (_index >= waypoints.Length)
-                    {
-                        _index = 0;
-                    }
+                    if (_index >= waypoints.Length) _index = 0;
                 }
 
                 transform.position = Vector3.MoveTowards(transform.position, waypoints[_index].transform.position, Time.deltaTime * speed);
                 transform.LookAt(waypoints[_index].transform.position);
             }
-            
         }
 
         protected override void Kill()
@@ -53,5 +40,4 @@ namespace Enemy
             speed = 0;
         }
     }
-
 }

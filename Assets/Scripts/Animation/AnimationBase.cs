@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//COISAS PARA FAZER:
-// - testar play animation by bool no player
-
-
 namespace Animation
 {
     public enum AnimationType

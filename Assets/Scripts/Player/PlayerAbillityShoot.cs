@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayerAbillityShoot : PlayerAbillityBase
@@ -12,16 +13,26 @@ public class PlayerAbillityShoot : PlayerAbillityBase
     private GunBase _gunBaseIndex;
     private GunBase _currentGun;
 
+    [Header("Canvas")]
+    public Image infoGun01;
+    public Image infoGun02;
+
     protected override void Init()
     {
         base.Init();
 
         _gunBaseIndex = gunBases[0];
-
+        
         CreateGun();
 
         inputs.Gameplay.Shoot.performed += ctx => StartShoot();
         inputs.Gameplay.Shoot.canceled += ctx => CancelShoot();
+    }
+
+    private void Awake()
+    {
+        infoGun01.color = Color.green;
+        infoGun02.color = Color.white;
     }
 
     private void Update()
@@ -39,7 +50,7 @@ public class PlayerAbillityShoot : PlayerAbillityBase
     private void StartShoot()
     {
         _currentGun.StartShoot();
-        gunFlashColor?.Flash(); // esse interrogação é para checar se ele não é nulo. Se for nulo não executa o .Flash()
+        gunFlashColor?.Flash();
     }
     
     private void CancelShoot()
@@ -53,6 +64,8 @@ public class PlayerAbillityShoot : PlayerAbillityBase
         {
             Destroy(_currentGun.gameObject);
             _gunBaseIndex = gunBases[0];
+            infoGun01.color = Color.green;
+            infoGun02.color = Color.white;
             CreateGun();
         }
 
@@ -60,6 +73,8 @@ public class PlayerAbillityShoot : PlayerAbillityBase
         {   
             Destroy(_currentGun.gameObject);
             _gunBaseIndex = gunBases[1];
+            infoGun01.color = Color.white;
+            infoGun02.color = Color.green;
             CreateGun();
         }
     }

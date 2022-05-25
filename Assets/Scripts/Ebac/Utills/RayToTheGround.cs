@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RayToTheGround : MonoBehaviour
@@ -16,8 +14,9 @@ public class RayToTheGround : MonoBehaviour
     {
         if (myRb == null) myRb = GetComponent<Rigidbody>();
         if (collider == null) collider = GetComponent<Collider>();
-        if (collider != null) distToGround = collider.bounds.extents.y;
         if (_itemRotate == null) _itemRotate = GetComponent<ItemRotate>();
+
+        if (collider != null) distToGround = collider.bounds.extents.y;
     }
 
     private void Update()

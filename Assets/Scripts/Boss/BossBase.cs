@@ -7,14 +7,6 @@ using Ebac.StateMachine;
 using DG.Tweening;
 using Animation;
 
-//COISAS PARA FAZER:
-
-//arrumar o healthbase do bossbase
-//implementar particle system do boss
-//implementar SFX do boss
-//arrumar posiçao da gun para nao ser afetada pela animaçao de attack
-//add callback para sincronizar animaçao de attack com o tiro
-
 
 namespace Boss
 {
@@ -38,10 +30,13 @@ namespace Boss
         [SerializeField] private AnimationBase _animationBase;
         public float startDuration = 2f;
         public Ease ease = Ease.OutBack;
+        [SerializeField] private HealthBase healthBase;
+        [SerializeField] private FlashColor flashColor;
         private Vector3 _normalScale = Vector3.one;
 
         [Header("Attack")]
-        public GunBase gunBase;
+        public EnemyGun enemyGun;
+        public ProjectileBase projectileBase;
         public bool lookAtPlayer = true;
         private Player _player;
         public int attackAmount = 5;
@@ -51,21 +46,12 @@ namespace Boss
         public SFXType sfxDeath;
         public SFXType sfxWakeup;
 
+        [Header("Waypoints")]
         public float speed = 5f;
         public List<Transform> waypoints;
-        //public GameObject bossTrigger;
-
-        [SerializeField] private HealthBase healthBase;
-        [SerializeField] private FlashColor flashColor;
-        //private Vector3 _currScale = Vector3.one;
 
         [Header("Events")]
         public UnityEvent OnKillEvent;
-
-        //COISAS PARA FAZER:
-
-        // - Boss voltar ao ponto inicial qdo o player morrer
-        
 
         private void OnValidate()
         {
@@ -73,7 +59,6 @@ namespace Boss
             if (_animationBase == null) _animationBase = GetComponentInChildren<AnimationBase>();
             if (_player == null) _player = FindObjectOfType<Player>();
             if (flashColor == null) flashColor = GetComponentInChildren<FlashColor>();
-            
         }
 
         private void Awake()
@@ -88,7 +73,6 @@ namespace Boss
         {
             stateMachine = new StateMachine<BossAction>();
             stateMachine.Init();
-
             
             stateMachine.RegisterStates(BossAction.INIT, new BossStateInit());
             stateMachine.RegisterStates(BossAction.ANIM, new BossStateAnim());
@@ -99,7 +83,7 @@ namespace Boss
 
         private void Start()
         {
-            gunBase = GetComponentInChildren<GunBase>();
+            enemyGun = GetComponentInChildren<EnemyGun>();
             transform.localScale = _normalScale / 2;
         }
 
@@ -107,13 +91,12 @@ namespace Boss
         {
             if (lookAtPlayer)
             {
-                //transform.LookAt(_player.transform.position);
                 transform.LookAt(Player.Instance.transform.position);
             }
 
             if (!_player.isAlive)
             {
-                gunBase.StopShoot();
+                enemyGun.StopShoot();
                 StopAllCoroutines();
             }
         }
@@ -140,11 +123,22 @@ namespace Boss
         public void OnDamage(float f)
         {
             if (flashColor != null) flashColor.Flash();
-            //if (particleSystem != null) particleSystem.Emit(intParticles);
 
-            transform.position -= transform.forward; //serve para dar um "tranco" no inimigo qdo ele leva o tiro
+            transform.position -= transform.forward;
 
             healthBase._currLife -= f;
+
+            if (healthBase._currLife <= 20)
+            {
+                enemyGun.amountShoots = 3;
+                enemyGun.angle = 5;
+            }
+
+            if(healthBase._currLife <= 10)
+            {
+                enemyGun.angle = 3;
+                projectileBase.speed = 40;
+            }
 
             if (healthBase._currLife <= 0)
             {
@@ -170,7 +164,7 @@ namespace Boss
 
             lookAtPlayer = false;
 
-            gunBase.StopShoot();
+            enemyGun.StopShoot();
 
             PlayDeathSFX();
 
@@ -195,9 +189,9 @@ namespace Boss
 
         #region WALK
 
-        public void GoToRandomPoint(Action onArrive = null) //Action onArrive = Callback para informar qdo chegou no waypoint para poder começar a atacar, coloco como nulo para não ser um parametro obrigatorio, mas se tiver será usado
+        public void GoToRandomPoint(Action onArrive = null)
         {
-            StartCoroutine(GoToPointCoroutine(waypoints[UnityEngine.Random.Range(0, waypoints.Count)], onArrive)); //coloquei UnityEngine.Random pois o Random é usado tanto pelo using system, qto pelo using UnityEngine então eu escolho de qual será usado
+            StartCoroutine(GoToPointCoroutine(waypoints[UnityEngine.Random.Range(0, waypoints.Count)], onArrive));
         }
 
         IEnumerator GoToPointCoroutine(Transform t, Action onArrive = null)
@@ -205,21 +199,19 @@ namespace Boss
             while (Vector3.Distance(transform.position, t.position) > 1)
             {
                 transform.position = Vector3.MoveTowards(transform.position, t.position, Time.deltaTime * speed);
-                //transform.LookAt(_player.transform.position);
                 transform.LookAt(Player.Instance.transform.position);
                 _animationBase.PlayAnimationByTrigger(AnimationType.RUN);
                 yield return new WaitForEndOfFrame();
             }
 
-            onArrive?.Invoke(); //é o mesmo que if (onArrive != null) onArrive.Invoke();
-
+            onArrive?.Invoke();
         }
 
         #endregion
 
         #region ATTACK
 
-        public void StartAttack(Action endCallback = null) //Action endCallback = callback para informar qdo acabou a rodada de ataque
+        public void StartAttack(Action endCallback = null)
         {
             StartCoroutine(StartAttackCoroutine(endCallback));
         }
@@ -232,12 +224,17 @@ namespace Boss
             {
                 attacks++;
                 _animationBase.PlayAnimationByTrigger(AnimationType.ATTACK);
-                gunBase.StartShoot();
+                enemyGun.StartShoot();
                 yield return new WaitForSeconds(timeBetweenAttacks);
             }
 
             endCallback?.Invoke();
 
+        }
+
+        public void StopShoot()
+        {
+            enemyGun.StopShoot();
         }
 
         #endregion
@@ -255,34 +252,6 @@ namespace Boss
         public void StartAction()
         {
             SwitchState(BossAction.WALK);
-
-        }
-
-        #endregion
-
-        #region DEBUG
-        [NaughtyAttributes.Button]
-        public void SwitchInit()
-        {
-            SwitchState(BossAction.INIT);
-        }
-
-        [NaughtyAttributes.Button]
-        public void SwitchWalk()
-        {
-            SwitchState(BossAction.WALK);
-        }
-
-        [NaughtyAttributes.Button]
-        void SwitchAttack()
-        {
-            SwitchState(BossAction.ATTACK);
-        }
-
-        [NaughtyAttributes.Button]
-        public void DebugDamage()
-        {
-            Damage(5);
         }
 
         #endregion

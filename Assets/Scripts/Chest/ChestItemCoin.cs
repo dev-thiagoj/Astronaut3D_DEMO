@@ -24,7 +24,6 @@ public class ChestItemCoin : ChestItemBase
         CreateItens();
     }
 
-    [NaughtyAttributes.Button]
     private void CreateItens()
     {
         for (int i = 0; i < coinAmount; i++)
@@ -36,14 +35,13 @@ public class ChestItemCoin : ChestItemBase
         }
     }
 
-    [NaughtyAttributes.Button]
     public override void Collect()
     {
         base.Collect();
         foreach(var i in _itens)
         {
-            i.transform.DOMoveY(4f, tweenEndTime).SetRelative(); //SetRelative diz que ele é relativo a posição atual dos itens (vai mover +2 em y em relaçao a posição atual)
-            i.transform.DOScale(0, tweenEndTime / 2).SetDelay(tweenEndTime / 2); //demora metade do tempo pra começar porém metade do tempo pra executar
+            i.transform.DOMoveY(4f, tweenEndTime).SetRelative();
+            i.transform.DOScale(0, tweenEndTime / 2).SetDelay(tweenEndTime / 2);
             SFXPool.Instance.Play(sfxType);
             ItemManager.Instance.AddByType(ItemType.COIN);
         }

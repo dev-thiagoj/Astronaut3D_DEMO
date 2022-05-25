@@ -19,9 +19,9 @@ public class SFXPool : Singleton<SFXPool>
 
     private void CreatePool()
     {
-        _audioSourcesList = new List<AudioSource>(); // 1 - instancia uma lista nova
+        _audioSourcesList = new List<AudioSource>();
         
-        for(int i = 0; i < poolSize; i++) // 5 - cria o pool
+        for(int i = 0; i < poolSize; i++)
         {
             CreateAudioSourceItem();
         }
@@ -29,9 +29,9 @@ public class SFXPool : Singleton<SFXPool>
 
     private void CreateAudioSourceItem()
     {
-        GameObject go = new GameObject("SFX_Pool"); // 2 - cria o objeto
-        go.transform.SetParent(gameObject.transform); // 3 - cria dentro do gameobject pai na cena
-        _audioSourcesList.Add(go.AddComponent<AudioSource>()); // 4 - adiciona um Audio Source no objeto criado
+        GameObject go = new GameObject("SFX_Pool");
+        go.transform.SetParent(gameObject.transform);
+        _audioSourcesList.Add(go.AddComponent<AudioSource>());
     }
 
     public void Play(SFXType sfxType)
@@ -45,6 +45,6 @@ public class SFXPool : Singleton<SFXPool>
 
         _index++;
 
-        if (_index >= _audioSourcesList.Count) _index = 0; // retorna ao começo do pool
+        if (_index >= _audioSourcesList.Count) _index = 0;
     }
 }

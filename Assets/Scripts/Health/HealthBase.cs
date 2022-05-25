@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine;
-//using Cloth;
-//using Ebac.Core.Singleton;
+
 
 public class HealthBase : MonoBehaviour, IDamageable
 {
     public bool destroyOnKill = false;
     public float startLife = 10f;
-    public float _currLife; //não pode ser privado pois o boss base acessa ele
+    public float _currLife;
     public float timeToDestroy = 10;
 
+    [Header("Screen Updater")]
     public List<UILifeUpdater> uiLifeUpdater;
 
     public float damageMultiply = 1;
@@ -19,11 +19,6 @@ public class HealthBase : MonoBehaviour, IDamageable
     public Action<HealthBase> OnDamage;
     public Action<HealthBase> OnKill;
 
-    //[Space]
-    //[SerializeField] private ClothChange clothChange;
-
-
-    //public DestructableItemBase destructableItemBase;
 
     private void Awake()
     {
@@ -50,8 +45,7 @@ public class HealthBase : MonoBehaviour, IDamageable
 
         OnKill?.Invoke(this);
     }
-
-    [NaughtyAttributes.Button]
+    
     public void Damage()
     {
         Damage(5);
@@ -64,7 +58,6 @@ public class HealthBase : MonoBehaviour, IDamageable
         if (_currLife <= 0)
         {
             Kill();
-            //SaveManager.Instance.Save();
         }
 
         UpdateUI();
@@ -94,17 +87,4 @@ public class HealthBase : MonoBehaviour, IDamageable
 
         this.damageMultiply = 1;
     }
-
-    /*public void ChangeTexture(ClothSetup setup, float duration)
-    {
-        StartCoroutine(ChangeTextureCoroutine(setup, duration));
-    }
-
-    IEnumerator ChangeTextureCoroutine(ClothSetup setup, float duration)
-    {
-        clothChange.ChangeTexture(setup);
-        yield return new WaitForSeconds(duration);
-
-        clothChange.ResetTexture();
-    }*/
 }

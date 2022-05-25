@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
 
 public class PlayerAbillityBase : MonoBehaviour
 {
@@ -18,16 +17,15 @@ public class PlayerAbillityBase : MonoBehaviour
     {
         inputs = new Inputs();
         inputs.Enable();
-
+        
         Init();
-        OnValidate(); //chamei novamente apenas para garantir que irá pegar
+        OnValidate();
         RegisterListeners();
     }
 
     private void OnEnable()
     {
-        if (inputs != null)
-            inputs.Enable();
+        if (inputs != null) inputs.Enable();
     }
 
     private void OnDisable()

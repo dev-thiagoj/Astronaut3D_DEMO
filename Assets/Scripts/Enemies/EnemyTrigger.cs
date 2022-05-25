@@ -1,10 +1,9 @@
 using UnityEngine;
 using Enemy;
 
-public class EnemyTrigger : EnemyShoot
+public class EnemyTrigger : MonoBehaviour
 {
     public EnemyShoot enemyShoot;
-    public EnemyBase enemyBase;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +11,8 @@ public class EnemyTrigger : EnemyShoot
         {
             enemyShoot.StartShooting();
         }
+
+        else return;
     }
 
     private void OnTriggerExit(Collider other)
@@ -20,5 +21,7 @@ public class EnemyTrigger : EnemyShoot
         {
             enemyShoot.StopShooting();
         }
+
+        else return;
     }
 }

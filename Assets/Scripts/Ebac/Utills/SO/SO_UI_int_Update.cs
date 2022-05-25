@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -17,5 +15,4 @@ public class SO_UI_int_Update : MonoBehaviour
     {
         uiTextValue.text = "x " + soInt.value.ToString();
     }
-
 }

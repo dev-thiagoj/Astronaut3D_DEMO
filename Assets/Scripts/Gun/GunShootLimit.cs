@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-//COISAS PARA FAZER:
-
-// - ajustar para pegar somente os Ui de ammo e deixar de fora os de health
 
 public class GunShootLimit : GunBase
 {
@@ -17,11 +14,6 @@ public class GunShootLimit : GunBase
     private float _currentShoots;
     private bool _recharging = false;
 
-    private void Awake()
-    {
-        //GetAllUIs();
-    }
-
     private void Start()
     {
         GetAllUIs();
@@ -30,13 +22,12 @@ public class GunShootLimit : GunBase
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R)) StartRecharge();
-
+        if (maxShoot == 0) maxShoot = 1;
     }
 
     protected override IEnumerator ShootCoroutine()
     {
-        if (_recharging) yield break; //esse check serve para se estiver recarregando, quebra a coroutine, evitando que passe e entre em loop infinito
-                                      //no while (true)  
+        if (_recharging) yield break;
 
         while (true)
         {
@@ -51,7 +42,6 @@ public class GunShootLimit : GunBase
                 yield return new WaitForSeconds(timeToRecharge);
             }
 
-            //qdo caisse aqui, entraria em loop infinito e quebraria a Unity
             CheckRecharge();
         }
     }
@@ -69,7 +59,6 @@ public class GunShootLimit : GunBase
     {
         _recharging = true;
         StartCoroutine(RechargeCoroutine());
-
     }
 
     IEnumerator RechargeCoroutine()

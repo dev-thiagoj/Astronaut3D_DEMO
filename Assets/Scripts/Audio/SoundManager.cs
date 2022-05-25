@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ebac.Core.Singleton;
@@ -11,7 +10,6 @@ public class SoundManager : Singleton<SoundManager>
     [Header("Sound On/Off")]
     public GameObject buttonSoundOff;
     public GameObject buttonSoundOn;
-
     public AudioSource musicSource;
 
     protected override void Awake()
@@ -40,7 +38,6 @@ public class SoundManager : Singleton<SoundManager>
         return sfxSetups.Find(i => i.sfxType == sfxType);
     }
 
-    [NaughtyAttributes.Button]
     public void TurnMusicOff()
     {
         musicSource.enabled = false;
@@ -49,7 +46,6 @@ public class SoundManager : Singleton<SoundManager>
         buttonSoundOff.SetActive(true);
     }
 
-    [NaughtyAttributes.Button]
     public void TurnMusicOn()
     {
         musicSource.enabled = true;

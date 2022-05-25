@@ -9,24 +9,20 @@ public class EffectsManager : Singleton<EffectsManager>
     public float duration = 1f;
     [SerializeField] private Vignette _vignette;
 
-
     [NaughtyAttributes.Button]
     public void ChangeVignette()
     {
         StartCoroutine(FlashColorVignette());
-
     }
 
     IEnumerator FlashColorVignette()
     {
         Vignette temp;
 
-        if (processVolume.profile.TryGetSettings<Vignette>(out temp)) //usa-se o out para não criar uma variável nova, mas usar no método a que já tem
+        if (processVolume.profile.TryGetSettings<Vignette>(out temp))
         {
             _vignette = temp;
         }
-
-        //_vignette.color = Color.red; //não podemos usar direto o Color.Red pois o post processing trabalha com parametro de cor, precisamos definir antes o parametro, então:
 
         ColorParameter c = new ColorParameter();
 

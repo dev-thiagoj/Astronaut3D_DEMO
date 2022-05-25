@@ -1,19 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using DG.Tweening;
 
 public class EndGame : MonoBehaviour
 {
     public List<GameObject> endGameObjects;
     public GameObject restartScreen;
+    public int currentLevel = 1;
+    public Boss.BossBase bossBase;
 
     private bool _endGame = false;
-
-    public int currentLevel = 1;
-
-    public Boss.BossBase bossBase;
 
     private void Awake()
     {
@@ -27,7 +24,6 @@ public class EndGame : MonoBehaviour
 
         if (!_endGame && p != null && bossBase._isAlive == false) ShowEndGame();
         else return;
-
     }
 
     private void ShowEndGame()
@@ -52,9 +48,6 @@ public class EndGame : MonoBehaviour
 
     public void SpawnRestart()
     {
-        //Player.Instance.Spawn();
-        //restartScreen.SetActive(false);
-
         LoadSceneHelper.Instance.LoadLevel(0);
     }
 }

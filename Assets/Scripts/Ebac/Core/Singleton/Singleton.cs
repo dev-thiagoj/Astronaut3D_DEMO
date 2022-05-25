@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Ebac.Core.Singleton
@@ -10,7 +8,6 @@ namespace Ebac.Core.Singleton
 
         protected virtual void Awake()
         {
-
             if (Instance == null)
             {
 
@@ -20,9 +17,7 @@ namespace Ebac.Core.Singleton
             {
                 Destroy(gameObject);
             }
-
         }
     }
-
 }
 

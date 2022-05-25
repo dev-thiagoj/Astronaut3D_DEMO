@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -22,26 +20,23 @@ public class ChestBase : MonoBehaviour
     private bool _chestOpened = false;
 
 
-    // Start is called before the first frame update
     void Start()
     {
         startScale = notification.transform.localScale.x;
         HideNotification();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(keyCode) && notification.activeSelf) //activeSelf retorna uma booleana, para false usar !notification.activeSelf
+        if (Input.GetKeyDown(keyCode) && notification.activeSelf)
         {
             OpenChest();
         }
     }
-
-    [NaughtyAttributes.Button]
+        
     private void OpenChest()
     {
-        if (_chestOpened) return; //se o bau ja estiver sido aberto, retorna
+        if (_chestOpened) return;
 
         animator.SetTrigger(triggerOpen);
         _chestOpened = true;
@@ -76,16 +71,12 @@ public class ChestBase : MonoBehaviour
         }
     }
 
-    [NaughtyAttributes.Button]
-
     private void ShowNotification()
     {
         notification.SetActive(true);
         notification.transform.localScale = Vector3.zero;
         notification.transform.DOScale(startScale, duration).SetEase(ease);
     }
-
-    [NaughtyAttributes.Button]
 
     private void HideNotification()
     {

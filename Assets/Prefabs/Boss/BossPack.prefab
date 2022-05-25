@@ -4832,68 +4832,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7237727119359112629}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1215479191
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1215479194}
-  - component: {fileID: 1215479193}
-  - component: {fileID: 1215479192}
-  m_Layer: 0
-  m_Name: Boss_trigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &1215479194
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215479191}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.030014, y: 0.4400003, z: -73.77002}
-  m_LocalScale: {x: 25.08286, y: 25.08286, z: 25.08286}
-  m_Children: []
-  m_Father: {fileID: 7237727119359112629}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &1215479193
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215479191}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1215479192
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1215479191}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fcc5bb9104658e42a0c98b120de1978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bossBase: {fileID: 0}
-  bossCamera: {fileID: 0}
-  gizmoColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 0.42745098}
 --- !u!1 &283366256019923284
 GameObject:
   m_ObjectHideFlags: 0
@@ -6179,7 +6119,6 @@ Transform:
   m_Children:
   - {fileID: 7237727118589015748}
   - {fileID: 6687348176657224218}
-  - {fileID: 1215479194}
   - {fileID: 576710503}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -6366,14 +6305,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69cd9229ff4dd934cab2adac55fa5f24, type: 3}
---- !u!4 &6211235708059979855 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 6581171847207024322, guid: 69cd9229ff4dd934cab2adac55fa5f24, type: 3}
-  m_PrefabInstance: {fileID: 965944170268092045}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6211235708943879224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6581171846868249269, guid: 69cd9229ff4dd934cab2adac55fa5f24, type: 3}
+  m_PrefabInstance: {fileID: 965944170268092045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6211235708059979855 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6581171847207024322, guid: 69cd9229ff4dd934cab2adac55fa5f24, type: 3}
   m_PrefabInstance: {fileID: 965944170268092045}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7237727118141811357

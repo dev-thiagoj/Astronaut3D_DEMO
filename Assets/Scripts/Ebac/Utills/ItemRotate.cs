@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemRotate : MonoBehaviour
 {
     public float speed = 1f;
     public bool canRotate;
-    //public GameObject gameObject;
 
     private void Update()
     {
@@ -15,6 +12,6 @@ public class ItemRotate : MonoBehaviour
 
     public void StartRotate()
     {
-        transform.Rotate(Vector3.up * speed * 100 * Time.deltaTime);
+        transform.Rotate(100 * speed * Time.deltaTime * Vector3.up);
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -19,11 +17,6 @@ public class FlashColor : MonoBehaviour
     {
         if (meshRenderer == null) meshRenderer = GetComponent<MeshRenderer>();
         if (meshRenderer == null) skinnedMeshRenderer = GetComponent<SkinnedMeshRenderer>();
-    }
-
-    private void Start()
-    {
-        //_defaultColor = meshRenderer.material.GetColor("_EmissionColor");
     }
 
     [NaughtyAttributes.Button]

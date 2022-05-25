@@ -35,7 +35,6 @@ namespace Boss
         private Vector3 _normalScale = Vector3.one;
 
         [Header("Attack")]
-        //public GunBase gunBase;
         public EnemyGun enemyGun;
         public ProjectileBase projectileBase;
         public bool lookAtPlayer = true;
@@ -74,7 +73,6 @@ namespace Boss
         {
             stateMachine = new StateMachine<BossAction>();
             stateMachine.Init();
-
             
             stateMachine.RegisterStates(BossAction.INIT, new BossStateInit());
             stateMachine.RegisterStates(BossAction.ANIM, new BossStateAnim());
@@ -93,7 +91,6 @@ namespace Boss
         {
             if (lookAtPlayer)
             {
-                //transform.LookAt(_player.transform.position);
                 transform.LookAt(Player.Instance.transform.position);
             }
 
@@ -126,9 +123,8 @@ namespace Boss
         public void OnDamage(float f)
         {
             if (flashColor != null) flashColor.Flash();
-            //if (particleSystem != null) particleSystem.Emit(intParticles);
 
-            transform.position -= transform.forward; //serve para dar um "tranco" no inimigo qdo ele leva o tiro
+            transform.position -= transform.forward;
 
             healthBase._currLife -= f;
 
@@ -193,9 +189,9 @@ namespace Boss
 
         #region WALK
 
-        public void GoToRandomPoint(Action onArrive = null) //Action onArrive = Callback para informar qdo chegou no waypoint para poder começar a atacar, coloco como nulo para não ser um parametro obrigatorio, mas se tiver será usado
+        public void GoToRandomPoint(Action onArrive = null)
         {
-            StartCoroutine(GoToPointCoroutine(waypoints[UnityEngine.Random.Range(0, waypoints.Count)], onArrive)); //coloquei UnityEngine.Random pois o Random é usado tanto pelo using system, qto pelo using UnityEngine então eu escolho de qual será usado
+            StartCoroutine(GoToPointCoroutine(waypoints[UnityEngine.Random.Range(0, waypoints.Count)], onArrive));
         }
 
         IEnumerator GoToPointCoroutine(Transform t, Action onArrive = null)
@@ -203,21 +199,19 @@ namespace Boss
             while (Vector3.Distance(transform.position, t.position) > 1)
             {
                 transform.position = Vector3.MoveTowards(transform.position, t.position, Time.deltaTime * speed);
-                //transform.LookAt(_player.transform.position);
                 transform.LookAt(Player.Instance.transform.position);
                 _animationBase.PlayAnimationByTrigger(AnimationType.RUN);
                 yield return new WaitForEndOfFrame();
             }
 
-            onArrive?.Invoke(); //é o mesmo que if (onArrive != null) onArrive.Invoke();
-
+            onArrive?.Invoke();
         }
 
         #endregion
 
         #region ATTACK
 
-        public void StartAttack(Action endCallback = null) //Action endCallback = callback para informar qdo acabou a rodada de ataque
+        public void StartAttack(Action endCallback = null)
         {
             StartCoroutine(StartAttackCoroutine(endCallback));
         }
@@ -258,34 +252,6 @@ namespace Boss
         public void StartAction()
         {
             SwitchState(BossAction.WALK);
-
-        }
-
-        #endregion
-
-        #region DEBUG
-        [NaughtyAttributes.Button]
-        public void SwitchInit()
-        {
-            SwitchState(BossAction.INIT);
-        }
-
-        [NaughtyAttributes.Button]
-        public void SwitchWalk()
-        {
-            SwitchState(BossAction.WALK);
-        }
-
-        [NaughtyAttributes.Button]
-        void SwitchAttack()
-        {
-            SwitchState(BossAction.ATTACK);
-        }
-
-        [NaughtyAttributes.Button]
-        public void DebugDamage()
-        {
-            Damage(5);
         }
 
         #endregion

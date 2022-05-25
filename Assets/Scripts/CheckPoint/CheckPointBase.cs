@@ -7,6 +7,9 @@ public class CheckPointBase : MonoBehaviour
     public MeshRenderer meshRenderer;
     public int key = 01;
 
+    [Header("SFX")]
+    public SFXType sfxType;
+
     private bool _checkpointActived = false;
 
     private void Awake()
@@ -31,7 +34,7 @@ public class CheckPointBase : MonoBehaviour
     private void TurnItOn()
     {
         meshRenderer.material.SetColor("_EmissionColor", Color.white);
-
+        SFXPool.Instance.Play(sfxType);
     }
 
     private void TurnItOff()

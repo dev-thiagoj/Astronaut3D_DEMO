@@ -78,7 +78,8 @@ public enum SFXType
     FOOTSTEPS,
     SHOOT,
     BOSS_WAKEUP,
-    BOSS_DEATH
+    BOSS_DEATH,
+    CHECKPOINT
 }
 
 [System.Serializable]

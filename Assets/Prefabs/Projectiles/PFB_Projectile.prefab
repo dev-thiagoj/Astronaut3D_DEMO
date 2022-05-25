@@ -145,7 +145,7 @@ MonoBehaviour:
   timeToDestroy: 5
   damageAmount: 5
   speed: 50
-  goProj: {fileID: 3035289962458947443}
+  projectile: {fileID: 3263167328485397100}
   tagsToHit:
   - Enemy
   - Boss

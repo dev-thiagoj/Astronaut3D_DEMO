@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 35bf9e23a4c1e2547b1213f85a0ff8c3, type: 2}
+  - {fileID: 2100000, guid: 7472ba9a04d688a4985c7ac3da3e7494, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -107,7 +107,7 @@ GameObject:
   - component: {fileID: 8787971964000899984}
   - component: {fileID: -511926055200307058}
   m_Layer: 0
-  m_Name: PFB_ProjectileEnemy
+  m_Name: PFB_BossProjectile
   m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

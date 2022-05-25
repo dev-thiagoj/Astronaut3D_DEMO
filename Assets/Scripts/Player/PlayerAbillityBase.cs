@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 public class PlayerAbillityBase : MonoBehaviour
@@ -14,12 +15,12 @@ public class PlayerAbillityBase : MonoBehaviour
 
     private void Start()
     {
+        inputs = new Inputs();
+        inputs.Enable();
+        
         Init();
         OnValidate();
         RegisterListeners();
-
-        inputs = new Inputs();
-        inputs.Enable();
     }
 
     private void OnEnable()

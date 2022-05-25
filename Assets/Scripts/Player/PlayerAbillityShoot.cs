@@ -50,7 +50,7 @@ public class PlayerAbillityShoot : PlayerAbillityBase
     private void StartShoot()
     {
         _currentGun.StartShoot();
-        gunFlashColor?.Flash(); // esse interrogação é para checar se ele não é nulo. Se for nulo não executa o .Flash()
+        gunFlashColor?.Flash();
     }
     
     private void CancelShoot()

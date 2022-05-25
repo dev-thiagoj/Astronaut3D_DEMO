@@ -1,13 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using Animation;
 
-//COISAS PARA FAZER:
-
-// - implementar o pursuit no EnemyWalk ao invés daqui
 
 namespace Enemy
 {
@@ -16,7 +11,6 @@ namespace Enemy
         public Rigidbody thisRB;
         public Collider collider;
         public FlashColor flashColor;
-        //public Player player;
 
         public float startLife = 10f;
         public bool lookAtPlayer = false;

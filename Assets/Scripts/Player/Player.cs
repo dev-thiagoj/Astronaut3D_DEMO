@@ -1,18 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Animation;
 using DG.Tweening;
 using Ebac.Core.Singleton;
 using Cloth;
-
-//COISAS PARA FAZER:
-
-//fazer animação do cannon a cada disparo
-//arrumar UI para que a de health não atualize com os tiros
-//arrumar animação de aterrisagem
-//implementar VFX e SFX
-//melhorar UI design
 
 public class Player : Singleton<Player>
 {
@@ -22,10 +13,6 @@ public class Player : Singleton<Player>
     public float gravity = 9.8f;
     public float jumpSpeed = 15f;
     public Transform initialPos;
-
-    /*[Header("SFX")]
-    public SFXType sfxType;
-    private SFXPlayer sfxPlayer;*/
 
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
@@ -38,7 +25,7 @@ public class Player : Singleton<Player>
 
     [Header("Life")]
     public HealthBase healthBase;
-    public List<Collider> colliders; //character controller tb é interpretado como um collider
+    public List<Collider> colliders;
     public bool isAlive = true;
 
     [Header("Bound")]
@@ -55,14 +42,13 @@ public class Player : Singleton<Player>
     {
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
-        //if (sfxPlayer == null) sfxPlayer = GetComponent<SFXPlayer>();
     }
 
     protected override void Awake()
     {
         base.Awake();
 
-        OnValidate(); //sempre chamar no awake para garantir que está sendo validado
+        OnValidate();
 
         healthBase.OnDamage += Damage;
         healthBase.OnKill += Kill;
@@ -145,13 +131,9 @@ public class Player : Singleton<Player>
                     transform.DOScaleZ(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
                     transform.DOScaleY(1.2f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
                 }
-
             }
         }
     }
-
-
-
     #endregion
 
     #region LIFE
@@ -160,7 +142,6 @@ public class Player : Singleton<Player>
         flashColors.ForEach(i => i.Flash());
         EffectsManager.Instance.ChangeVignette();
         ShakeCamera.Instance.Shake();
-
     }
 
     public void Damage(float damage, Vector3 dir)
@@ -170,7 +151,7 @@ public class Player : Singleton<Player>
 
     public void Kill(HealthBase h)
     {
-        if (isAlive) //serve para animação tocar apenas uma vez
+        if (isAlive)
         {
             SaveManager.Instance.Save();
             isAlive = false;
@@ -202,9 +183,7 @@ public class Player : Singleton<Player>
         healthBase.ResetLife();
         _animator.SetTrigger("Revive");
         Respawn();
-        Invoke(nameof(TurnOnColliders), .1f); //ATENÇÃO: IMPORTANTE:
-                                              //precisa invocar para dar tempo de primeiro respawnar e depois ligar os colliders pois se o charactercontroller ficar ativo
-                                              //no mesmo frame do respawn, ele pega a posição da morte como referência ainda e não a do checkpoint.  
+        Invoke(nameof(TurnOnColliders), .1f);
     }
 
     private void TurnOnColliders()
@@ -220,7 +199,6 @@ public class Player : Singleton<Player>
             Debug.Log("Kill");
         }
     }
-
     #endregion
 
     #region SPAWN / RESPAWN
@@ -239,7 +217,6 @@ public class Player : Singleton<Player>
         }
     }
 
-    [NaughtyAttributes.Button]
     public void Respawn()
     {
         if (CheckpointManager.Instance.HasCheckpoint())
@@ -283,7 +260,6 @@ public class Player : Singleton<Player>
 
         clothChange.ResetTexture();
     }
-
     #endregion
 }
 

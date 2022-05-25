@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -7,8 +6,8 @@ public class DestructableItemBase : MonoBehaviour
 {
     public HealthBase healthBase;
 
+    [Header("Shake Animation")]
     public float shakeDuration = .1f;
-
     public int shakeForce = 5;
 
     public int amountCoins = 5;
@@ -16,12 +15,12 @@ public class DestructableItemBase : MonoBehaviour
     public Transform[] dropPositions;
     private int _index = 0;
 
-    private Collider collider;
+    private Collider _collider;
 
     private void OnValidate()
     {
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
-        if (collider == null) collider = GetComponent<Collider>();
+        if (_collider == null) _collider = GetComponent<Collider>();
     }
 
     private void Awake()
@@ -34,16 +33,14 @@ public class DestructableItemBase : MonoBehaviour
     private void OnDamage(HealthBase h)
     {
         transform.DOShakeScale(shakeDuration, Vector3.up / 5, shakeForce);
-        //DropGroupOfCoins();
     }
 
     private void OnKill(HealthBase h)
     {
-        collider.enabled = false;
+        _collider.enabled = false;
         Invoke(nameof(DropGroupOfCoins), .1f);
     }
 
-    [NaughtyAttributes.Button]
     private void DropCoins()
     {
         var i = Instantiate(prefabCoin);
@@ -55,13 +52,7 @@ public class DestructableItemBase : MonoBehaviour
 
     public void DropGroupOfCoins()
     {
-        /*for(int i = 0; i < amountCoins; i++)
-        {
-            DropCoins();
-        }*/
-
         StartCoroutine(DropGroupOfCoinsCoroutine());
-
     }
 
     IEnumerator DropGroupOfCoinsCoroutine()

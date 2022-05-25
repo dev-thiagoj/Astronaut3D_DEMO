@@ -4,7 +4,6 @@ using Enemy;
 public class EnemyTrigger : MonoBehaviour
 {
     public EnemyShoot enemyShoot;
-    
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,6 +11,7 @@ public class EnemyTrigger : MonoBehaviour
         {
             enemyShoot.StartShooting();
         }
+
         else return;
     }
 
@@ -21,6 +21,7 @@ public class EnemyTrigger : MonoBehaviour
         {
             enemyShoot.StopShooting();
         }
+
         else return;
     }
 }

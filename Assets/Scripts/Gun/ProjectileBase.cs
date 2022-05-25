@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,8 +7,9 @@ public class ProjectileBase : MonoBehaviour
 
     public int damageAmount = 1;
     public float speed = 50;
-    public GameObject goProj;
+    public GameObject projectile;
 
+    [Header("Tags")]
     public List<string> tagsToHit;
     public string tagToIgnore;
 
@@ -42,9 +42,7 @@ public class ProjectileBase : MonoBehaviour
                 }
 
                 break;
-
             }
-
         }
 
         foreach(var e in tagsToEnvironment)
@@ -57,7 +55,7 @@ public class ProjectileBase : MonoBehaviour
 
         if (collision.transform.CompareTag(tagToIgnore)) return;
 
-        goProj.SetActive(false);
+        projectile.SetActive(false);
         Destroy(gameObject, 1f);
     }
 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,11 +6,10 @@ namespace Itens
 {
     public class ItemLayoutManager : MonoBehaviour
     {
-        public ItemLayout prefabLayout;
-
-        public Transform container;
-        
         public List<ItemLayout> itemLayouts;
+
+        public ItemLayout prefabLayout;
+        public Transform container;
 
         private void Start()
         {
@@ -28,8 +26,5 @@ namespace Itens
                 itemLayouts.Add(item);
             }
         }
-
-
     }
-
 }

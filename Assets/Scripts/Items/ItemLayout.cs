@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -29,5 +27,4 @@ namespace Itens
             uiValue.text = _currSetup.so_Int.value.ToString();
         }
     }
-
 }

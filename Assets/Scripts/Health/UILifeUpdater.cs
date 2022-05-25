@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -27,7 +25,7 @@ public class UILifeUpdater : MonoBehaviour
 
     public void UpdateValue(float max, float current)
     {
-        if (_currTween != null) _currTween.Kill(); //prevenir possíveis bugs de começar um tween com outro já em andamento
+        if (_currTween != null) _currTween.Kill();
         _currTween = uiImage.DOFillAmount(1 - (current / max), duration).SetEase(ease);
     }
 }

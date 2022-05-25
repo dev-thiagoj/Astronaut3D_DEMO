@@ -69,7 +69,7 @@ public class Player : Singleton<Player>
     }
 
     private void Start()
-    {   
+    {
         Spawn();
     }
 
@@ -165,10 +165,10 @@ public class Player : Singleton<Player>
 
     public void Damage(float damage, Vector3 dir)
     {
-        
+
     }
 
-    private void Kill(HealthBase h)
+    public void Kill(HealthBase h)
     {
         if (isAlive) //serve para animação tocar apenas uma vez
         {
@@ -218,7 +218,7 @@ public class Player : Singleton<Player>
         {
             Kill(healthBase);
             Debug.Log("Kill");
-        }   
+        }
     }
 
     #endregion
@@ -230,9 +230,13 @@ public class Player : Singleton<Player>
         if (CheckpointManager.Instance.lastCheckpointKey > 0)
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
-            //healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
+            healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
         }
-        else transform.position = initialPos.transform.position;
+        else
+        {
+            isAlive = true;
+            transform.position = initialPos.transform.position;
+        }
     }
 
     [NaughtyAttributes.Button]
@@ -247,7 +251,7 @@ public class Player : Singleton<Player>
         {
             transform.position = initialPos.transform.position;
             LoadLifeFromSave();
-        } 
+        }
     }
 
     #endregion

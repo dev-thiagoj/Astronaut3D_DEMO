@@ -171,8 +171,7 @@ namespace Enemy
         private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player"))
-                Player.Instance.healthBase.Damage(1);
-                //player.healthBase.Damage(1);
+                Player.Instance.Kill(Player.Instance.healthBase);
         }
         #endregion
     }

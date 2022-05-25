@@ -29,7 +29,7 @@ public class SaveManager : Singleton<SaveManager>
         DontDestroyOnLoad(gameObject); //não sera destruido qdo carregar outra cena, mantendo sempre o mesmo desde que começa o jogo
     }
 
-    private void CreateNewSave()
+    public void CreateNewSave()
     {
         _saveSetup = new SaveSetup();
         _saveSetup.lastLevel = 0;
@@ -38,7 +38,6 @@ public class SaveManager : Singleton<SaveManager>
 
     private void Start()
     {
-        //LoadFile();
         Invoke(nameof(LoadFile), 0.1f);
     }
 
@@ -60,15 +59,6 @@ public class SaveManager : Singleton<SaveManager>
         SaveLifeStatus();
         Save();
     }
-
-    /*public void SaveDataWhenGetKilled()
-    {
-        SaveCheckpoints();
-        SaveItens();
-        SaveCurrCloth();
-        SaveLifeStatus();
-        Save();
-    }*/
 
     public void SaveLastLevel(int level)
     {
@@ -137,7 +127,6 @@ public class SaveManager : Singleton<SaveManager>
         //FileLoaded.Invoke(_saveSetup);
     }
 }
-
 
 [System.Serializable]
 public class SaveSetup

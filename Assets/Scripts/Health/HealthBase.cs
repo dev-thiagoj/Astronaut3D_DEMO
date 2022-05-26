@@ -75,6 +75,8 @@ public class HealthBase : MonoBehaviour, IDamageable
         if (uiLifeUpdater != null) uiLifeUpdater.ForEach(i => i.UpdateValue((float)_currLife / startLife));
     }
 
+
+    #region ========== POWER_UP ==========
     public void ChangeDamageMultiply(float damage, float duration)
     {
         StartCoroutine(ChangeDamageMultiplyCoroutine(damage, duration));
@@ -83,8 +85,11 @@ public class HealthBase : MonoBehaviour, IDamageable
     IEnumerator ChangeDamageMultiplyCoroutine(float damageMultiply, float duration)
     {
         this.damageMultiply = damageMultiply;
+        Player.Instance.strongIcon.enabled = true;
         yield return new WaitForSeconds(duration);
 
         this.damageMultiply = 1;
+        Player.Instance.strongIcon.enabled = false;
     }
+    #endregion
 }

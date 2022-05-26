@@ -1,10 +1,9 @@
 
-
 namespace Cloth
 {
     public class ClothItemStrong : ClothItemBase
     {
-        public float damageMultiply = .5f;
+        public float damageMultiply = .5f;        
 
         public override void Collect()
         {

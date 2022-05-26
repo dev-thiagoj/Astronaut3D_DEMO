@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 using Ebac.Core.Singleton;
 using Cloth;
@@ -36,6 +37,9 @@ public class Player : Singleton<Player>
     [Header("Bound")]
     public int boundY = 25;
 
+    [Header("UI Icons")]
+    public Image strongIcon;
+
     [Space]
     [SerializeField] private ClothChange clothChange;
 
@@ -62,6 +66,7 @@ public class Player : Singleton<Player>
     private void Start()
     {
         Spawn();
+        strongIcon.enabled = false;
     }
 
     private void Update()

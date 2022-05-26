@@ -142,6 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca4108397f43a143a88430b0ccb9f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 141899856227712313}
+  trailRenderer: {fileID: 1747378526437437400}
   timeToDestroy: 5
   damageAmount: 5
   speed: 50
@@ -154,7 +156,7 @@ MonoBehaviour:
   - Ground
   - Decorations
   particleSystem: {fileID: 7630513358509766769}
-  intParticles: 15
+  intParticles: 30
 --- !u!54 &-511926055200307058
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -170,7 +172,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 126
-  m_CollisionDetection: 1
+  m_CollisionDetection: 2
 --- !u!1 &7878115954454351160
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,8 +278,8 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 0
-  moveWithCustomTransform: {fileID: 0}
+  moveWithTransform: 1
+  moveWithCustomTransform: {fileID: 6971585778565682486}
   scalingMode: 1
   randomSeed: 0
   InitialModule:
@@ -974,7 +976,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
     arc:
-      value: 180
+      value: 360
       mode: 3
       spread: 0
       speed:
@@ -1146,7 +1148,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 30
+        scalar: 60
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -2411,7 +2413,7 @@ ParticleSystem:
         m_RotationOrder: 4
     m_Range: {x: 0, y: 1}
   ForceModule:
-    enabled: 1
+    enabled: 0
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -5023,7 +5025,7 @@ ParticleSystemRenderer:
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
-  m_ApplyActiveColorSpace: 1
+  m_ApplyActiveColorSpace: 0
   m_AllowRoll: 1
   m_FreeformStretching: 0
   m_RotateWithStretchDirection: 1

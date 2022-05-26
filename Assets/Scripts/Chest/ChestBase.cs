@@ -33,7 +33,8 @@ public class ChestBase : MonoBehaviour
             OpenChest();
         }
     }
-        
+
+    [NaughtyAttributes.Button]
     private void OpenChest()
     {
         if (_chestOpened) return;

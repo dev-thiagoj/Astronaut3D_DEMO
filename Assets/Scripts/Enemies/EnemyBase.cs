@@ -13,7 +13,10 @@ namespace Enemy
         public FlashColor flashColor;
 
         public float startLife = 10f;
+
+        [Header("Look At")]
         public bool lookAtPlayer = false;
+        public Transform target;
 
         [SerializeField] private float _currentLife;
         private Vector3 currPos;
@@ -52,11 +55,21 @@ namespace Enemy
             Init();
         }
 
+        private void Start()
+        {
+            target = Player.Instance.transform;
+        }
+
         public virtual void Update()
         {
             if (lookAtPlayer)
             {
-                transform.LookAt(Player.Instance.transform.position);
+                var lookPos = target.position - transform.position;
+                lookPos.y = 0;
+                var rotation = Quaternion.LookRotation(lookPos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
+                
+                //transform.LookAt(Player.Instance.transform.position);
             }
 
             currPos = collider.transform.position;

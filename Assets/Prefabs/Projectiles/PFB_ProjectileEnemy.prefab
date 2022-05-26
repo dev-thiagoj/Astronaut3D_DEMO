@@ -140,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca4108397f43a143a88430b0ccb9f7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
+  trailRenderer: {fileID: 0}
   timeToDestroy: 5
   damageAmount: 1
   speed: 20

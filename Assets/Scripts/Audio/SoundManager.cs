@@ -79,7 +79,9 @@ public enum SFXType
     SHOOT,
     BOSS_WAKEUP,
     BOSS_DEATH,
-    CHECKPOINT
+    CHECKPOINT,
+    RELOAD,
+    CHANGE_WEAPON,
 }
 
 [System.Serializable]

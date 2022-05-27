@@ -45,6 +45,13 @@ public class PlayerAbillityShoot : PlayerAbillityBase
         _currentGun = Instantiate(_gunBaseIndex, gunPosition);
 
         _currentGun.transform.localPosition = _currentGun.transform.localEulerAngles = Vector3.zero;
+
+        PlaySFXChangeWeapon();
+    }
+
+    public void PlaySFXChangeWeapon()
+    {
+        SFXPool.Instance.Play(SFXType.CHANGE_WEAPON);
     }
 
     private void StartShoot()

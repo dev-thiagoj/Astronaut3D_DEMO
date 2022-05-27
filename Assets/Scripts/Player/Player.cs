@@ -8,32 +8,33 @@ using Cloth;
 
 public class Player : Singleton<Player>
 {
+    [Space]
+    public Transform initialPos;
+    
+    [Header("Movements")]
     public CharacterController characterController;
+    [Space]
     public float speed = 1f;
     public float turnSpeed = 1f;
     public float gravity = 9.8f;
-    public float jumpSpeed = 15f;
-    public Transform initialPos;
 
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
     public float speedRun = 1.5f;
 
-    [Header("SFX Footsteps")]
-    public AudioSource audioSource;
-    public SFXType sfxType;
-
+    [Header("Jump Force")]
+    public float jumpSpeed = 15f;
     private float _vSpeed = 0f;
 
     [Header("Flash")]
-    public List<FlashColor> flashColors;
+    public List<FlashColor> flashColorsList;
 
     [Header("Life")]
+    public List<Collider> collidersList;
     public HealthBase healthBase;
-    public List<Collider> colliders;
     public bool isAlive = true;
 
-    [Header("Bound")]
+    [Header("Fall Down Bound")]
     public int boundY = 25;
 
     [Header("UI Icons")]
@@ -148,7 +149,7 @@ public class Player : Singleton<Player>
     #region LIFE
     public void Damage(HealthBase h)
     {
-        flashColors.ForEach(i => i.Flash());
+        flashColorsList.ForEach(i => i.Flash());
         EffectsManager.Instance.ChangeVignette();
         ShakeCamera.Instance.Shake();
     }
@@ -166,7 +167,7 @@ public class Player : Singleton<Player>
             isAlive = false;
             _animator.SetTrigger("Death");
             MusicPlayer.Instance.PlayLoseJingle();
-            colliders.ForEach(i => i.enabled = false);
+            collidersList.ForEach(i => i.enabled = false);
 
             Invoke(nameof(Revive), 5f);
         }
@@ -198,7 +199,7 @@ public class Player : Singleton<Player>
 
     private void TurnOnColliders()
     {
-        colliders.ForEach(i => i.enabled = true);
+        collidersList.ForEach(i => i.enabled = true);
     }
 
     private void BoundY()

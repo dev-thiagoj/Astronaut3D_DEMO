@@ -58,6 +58,7 @@ public class GunShootLimit : GunBase
     private void StartRecharge()
     {
         _recharging = true;
+        PlaySFXRecharge();
         StartCoroutine(RechargeCoroutine());
     }
 
@@ -76,6 +77,11 @@ public class GunShootLimit : GunBase
 
         _currentShoots = 0;
         _recharging = false;
+    }
+
+    private void PlaySFXRecharge()
+    {
+        SFXPool.Instance.Play(SFXType.RELOAD);
     }
 
     private void UpdateUI()

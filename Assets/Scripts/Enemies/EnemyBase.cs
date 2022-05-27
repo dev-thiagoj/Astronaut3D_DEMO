@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using DG.Tweening;
 using Animation;
-
+using System.Collections;
 
 namespace Enemy
 {
@@ -19,7 +19,8 @@ namespace Enemy
         public Transform target;
 
         [SerializeField] private float _currentLife;
-        private Vector3 currPos;
+        private Vector3 _currPos;
+        private Quaternion _currRotation;
 
         [Header("Animation")]
         [SerializeField] private AnimationBase _animationBase;
@@ -51,20 +52,20 @@ namespace Enemy
         }
 
         private void Awake()
-        {
+        {   
             Init();
         }
 
         private void Start()
         {
-            target = Player.Instance.transform;
+            //target = Player.Instance.transform;
         }
 
         public virtual void Update()
         {
             if (lookAtPlayer)
             {
-                var lookPos = target.position - transform.position;
+                var lookPos = Player.Instance.transform.position - transform.position;
                 lookPos.y = 0;
                 var rotation = Quaternion.LookRotation(lookPos);
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
@@ -72,7 +73,8 @@ namespace Enemy
                 //transform.LookAt(Player.Instance.transform.position);
             }
 
-            currPos = collider.transform.position;
+            _currPos = collider.transform.position;
+            _currRotation = collider.transform.rotation;
 
             PlayerKilled();
             Pursuit();
@@ -99,7 +101,8 @@ namespace Enemy
             _currentLife = startLife;
         }
 
-        #region LIFE
+        #region ========== LIFE ==========
+
         public void Damage(float damage)
         {
             OnDamage(damage);
@@ -127,12 +130,15 @@ namespace Enemy
 
         protected virtual void Kill()
         {   
+            transform.position = new Vector3(_currPos.x, _currPos.y, _currPos.z);
+            transform.rotation = new Quaternion(_currRotation.x, _currRotation.y, _currRotation.z, _currRotation.w);
             lookAtPlayer = false;
             canPursuit = false;
 
+            thisRB.useGravity = false;
             if (thisRB != null) thisRB.Sleep();
             if (collider != null) collider.enabled = false;
-            transform.position = currPos;
+
 
             OnKill();
         }
@@ -145,7 +151,7 @@ namespace Enemy
         }
         #endregion
 
-        #region ANIMATION
+        #region ========== ANIMATION ==========
 
         private void BornAnimation()
         {
@@ -160,7 +166,7 @@ namespace Enemy
 
         #endregion
 
-        #region PURSUIT ATTACK
+        #region ========== PURSUIT ATTACK ==========
 
         public void Pursuit()
         {

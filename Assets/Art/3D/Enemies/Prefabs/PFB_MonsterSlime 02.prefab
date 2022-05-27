@@ -517,6 +517,7 @@ GameObject:
   - component: {fileID: 6954268188840861965}
   - component: {fileID: 5144924261696689607}
   - component: {fileID: 5198380618090564724}
+  - component: {fileID: 1556547433042244605}
   m_Layer: 0
   m_Name: PFB_MonsterSlime 02
   m_TagString: Untagged
@@ -607,6 +608,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1556547433042244605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6658164316280714258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3d49e5cec8fcbe41b6be6676b2fc8ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 5144924261696689607}
+  skinnedMeshRenderer: {fileID: 0}
+  colorParameter: _EmissionColor
+  color: {r: 1, g: 0, b: 0, a: 1}
+  duration: 0.1
 --- !u!1 &6871701313906595067
 GameObject:
   m_ObjectHideFlags: 0

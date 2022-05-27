@@ -4,8 +4,6 @@ using Ebac.Core.Singleton;
 public class MusicPlayer : Singleton<MusicPlayer>
 {
     public MusicType musicAmbience;
-    public MusicType musicWin;
-    public MusicType musicLose;
     public AudioSource audioSource;
 
     private MusicSetup _currentMusicSetup;

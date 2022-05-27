@@ -22,7 +22,6 @@ public class Player : Singleton<Player>
     [Header("SFX Footsteps")]
     public AudioSource audioSource;
     public SFXType sfxType;
-    public float stepsTime = .2f;
 
     private float _vSpeed = 0f;
 
@@ -113,17 +112,6 @@ public class Player : Singleton<Player>
             _animator.SetBool("Run", isWalking);
         }
     }
-
-    /*private void FootstepsPlay()
-    {
-        audioSource.Play();
-    }
-
-    private IEnumerator FootstepsCoroutine()
-    {
-        audioSource.Play();
-        yield return new WaitForSeconds(stepsTime);
-    }*/
 
     #endregion
 

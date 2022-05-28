@@ -5253,7 +5253,6 @@ MonoBehaviour:
   OnKillEvent:
     m_PersistentCalls:
       m_Calls: []
-  audioSource: {fileID: 0}
 --- !u!114 &3967054700662387786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6037,9 +6036,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+      propertyPath: audioClipsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+      propertyPath: audioClipsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: fec85516fc1340e4b934ac9126d06c43, type: 3}
+    - target: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+      propertyPath: audioClipsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d5af49c4558e8064a9e030b6f1fe1396, type: 3}
     - target: {fileID: 1389491412099891482, guid: 191f0019399fc704788335df40f32b14, type: 3}
       propertyPath: m_Name
       value: PFB_SFXHelper
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389491412099891483, guid: 191f0019399fc704788335df40f32b14, type: 3}
+      propertyPath: m_audioClip
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1389491412099891483, guid: 191f0019399fc704788335df40f32b14, type: 3}
       propertyPath: OutputAudioMixerGroup

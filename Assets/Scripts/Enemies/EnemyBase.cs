@@ -42,6 +42,9 @@ namespace Enemy
         [Header("Events")]
         public UnityEvent OnKillEvent;
 
+        [Header("SFX")]
+        public SFXPlayerHelper sFXPlayerHelper;
+
         private void OnValidate()
         {
             if (thisRB == null) thisRB = GetComponent<Rigidbody>();
@@ -49,6 +52,7 @@ namespace Enemy
             if (flashColor == null) flashColor = GetComponentInChildren<FlashColor>();
             if (particleSystem == null) particleSystem = GetComponentInChildren<ParticleSystem>();
             if (_animationBase == null) _animationBase = GetComponentInChildren<AnimationBase>();
+            if (sFXPlayerHelper == null) sFXPlayerHelper = GetComponentInChildren<SFXPlayerHelper>();
         }
 
         private void Awake()
@@ -147,6 +151,7 @@ namespace Enemy
         {
             Destroy(gameObject, 10f);
             PlayAnimationByTrigger(AnimationType.DEATH);
+            sFXPlayerHelper.PlayEnemyDead();
             OnKillEvent?.Invoke();
         }
         #endregion

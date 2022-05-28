@@ -5018,7 +5018,7 @@ MonoBehaviour:
   OnKillEvent:
     m_PersistentCalls:
       m_Calls: []
-  audioSource: {fileID: 0}
+  sFXPlayerHelper: {fileID: 4475553768064235739}
   gunBase: {fileID: 0}
 --- !u!1 &9032514065722336414
 GameObject:
@@ -5341,6 +5341,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+      propertyPath: audioClipsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+      propertyPath: audioClipsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: e4f273c93d0e6ef41800b7b5eae0451f, type: 3}
+    - target: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+      propertyPath: audioClipsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d5af49c4558e8064a9e030b6f1fe1396, type: 3}
     - target: {fileID: 1389491412099891482, guid: 191f0019399fc704788335df40f32b14, type: 3}
       propertyPath: m_Name
       value: PFB_SFXHelper
@@ -5364,3 +5376,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1389491412099891456, guid: 191f0019399fc704788335df40f32b14, type: 3}
   m_PrefabInstance: {fileID: 3266283335328643551}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4475553768064235739 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+  m_PrefabInstance: {fileID: 3266283335328643551}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda054bbf72f34947a82a86823e2e628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

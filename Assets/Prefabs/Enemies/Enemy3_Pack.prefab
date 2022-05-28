@@ -80,7 +80,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7528037652607804639}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -193,7 +193,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7528037653759690096}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -274,7 +274,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7528037653955271966}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -343,13 +343,33 @@ PrefabInstance:
       propertyPath: waypoints.Array.data[2]
       value: 
       objectReference: {fileID: 7528037653759690096}
+    - target: {fileID: 718869580005461990, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 718869580005461990, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 7991892176201491723, guid: 1e7b1cf3d41863f42947364188d7489e, type: 2}
+    - target: {fileID: 718869580005462009, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
+      propertyPath: audioClipsList.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 718869580005462009, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
+      propertyPath: audioClipsList.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 339d82cf2a0fdc548b043e142789ec76, type: 3}
+    - target: {fileID: 718869580005462009, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
+      propertyPath: audioClipsList.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: d5af49c4558e8064a9e030b6f1fe1396, type: 3}
     - target: {fileID: 6591584795972683722, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
       propertyPath: m_UseGravity
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6591584795972683722, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
       propertyPath: m_Constraints
-      value: 80
+      value: 112
       objectReference: {fileID: 0}
     - target: {fileID: 6641739726379615029, guid: e4cd9860cb47404498fd03874a4a07ea, type: 3}
       propertyPath: m_Name

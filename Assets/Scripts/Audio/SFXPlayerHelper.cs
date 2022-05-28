@@ -7,6 +7,9 @@ public class SFXPlayerHelper : MonoBehaviour
     //public SFXType sfxType;
     public AudioSource audioSource;
 
+    public List<AudioClip> audioClipsList;
+    private AudioClip _currAudioIndex;
+
     [Header("Delays")]
     public float minDelay = 3f;
     public float maxDelay = 10f;
@@ -19,6 +22,10 @@ public class SFXPlayerHelper : MonoBehaviour
     private void Start()
     {
         if (audioSource == null) return;
+
+        _currAudioIndex = audioClipsList[0];
+        audioSource.clip = _currAudioIndex;
+
         StartCoroutine(PlayAudioCoroutine());
     }
 
@@ -30,14 +37,24 @@ public class SFXPlayerHelper : MonoBehaviour
     public void PlayAudioSource()
     {
         audioSource.Play();
-    } 
-
+    }
     IEnumerator PlayAudioCoroutine()
     {
         while (true)
         {
+            _currAudioIndex = audioClipsList[0];
+            audioSource.clip = _currAudioIndex;
             PlayAudioSource();
             yield return new WaitForSeconds(Random.Range(minDelay, maxDelay));
         }
+    }
+
+    [NaughtyAttributes.Button]
+    public void PlayEnemyDead()
+    {
+        StopAllCoroutines();
+        _currAudioIndex = audioClipsList[1];
+        audioSource.clip = _currAudioIndex;
+        audioSource.Play();
     }
 }

@@ -9896,23 +9896,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d83dddd81292747a2a82c7be84df89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialPos: {fileID: 0}
   characterController: {fileID: 2920102134895724325}
   speed: 20
   turnSpeed: 150
   gravity: 14.7
-  jumpSpeed: 15
-  initialPos: {fileID: 0}
   keyRun: 304
   speedRun: 1.5
-  flashColors:
-  - {fileID: 402271710}
-  - {fileID: 1572792507}
+  jumpForce: 15
+  maxSpeedToJumpTrigger: 5
+  colliderToGround: {fileID: 0}
+  distToGround: 0
+  spaceToGround: 0.1
+  flashColorsList: []
+  collidersList: []
   healthBase: {fileID: 2136216548588668664}
-  colliders:
-  - {fileID: 7721287683176714575}
-  - {fileID: 2920102134895724325}
   isAlive: 1
   boundY: 25
+  strongIcon: {fileID: 0}
   clothChange: {fileID: 1361890308}
 --- !u!114 &2920102134895724346
 MonoBehaviour:
@@ -10002,7 +10003,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2920102136188629310}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.1, z: 1.37}
+  m_LocalPosition: {x: -0.05, y: 1.1, z: 0.48}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2920102134895724347}

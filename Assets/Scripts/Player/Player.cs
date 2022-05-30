@@ -198,6 +198,7 @@ public class Player : Singleton<Player>
             SaveManager.Instance.Save();
             isAlive = false;
             _animator.SetTrigger("Death");
+            _animator.SetBool("GoingDown", false);
             MusicPlayer.Instance.PlayLoseJingle();
             collidersList.ForEach(i => i.enabled = false);
 
@@ -222,10 +223,10 @@ public class Player : Singleton<Player>
 
     private void Revive()
     {
-        Respawn();
         isAlive = true;
         healthBase.ResetLife();
         _animator.SetTrigger("Revive");
+        Respawn();
         Invoke(nameof(TurnOnColliders), .1f);
     }
 
@@ -267,7 +268,7 @@ public class Player : Singleton<Player>
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
             LoadLifeFromSave();
         }
-        else
+        else if (CheckpointManager.Instance.lastCheckpointKey == 0)
         {
             transform.position = initialPos.transform.position;
             LoadLifeFromSave();

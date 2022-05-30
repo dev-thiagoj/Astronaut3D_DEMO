@@ -16,7 +16,7 @@ namespace Enemy
 
         [Header("Look At")]
         public bool lookAtPlayer = false;
-        public Transform target;
+        //public Transform target;
 
         [SerializeField] private float _currentLife;
         private Vector3 _currPos;

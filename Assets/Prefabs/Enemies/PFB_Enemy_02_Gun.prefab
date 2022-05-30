@@ -4885,14 +4885,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2859397701690285909}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 8107537647418416964}
   m_Father: {fileID: 2859397702027990477}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1 &2859397702027990450
 GameObject:
   m_ObjectHideFlags: 0
@@ -5004,7 +5004,6 @@ MonoBehaviour:
   flashColor: {fileID: 3618475911837106705}
   startLife: 15
   lookAtPlayer: 1
-  target: {fileID: 0}
   _currentLife: 0
   _animationBase: {fileID: 2859397702027990478}
   startDuration: 0.2

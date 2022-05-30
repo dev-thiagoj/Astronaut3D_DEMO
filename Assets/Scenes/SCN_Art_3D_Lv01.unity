@@ -5822,6 +5822,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PFB_PowerUp_Shield
       objectReference: {fileID: 0}
+    - target: {fileID: 7877670093715904511, guid: 31e564429802e6b4d8516597d7d94d25, type: 3}
+      propertyPath: duration
+      value: 30
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31e564429802e6b4d8516597d7d94d25, type: 3}
 --- !u!4 &402068785 stripped
@@ -9287,7 +9291,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655235233}
-  m_LocalRotation: {x: 0.16521096, y: -0.31117746, z: 0.055027295, w: 0.9342623}
+  m_LocalRotation: {x: 0.16521098, y: -0.31117746, z: 0.05502729, w: 0.9342623}
   m_LocalPosition: {x: 0, y: 0.000030517578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10631,7 +10635,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744978615}
-  m_LocalRotation: {x: 0.043311074, y: -0.17478743, z: 0.007696273, w: 0.983623}
+  m_LocalRotation: {x: 0.04331107, y: -0.17478743, z: 0.0076962733, w: 0.983623}
   m_LocalPosition: {x: -313.08185, y: 118.02, z: -171.7911}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -22531,7 +22535,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1500100153}
-  m_LocalRotation: {x: 0.14818989, y: -0.31212696, z: 0.04935804, w: 0.9371128}
+  m_LocalRotation: {x: 0.14818989, y: -0.31212696, z: 0.049358048, w: 0.9371128}
   m_LocalPosition: {x: 120.57895, y: 123.395004, z: -129.53415}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -26904,10 +26908,7 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 1027620692}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras:
-  - {fileID: 744978616}
-  - {fileID: 1809451339}
-  - {fileID: 1889083982}
+  m_ChildCameras: []
   m_Instructions:
   - m_FullHash: 1432961145
     m_VirtualCamera: {fileID: 1809451339}
@@ -27400,7 +27401,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809451338}
-  m_LocalRotation: {x: 0.014152425, y: 0.95481473, z: -0.0460773, w: 0.2932668}
+  m_LocalRotation: {x: 0.014152434, y: 0.95481473, z: -0.04607733, w: 0.29326683}
   m_LocalPosition: {x: -323.5655, y: 113.02, z: -143.22403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -29045,7 +29046,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937229366}
-  m_LocalRotation: {x: 0.13116488, y: -0.31297094, z: 0.043687467, w: 0.93964696}
+  m_LocalRotation: {x: 0.1311649, y: -0.31297097, z: 0.043687474, w: 0.93964696}
   m_LocalPosition: {x: 0, y: 0.000015258789, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -33931,6 +33932,10 @@ PrefabInstance:
       propertyPath: OnKillEvent.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1580150580}
+    - target: {fileID: 7237727118589015803, guid: 17662aa2693ee4041af5f3486cf1c2a2, type: 3}
+      propertyPath: startLife
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 7237727119359112629, guid: 17662aa2693ee4041af5f3486cf1c2a2, type: 3}
       propertyPath: m_RootOrder
       value: 0

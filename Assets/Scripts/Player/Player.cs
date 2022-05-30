@@ -23,7 +23,7 @@ public class Player : Singleton<Player>
     public float speedRun = 1.5f;
 
     [Header("Jump")]
-    public float jumpSpeed = 15f;
+    public float jumpForce = 15f;
     public float maxSpeedToJumpTrigger = 5;
     public Collider colliderToGround;
     public float distToGround;
@@ -138,7 +138,7 @@ public class Player : Singleton<Player>
             _vSpeed = 0;
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _vSpeed = jumpSpeed;
+                _vSpeed = jumpForce;
 
                 if (!_jumping)
                 {
@@ -222,10 +222,10 @@ public class Player : Singleton<Player>
 
     private void Revive()
     {
+        Respawn();
         isAlive = true;
         healthBase.ResetLife();
         _animator.SetTrigger("Revive");
-        Respawn();
         Invoke(nameof(TurnOnColliders), .1f);
     }
 

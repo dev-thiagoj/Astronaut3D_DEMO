@@ -128,13 +128,13 @@ namespace Boss
 
             healthBase._currLife -= f;
 
-            if (healthBase._currLife <= 20)
+            if (healthBase._currLife <= 30)
             {
                 enemyGun.amountShoots = 3;
                 enemyGun.angle = 5;
             }
 
-            if(healthBase._currLife <= 10)
+            if(healthBase._currLife <= 15)
             {
                 enemyGun.angle = 3;
                 projectileBase.speed = 40;

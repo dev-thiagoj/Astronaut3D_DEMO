@@ -82,9 +82,7 @@ public enum SFXType
     CHECKPOINT,
     RELOAD,
     CHANGE_WEAPON,
-    ROAR_01,
-    ROAR_02,
-    ROAR_03
+    ENEMYSHOOT
 }
 
 [System.Serializable]

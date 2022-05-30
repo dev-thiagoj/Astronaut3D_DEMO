@@ -12,7 +12,7 @@ public class GunBase : MonoBehaviour
     private Coroutine _currentCoroutine;
 
     [Header("SFX")]
-    //public SFXType sfxType;
+    public SFXType sfxType;
     public AudioSource audioSource;
 
     protected virtual IEnumerator ShootCoroutine()
@@ -34,7 +34,7 @@ public class GunBase : MonoBehaviour
 
     public void PlayShootSFX()
     {
-        SFXPool.Instance.Play(SFXType.SHOOT);
+        SFXPool.Instance.Play(sfxType);
     }
 
     public void StartShoot()

@@ -5220,7 +5220,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 4
+  m_Constraints: 14
   m_CollisionDetection: 0
 --- !u!114 &3967054700662387784
 MonoBehaviour:
@@ -5253,6 +5253,7 @@ MonoBehaviour:
   OnKillEvent:
     m_PersistentCalls:
       m_Calls: []
+  sFXPlayerHelper: {fileID: 2020543945049982661}
 --- !u!114 &3967054700662387786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6071,3 +6072,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1389491412099891456, guid: 191f0019399fc704788335df40f32b14, type: 3}
   m_PrefabInstance: {fileID: 1099473216095569857}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020543945049982661 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1389491412099891460, guid: 191f0019399fc704788335df40f32b14, type: 3}
+  m_PrefabInstance: {fileID: 1099473216095569857}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fda054bbf72f34947a82a86823e2e628, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

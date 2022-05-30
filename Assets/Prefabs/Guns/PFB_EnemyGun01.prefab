@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabProjectile: {fileID: 8787971964000899984, guid: 33e1d2a7f1560574aa430cccd32c2204, type: 3}
   positionToShoot: {fileID: 514607715807319544}
-  pos: {x: 0, y: 0, z: 0}
   timeBetweenShoot: 2
   speed: 20
+  sfxType: 13
+  audioSource: {fileID: 0}

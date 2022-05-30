@@ -10,7 +10,7 @@ public class Player : Singleton<Player>
 {
     [Space]
     public Transform initialPos;
-    
+
     [Header("Movements")]
     public CharacterController characterController;
     [Space]
@@ -22,9 +22,11 @@ public class Player : Singleton<Player>
     public KeyCode keyRun = KeyCode.LeftShift;
     public float speedRun = 1.5f;
 
-    [Header("Jump Force")]
+    [Header("Jump")]
     public float jumpSpeed = 15f;
+    public float maxSpeedToJumpTrigger = 5;
     private float _vSpeed = 0f;
+
 
     [Header("Flash")]
     public List<FlashColor> flashColorsList;
@@ -74,6 +76,7 @@ public class Player : Singleton<Player>
         Movements();
         Jump();
         BoundY();
+        LocalVel();
     }
 
     private void LoadLifeFromSave()
@@ -109,7 +112,7 @@ public class Player : Singleton<Player>
             speedVector.y = _vSpeed;
 
             characterController.Move(speedVector * Time.deltaTime);
-            
+
             _animator.SetBool("Run", isWalking);
         }
     }
@@ -123,7 +126,6 @@ public class Player : Singleton<Player>
         if (_jumping)
         {
             _jumping = false;
-            _animator.SetTrigger("Land");
         }
 
         if (characterController.isGrounded && isAlive)
@@ -140,8 +142,19 @@ public class Player : Singleton<Player>
                     transform.DOScaleX(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
                     transform.DOScaleZ(.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
                     transform.DOScaleY(1.2f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+                    _animator.SetTrigger("GoingUp");
                 }
             }
+        }
+    }
+
+    private void LocalVel()
+    {
+        var localVel = transform.InverseTransformDirection(characterController.velocity);
+
+        if (localVel.y < -maxSpeedToJumpTrigger)
+        {
+            _animator.SetTrigger("GoingDown");
         }
     }
     #endregion
@@ -180,12 +193,12 @@ public class Player : Singleton<Player>
             Kill(healthBase);
         }
 
-        if (collision.gameObject.CompareTag("Ground"))
+        else if (collision.gameObject.CompareTag("Ground"))
         {
-            transform.DOScaleX(1.1f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
-            transform.DOScaleZ(1.1f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
-            transform.DOScaleY(0.8f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
+            _animator.SetTrigger("Land");
         }
+
+        else return;
     }
 
     private void Revive()

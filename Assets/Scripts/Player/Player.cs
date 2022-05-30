@@ -25,6 +25,9 @@ public class Player : Singleton<Player>
     [Header("Jump")]
     public float jumpSpeed = 15f;
     public float maxSpeedToJumpTrigger = 5;
+    public Collider colliderToGround;
+    public float distToGround;
+    public float spaceToGround = .1f;
     private float _vSpeed = 0f;
 
 
@@ -53,6 +56,7 @@ public class Player : Singleton<Player>
     {
         if (_animator == null) _animator = GetComponentInChildren<Animator>();
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
+        if (colliderToGround != null) distToGround = colliderToGround.bounds.extents.y;
     }
 
     protected override void Awake()
@@ -73,6 +77,7 @@ public class Player : Singleton<Player>
 
     private void Update()
     {
+        IsGrounded();
         Movements();
         Jump();
         BoundY();
@@ -144,7 +149,13 @@ public class Player : Singleton<Player>
                     transform.DOScaleY(1.2f, .5f).SetEase(Ease.OutBack).SetLoops(2, LoopType.Yoyo);
                     _animator.SetTrigger("GoingUp");
                 }
+
             }
+        }
+        
+        if (IsGrounded())
+        {
+            _animator.SetTrigger("Land");
         }
     }
 
@@ -154,8 +165,16 @@ public class Player : Singleton<Player>
 
         if (localVel.y < -maxSpeedToJumpTrigger)
         {
-            _animator.SetTrigger("GoingDown");
+            _animator.SetBool("GoingDown", true);
         }
+        else if (localVel.y > -maxSpeedToJumpTrigger) _animator.SetBool("GoingDown", false);
+    }
+
+    private bool IsGrounded()
+    {
+        Debug.DrawRay(transform.position, -Vector2.up, Color.magenta, distToGround + spaceToGround);
+
+        return Physics.Raycast(transform.position, -Vector2.up, distToGround + spaceToGround);
     }
     #endregion
 

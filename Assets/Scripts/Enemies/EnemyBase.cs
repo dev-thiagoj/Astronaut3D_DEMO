@@ -180,7 +180,8 @@ namespace Enemy
 
             if (canPursuit && _startPursuit)
             {
-                thisRB.AddForce(lookDirection * speedOfPursuit, ForceMode.Force);
+                thisRB.AddForce(lookDirection.normalized * speedOfPursuit, ForceMode.Force);
+                if (thisRB.velocity.sqrMagnitude > 1f) thisRB.velocity *= 0.99f;
                 PlayAnimationByTrigger(AnimationType.RUN);
             }
             else return;

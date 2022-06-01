@@ -192,7 +192,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -679,7 +679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -757,7 +757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -1597,7 +1597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -2263,7 +2263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -2395,7 +2395,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -3717,7 +3717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -4119,7 +4119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -5568,7 +5568,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -6319,7 +6319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -6445,7 +6445,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -6797,7 +6797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -7121,7 +7121,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -9212,7 +9212,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -9450,7 +9450,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -10156,7 +10156,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 655235233}
-  m_LocalRotation: {x: -0.12972501, y: 0.84333676, z: -0.23499833, w: -0.46554312}
+  m_LocalRotation: {x: -0.129725, y: 0.84333676, z: -0.23499836, w: -0.4655431}
   m_LocalPosition: {x: 0, y: 0.000030517578, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -10233,7 +10233,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -10545,7 +10545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -11479,7 +11479,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 744978615}
-  m_LocalRotation: {x: 0.04331107, y: -0.17478743, z: 0.0076962733, w: 0.983623}
+  m_LocalRotation: {x: 0.043311074, y: -0.17478743, z: 0.007696273, w: 0.983623}
   m_LocalPosition: {x: -313.08185, y: 118.02, z: -171.7911}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -11694,7 +11694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -12366,7 +12366,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -14254,7 +14254,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -15188,7 +15188,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -16735,7 +16735,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -18597,7 +18597,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -20435,7 +20435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -20776,7 +20776,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -21162,7 +21162,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -21478,7 +21478,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -22133,7 +22133,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -25209,7 +25209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -25425,7 +25425,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -25725,7 +25725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -25993,7 +25993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -28283,7 +28283,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -28581,7 +28581,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1809451338}
-  m_LocalRotation: {x: 0.014152432, y: 0.95481473, z: -0.046077322, w: 0.29326683}
+  m_LocalRotation: {x: 0.014152439, y: 0.95481473, z: -0.04607735, w: 0.2932668}
   m_LocalPosition: {x: -323.5655, y: 113.02, z: -143.22403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -28990,7 +28990,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -29390,7 +29390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -29941,7 +29941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -30354,7 +30354,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1937229366}
-  m_LocalRotation: {x: -0.11272856, y: 0.8513165, z: -0.20420907, w: -0.46994817}
+  m_LocalRotation: {x: -0.11272855, y: 0.85131645, z: -0.20420907, w: -0.4699481}
   m_LocalPosition: {x: 0, y: 0.000015258789, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -31571,7 +31571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -31739,7 +31739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -32246,7 +32246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
@@ -32373,7 +32373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -32573,7 +32573,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -32995,7 +32995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size
@@ -34027,7 +34027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: amountCoins
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1159721025576631927, guid: 077a18a7cb86c4f439298ce53354b0a4, type: 3}
       propertyPath: dropPositions.Array.size

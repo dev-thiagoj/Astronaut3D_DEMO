@@ -51,5 +51,6 @@ public class EndGame : MonoBehaviour
     public void SpawnRestart()
     {
         LoadSceneHelper.Instance.LoadLevel(0);
+        SaveManager.Instance.CreateNewSave();
     }
 }

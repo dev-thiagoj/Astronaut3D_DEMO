@@ -73,6 +73,7 @@ public class Player : Singleton<Player>
     {
         Spawn();
         strongIcon.enabled = false;
+        Debug.Log("initial position é " + initialPos.transform.localPosition);
     }
 
     private void Update()
@@ -152,7 +153,7 @@ public class Player : Singleton<Player>
 
             }
         }
-        
+
         if (IsGrounded())
         {
             _animator.SetTrigger("Land");
@@ -195,21 +196,37 @@ public class Player : Singleton<Player>
     {
         if (isAlive)
         {
-            SaveManager.Instance.Save();
             isAlive = false;
             _animator.SetTrigger("Death");
-            _animator.SetBool("GoingDown", false);
             MusicPlayer.Instance.PlayLoseJingle();
-            collidersList.ForEach(i => i.enabled = false);
-
-            Invoke(nameof(Revive), 5f);
+            Debug.Log("Kill");
+            OnKill();
         }
+    }
+
+    public void OnKill()
+    {
+        collidersList.ForEach(i => i.enabled = false);
+        Debug.Log("OnKill");
+        Invoke(nameof(Revive), 5f);
+    }
+    private void Revive()
+    {   
+        Respawn();
+        healthBase.ResetLife();
+        Debug.Log("Revive");
+    }
+    private void TurnOnColliders()
+    {
+        collidersList.ForEach(i => i.enabled = true);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            flashColorsList.ForEach(i => i.Flash());
+            EffectsManager.Instance.ChangeVignette();
             Kill(healthBase);
         }
 
@@ -221,60 +238,57 @@ public class Player : Singleton<Player>
         else return;
     }
 
-    private void Revive()
-    {
-        isAlive = true;
-        healthBase.ResetLife();
-        _animator.SetTrigger("Revive");
-        Respawn();
-        Invoke(nameof(TurnOnColliders), .1f);
-    }
-
-    private void TurnOnColliders()
-    {
-        collidersList.ForEach(i => i.enabled = true);
-    }
-
     private void BoundY()
     {
-        if (transform.position.y < -boundY)
-        {
-            Kill(healthBase);
-            Debug.Log("Kill");
-        }
+        if (transform.position.y < -boundY) Respawn();
     }
+
     #endregion
 
     #region SPAWN / RESPAWN
 
     public void Spawn()
     {
-        if (CheckpointManager.Instance.lastCheckpointKey > 0)
+        if (CheckpointManager.Instance.HasCheckpoint())
         {
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
             healthBase._currLife = SaveManager.Instance.Setup.lifeStatus;
-        }
-        else
-        {
-            isAlive = true;
-            transform.position = initialPos.transform.position;
         }
     }
 
     public void Respawn()
     {
+        Debug.Log("Respawn");
+
         if (CheckpointManager.Instance.HasCheckpoint())
         {
+            Debug.Log("Has Ckeckpoint");
             transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
+            Debug.Log(transform.position);
             LoadLifeFromSave();
         }
-        else if (CheckpointManager.Instance.lastCheckpointKey == 0)
+        else
         {
+            Debug.Log("Dont has checkpoint");
+
             transform.position = initialPos.transform.position;
+
+            Debug.Log(transform.position);
+
             LoadLifeFromSave();
         }
+
+        _animator.SetTrigger("Revive");
+
+        PlayFromRespawn();
     }
 
+    public void PlayFromRespawn()
+    {
+        isAlive = true;
+        TurnOnColliders();
+        //Invoke(nameof(TurnOnColliders), .1f);
+    }
     #endregion
 
     #region POWERUPS

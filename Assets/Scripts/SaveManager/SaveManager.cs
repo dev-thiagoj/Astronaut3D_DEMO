@@ -7,10 +7,10 @@ using Ebac.Core.Singleton;
 
 public class SaveManager : Singleton<SaveManager>
 {
-    public int lastlevel;
+    //public int lastlevel;
     public Action<SaveSetup> FileLoaded;
 
-    [SerializeField] private SaveSetup _saveSetup;
+    public SaveSetup _saveSetup;
     private string _path = Application.streamingAssetsPath + "/save.txt";
 
     public SaveSetup Setup
@@ -24,11 +24,21 @@ public class SaveManager : Singleton<SaveManager>
         DontDestroyOnLoad(gameObject);
     }
 
+    [NaughtyAttributes.Button]
     public void CreateNewSave()
     {
         _saveSetup = new SaveSetup();
         _saveSetup.lastLevel = 0;
-        _saveSetup.playerName = "Test";
+        _saveSetup.coins = 0;
+        _saveSetup.lifePack = 0;
+        _saveSetup.lastCheckpoint = 0;
+        //_saveSetup.lifeStatus = Player.Instance.healthBase.startLife;
+        _saveSetup.playerName = "Demo";
+
+        if (File.Exists(_path)) JsonUtility.FromJsonOverwrite(_path, this);
+        else if (!File.Exists(_path)) return;
+
+        Save();
     }
 
     private void Start()
@@ -38,11 +48,19 @@ public class SaveManager : Singleton<SaveManager>
 
     #region Save
 
+    [NaughtyAttributes.Button]
     public void Save()
     {
         string setupToJson = JsonUtility.ToJson(_saveSetup, true);
         Debug.Log(setupToJson);
         SaveFile(setupToJson);
+    }
+
+    [NaughtyAttributes.Button]
+    public void DebugJson()
+    {
+        string debugJson = JsonUtility.ToJson(_saveSetup, true);
+        Debug.Log(debugJson);
     }
 
     public void SaveDataInCheckpoints()
@@ -89,7 +107,8 @@ public class SaveManager : Singleton<SaveManager>
         File.WriteAllText(_path, json);
     }
 
-    private void LoadFile()
+    [NaughtyAttributes.Button]
+    public void LoadFile()
     {
         string fileLoaded = "";
 
@@ -98,7 +117,7 @@ public class SaveManager : Singleton<SaveManager>
             fileLoaded = File.ReadAllText(_path);
             _saveSetup = JsonUtility.FromJson<SaveSetup>(fileLoaded);
 
-            lastlevel = _saveSetup.lastLevel;
+            //lastlevel = _saveSetup.lastLevel;
         }
 
         else
@@ -110,6 +129,8 @@ public class SaveManager : Singleton<SaveManager>
         //FileLoaded.Invoke(_saveSetup);
     }
 }
+
+
 
 [System.Serializable]
 public class SaveSetup

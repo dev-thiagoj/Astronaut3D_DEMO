@@ -43,5 +43,12 @@ namespace Enemy
                 StopShooting();
             }
         }
+
+        protected override void OnKill()
+        {
+            base.OnKill();
+            StopShooting();
+        }
+
     }
 }

@@ -34,6 +34,9 @@ public class CheckpointManager : Singleton<CheckpointManager>
 
         var checkpoint = checkpoints.Find(i => i.key == lastCheckpointKey);
 
+        Debug.Log("last checkpoint key é " + lastCheckpointKey);
+        Debug.Log("Last checkpoint position é " + checkpoint.transform.position);
+
         return checkpoint.transform.position;
     }
 

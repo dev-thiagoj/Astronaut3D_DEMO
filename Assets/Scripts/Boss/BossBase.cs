@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using Ebac.StateMachine;
 using DG.Tweening;
 using Animation;
+using Ebac.Core.Singleton;
 
 
 namespace Boss
@@ -20,7 +21,7 @@ namespace Boss
         DEATH
     }
 
-    public class BossBase : MonoBehaviour, IDamageable
+    public class BossBase : Singleton<BossBase>, IDamageable
     {
         public StateMachine<BossAction> stateMachine;
 

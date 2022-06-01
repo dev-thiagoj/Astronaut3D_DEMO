@@ -9,6 +9,7 @@ TagManager:
   - Ground
   - Decorations
   - Projectile
+  - BoundY
   layers:
   - Default
   - TransparentFX

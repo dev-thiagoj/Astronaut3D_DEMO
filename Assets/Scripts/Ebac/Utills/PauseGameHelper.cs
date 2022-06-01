@@ -30,6 +30,7 @@ public class PauseGameHelper : Singleton<PauseGameHelper>
 
     public void QuitGame()
     {
+        SaveManager.Instance.CreateNewSave();
         Application.Quit();
     }
 

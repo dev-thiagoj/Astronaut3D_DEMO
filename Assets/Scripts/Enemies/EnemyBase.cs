@@ -60,11 +60,6 @@ namespace Enemy
             Init();
         }
 
-        private void Start()
-        {
-            //target = Player.Instance.transform;
-        }
-
         public virtual void Update()
         {
             if (lookAtPlayer)
@@ -73,8 +68,6 @@ namespace Enemy
                 lookPos.y = 0;
                 var rotation = Quaternion.LookRotation(lookPos);
                 transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime);
-                
-                //transform.LookAt(Player.Instance.transform.position);
             }
 
             _currPos = collider.transform.position;

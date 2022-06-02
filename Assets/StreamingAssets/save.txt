@@ -1,0 +1,9 @@
+{
+    "lastLevel": 0,
+    "coins": 6,
+    "lifePack": 0,
+    "lastCheckpoint": 1,
+    "currCloth": 0,
+    "lifeStatus": 10.0,
+    "playerName": "Demo"
+}

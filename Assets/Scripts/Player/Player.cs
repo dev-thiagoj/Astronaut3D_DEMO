@@ -194,27 +194,24 @@ public class Player : Singleton<Player>
 
     public void Kill(HealthBase h)
     {
-        if (isAlive)
-        {
-            isAlive = false;
-            _animator.SetTrigger("Death");
-            MusicPlayer.Instance.PlayLoseJingle();
-            Debug.Log("Kill");
-            OnKill();
-        }
+        //if (isAlive)
+        //{
+        isAlive = false;
+        collidersList.ForEach(i => i.enabled = false);
+        OnKill();
+        //}
     }
 
     public void OnKill()
     {
-        collidersList.ForEach(i => i.enabled = false);
-        Debug.Log("OnKill");
+        _animator.SetTrigger("Death");
+        MusicPlayer.Instance.PlayLoseJingle();
         Invoke(nameof(Revive), 5f);
     }
     private void Revive()
-    {   
-        Respawn();
+    {
         healthBase.ResetLife();
-        Debug.Log("Revive");
+        Respawn();
     }
     private void TurnOnColliders()
     {
@@ -262,19 +259,12 @@ public class Player : Singleton<Player>
 
         if (CheckpointManager.Instance.HasCheckpoint())
         {
-            Debug.Log("Has Ckeckpoint");
-            transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
-            Debug.Log(transform.position);
+            GoToCheckpointPos();
             LoadLifeFromSave();
         }
         else
         {
-            Debug.Log("Dont has checkpoint");
-
-            transform.position = initialPos.transform.position;
-
-            Debug.Log(transform.position);
-
+            GoToInitialPos();
             LoadLifeFromSave();
         }
 
@@ -287,7 +277,18 @@ public class Player : Singleton<Player>
     {
         isAlive = true;
         TurnOnColliders();
-        //Invoke(nameof(TurnOnColliders), .1f);
+    }
+
+    [NaughtyAttributes.Button]
+    public void GoToInitialPos()
+    {
+        transform.position = initialPos.transform.position;
+    }
+
+    [NaughtyAttributes.Button]
+    public void GoToCheckpointPos()
+    {
+        transform.position = CheckpointManager.Instance.GetPositionFromLastCheckpoint();
     }
     #endregion
 

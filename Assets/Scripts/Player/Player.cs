@@ -24,8 +24,7 @@ public class Player : Singleton<Player>
 
     [Header("Jump")]
     public float jumpForce = 15f;
-    public float maxSpeedToJumpTrigger = 5;
-    public Collider colliderToGround;
+    public float maxSpeedToJumpTrigger = 5;public Collider colliderToGround;
     public float distToGround;
     public float spaceToGround = .1f;
     private float _vSpeed = 0f;

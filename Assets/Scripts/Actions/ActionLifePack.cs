@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 using Itens;
 
 public class ActionLifePack : MonoBehaviour
 {
     public KeyCode keyCode = KeyCode.L;
-    public SO_int so_Int;
+    private SO_int so_Int;
+    public TextMeshProUGUI noLifePackText;
 
     private void Start()
     {
@@ -21,6 +23,12 @@ public class ActionLifePack : MonoBehaviour
 
             Player.Instance.healthBase.ResetLife();
         }
+        else
+        {
+            noLifePackText.gameObject.SetActive(true);
+            Invoke(nameof(TurnOffLifePackText), 3);
+        }
+        
     }
 
     private void Update()
@@ -29,5 +37,10 @@ public class ActionLifePack : MonoBehaviour
         {
             RecoverLife();
         }
+    }
+
+    void TurnOffLifePackText()
+    {
+        noLifePackText.gameObject.SetActive(false);
     }
 }

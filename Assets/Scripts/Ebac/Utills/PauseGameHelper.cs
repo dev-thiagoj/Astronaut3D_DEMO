@@ -8,7 +8,7 @@ public class PauseGameHelper : Singleton<PauseGameHelper>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (Input.GetKeyDown(KeyCode.P) || Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
         }
@@ -30,7 +30,6 @@ public class PauseGameHelper : Singleton<PauseGameHelper>
 
     public void QuitGame()
     {
-        SaveManager.Instance.CreateNewSave();
         Application.Quit();
     }
 

@@ -29,7 +29,6 @@ public class Player : Singleton<Player>
     public float spaceToGround = .1f;
     private float _vSpeed = 0f;
 
-
     [Header("Flash")]
     public List<FlashColor> flashColorsList;
 
@@ -72,7 +71,6 @@ public class Player : Singleton<Player>
     {
         Spawn();
         strongIcon.enabled = false;
-        Debug.Log("initial position é " + initialPos.transform.localPosition);
     }
 
     private void Update()
